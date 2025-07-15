@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>John Doe Portfolio</title>
-  <link rel="stylesheet" href="../../style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Messaging Interface</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome, John Doe</h1>
-    <p>Here are your files:</p>
-    <ul>
-      <li><a href="resume.pdf" target="_blank">Resume (PDF)</a></li>
-    </ul>
-    <textarea rows="10" cols="50" placeholder="Type here..." style="margin-top: 20px;"></textarea>
+  <div class="terminal-container">
+    <div class="terminal-header">Secure Communication Channel</div>
+    <div id="terminal" class="terminal-window"></div>
+    <form onsubmit="handleMessage(event)">
+      <input type="text" id="username" placeholder="Enter your name" required>
+      <textarea id="message" placeholder="Enter your message" rows="3" required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
