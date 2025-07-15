@@ -1,6 +1,6 @@
 body {
-  background-color: black;
-  color: #00FF00;
+  background-color: #101010;
+  color: #00FF99;
   font-family: 'Courier New', Courier, monospace;
   margin: 0;
   display: flex;
@@ -9,21 +9,22 @@ body {
   height: 100vh;
 }
 .terminal-container {
-  width: 90%;
+  width: 95%;
   max-width: 800px;
-  border: 2px solid #00FF00;
+  border: 2px solid #00FF99;
   padding: 20px;
   background-color: #000;
+  box-shadow: 0 0 15px rgba(0,255,153,0.3);
 }
 .terminal-header {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.4em;
   margin-bottom: 10px;
-  color: #00FF00;
+  color: #00FF99;
 }
 .terminal-window {
   background-color: #000;
-  border: 1px solid #00FF00;
+  border: 1px solid #00FF99;
   padding: 10px;
   height: 300px;
   overflow-y: auto;
@@ -35,12 +36,12 @@ input, textarea {
   margin-bottom: 10px;
   padding: 10px;
   background-color: #111;
-  color: #00FF00;
-  border: 1px solid #00FF00;
+  color: #00FF99;
+  border: 1px solid #00FF99;
 }
 button {
   padding: 10px 20px;
-  background-color: #00FF00;
+  background-color: #00FF99;
   color: black;
   border: none;
   font-weight: bold;
@@ -48,5 +49,15 @@ button {
   width: 100%;
 }
 button:hover {
-  background-color: #0f0;
+  background-color: #00ffaa;
+}
+.media-links {
+  margin-top: 20px;
+}
+.media-links a {
+  color: #00FF99;
+  text-decoration: underline;
+}
+.video-embed {
+  margin-top: 10px;
 }

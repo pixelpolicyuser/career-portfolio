@@ -1,10 +1,12 @@
 function handleMessage(event) {
   event.preventDefault();
   const name = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
   const message = document.getElementById("message").value.trim();
   const terminal = document.getElementById("terminal");
 
-  if (!name || !message) return;
+  if (!name || !email || !message) return;
 
   const now = new Date();
   const estDate = new Intl.DateTimeFormat('en-US', {
@@ -21,7 +23,17 @@ function handleMessage(event) {
   terminal.textContent += displayText;
   terminal.scrollTop = terminal.scrollHeight;
 
-  // TODO: Send message to WhatsApp via API (server-side required)
+  localStorage.setItem('lastMessage', displayText);
+  localStorage.setItem('lastUser', name);
 
   document.getElementById("message").value = "";
 }
+
+window.onload = () => {
+  const terminal = document.getElementById("terminal");
+  const lastMessage = localStorage.getItem('lastMessage');
+  const lastUser = localStorage.getItem('lastUser');
+  if (lastMessage && lastUser) {
+    terminal.textContent += `Resuming session for ${lastUser}...\n${lastMessage}`;
+  }
+};

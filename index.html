@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminal Messaging Interface</title>
+  <title>Welcome to Anthony Ball's Secure Portal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="terminal-container">
-    <div class="terminal-header">Secure Communication Channel</div>
-    <div id="terminal" class="terminal-window"></div>
+    <div class="terminal-header">Welcome to the GROW-RI Communication Portal</div>
+    <div class="terminal-window" id="terminal">
+      <p>Welcome to the secure communication portal.</p>
+      <p>Please enter your name and message for Anthony Ball below.</p>
+    </div>
     <form onsubmit="handleMessage(event)">
-      <input type="text" id="username" placeholder="Enter your name" required>
-      <textarea id="message" placeholder="Enter your message" rows="3" required></textarea>
-      <button type="submit">Send</button>
+      <input type="text" id="username" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="tel" id="phone" placeholder="Your Phone (optional)" />
+      <textarea id="message" placeholder="Type your message here..." rows="3" required></textarea>
+      <button type="submit">Send Message</button>
     </form>
+    <div class="media-links">
+      <a href="resume.pdf" target="_blank">📄 Download Resume (PDF)</a><br />
+      <div class="video-embed">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/lmUar6Bo7YE?si=iyGMhyZvHnGPiSOh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
