@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pixelpolicyuser.github.io/career-portfolio/sitemap.xml
