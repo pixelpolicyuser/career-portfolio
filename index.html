@@ -102,7 +102,7 @@
             color: var(--text-main);
             font-size: 26px;
             cursor: pointer;
-            z-index: 1000; /* Forces button to the absolute top layer */
+            z-index: 1000; 
             transition: transform 0.3s ease;
             padding: 10px;
         }
@@ -118,6 +118,7 @@
             margin-bottom: 15px;
             box-shadow: var(--shadow);
             background-color: #fff;
+        } /* THIS IS THE BRACKET THAT WAS MISSING! */
 
         /* ABOUT ME SECTION */
         .about-me {
@@ -170,7 +171,7 @@
             border: 1px solid var(--border-color);
             transition: all 0.3s ease; 
             position: relative;
-            word-break: break-word; /* Prevents long patent text from breaking the layout */
+            word-break: break-word; 
         }
 
         .link-btn:hover {
@@ -234,8 +235,8 @@
             <div class="section-title">Connect & Collaborate</div>
 
             <a href="mailto:nora.mdr@gmail.com" class="link-btn">
-    <i class="fa-solid fa-envelope"></i> Email me
-</a>
+                <i class="fa-solid fa-envelope"></i> Email me
+            </a>
 
             <a href="https://www.upwork.com/freelancers/~01d9bc0431ccbba5b1?mp_source=share" class="link-btn btn-highlight" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-upwork"></i> Hire Me on Upwork
