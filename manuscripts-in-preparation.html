@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthony Ball's Current Manuscript Program — Executive Briefing</title>
+<style>
+:root{
+  --navy:#0d1b2a; --blue:#1565c0; --blue2:#0d47a1; --teal:#00796b; --cyan:#00838f;
+  --green:#2e7d32; --purple:#5e35b1; --pink:#c2185b; --gold:#f57f17;
+  --grey:#455a64; --grey-l:#eceff1; --text:#212121; --text-l:#546e7a;
+  --border:#cfd8dc; --bg:#f5f7fa; --shadow:0 2px 8px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;}
+.doc-header{background:var(--navy);color:#fff;padding:34px 48px 26px;}
+.doc-header .eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#64b5f6;font-weight:700;}
+.doc-header h1{font-size:25px;font-weight:700;margin-top:6px;letter-spacing:.3px;}
+.doc-header .subtitle{font-size:14px;color:#b0bec5;margin-top:6px;max-width:900px;}
+.doc-header .meta{margin-top:20px;display:flex;gap:34px;flex-wrap:wrap;}
+.doc-header .meta-item{font-size:12px;color:#90a4ae;}
+.doc-header .meta-item strong{color:#e0f2f1;display:block;font-size:13px;}
+.toc{background:var(--blue);padding:12px 48px;display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:0;z-index:20;}
+.toc a{color:#fff;text-decoration:none;font-size:12px;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.14);transition:background .2s;}
+.toc a:hover{background:rgba(255,255,255,.3);}
+.body{max-width:1180px;margin:0 auto;padding:30px 24px 10px;}
+.intro-box{background:#fff;border-left:5px solid var(--blue);border-radius:6px;padding:20px 24px;margin-bottom:22px;box-shadow:var(--shadow);}
+.intro-box h2{font-size:15px;color:var(--blue);margin-bottom:8px;}
+.intro-box p{font-size:13px;color:var(--text-l);margin-bottom:8px;}
+.intro-box .constraint{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:10px 14px;font-size:12.5px;color:#6d4c00;margin-top:6px;}
+.legend{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--grey);}
+.legend-dot{width:12px;height:12px;border-radius:3px;}
+/* dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px;}
+.stat{background:#fff;border-radius:8px;box-shadow:var(--shadow);padding:14px 16px;border-top:3px solid var(--blue);}
+.stat .num{font-size:23px;font-weight:800;color:var(--navy);line-height:1.1;}
+.stat .lab{font-size:11.5px;color:var(--text-l);margin-top:5px;}
+/* section header */
+.section-header{display:flex;align-items:center;gap:12px;margin:30px 0 16px;padding-bottom:9px;border-bottom:2px solid var(--border);}
+.section-header h2{font-size:18px;color:var(--navy);}
+.section-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+/* summary table */
+.rank-table{background:#fff;border-radius:8px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;}
+.rank-table table{width:100%;border-collapse:collapse;}
+.rank-table thead{background:var(--navy);color:#fff;}
+.rank-table thead th{padding:11px 12px;text-align:left;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+.rank-table tbody tr{border-bottom:1px solid var(--border);}
+.rank-table tbody tr:hover{background:#f0f4ff;}
+.rank-table tbody td{padding:9px 12px;font-size:12.5px;vertical-align:middle;}
+.rank-num{font-weight:800;color:var(--blue);font-size:15px;width:26px;}
+.role-name{font-weight:600;}
+.fit-bar{display:flex;align-items:center;gap:8px;}
+.fit-track{background:#e3f2fd;border-radius:8px;height:8px;flex:1;max-width:90px;}
+.fit-fill{border-radius:8px;height:8px;}
+.fit-pct{font-size:11px;color:var(--text-l);width:26px;}
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:10.5px;font-weight:700;color:#fff;white-space:nowrap;}
+.note{font-size:11px;color:var(--text-l);}
+/* manuscript cards */
+.ms{background:#fff;border-radius:10px;box-shadow:var(--shadow);margin-bottom:24px;overflow:hidden;}
+.ms-head{padding:16px 22px;color:#fff;display:flex;align-items:flex-start;gap:16px;position:relative;}
+.ms-head .mnum{font-size:30px;font-weight:800;opacity:.85;line-height:1;min-width:42px;}
+.ms-head .mtitleblock{flex:1;}
+.ms-head h3{font-size:17px;font-weight:700;line-height:1.3;}
+.ms-head .mtype{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.9;margin-bottom:3px;}
+.ms-head .ribbon{position:absolute;top:0;right:0;background:var(--gold);color:#3e2723;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 14px;border-bottom-left-radius:8px;}
+.ms-body{padding:18px 22px;}
+.ms-journals{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--border);}
+.j-primary{font-size:13px;font-weight:700;color:var(--navy);}
+.j-primary .pin{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:7px;}
+.j-alts{font-size:11.5px;color:var(--text-l);}
+.j-alts b{color:var(--grey);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+.block{border-radius:6px;padding:13px 15px;}
+.b-abstract{background:#f4f8ff;border-left:4px solid var(--blue);}
+.b-why{background:#f1f8f3;border-left:4px solid var(--green);}
+.b-outline{background:#faf7fd;border-left:4px solid var(--purple);}
+.b-fig{background:#fff8e1;border-left:4px solid var(--gold);}
+.block h4{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;color:var(--grey);}
+.block p{font-size:12.5px;color:var(--text);}
+.block.b-abstract p{font-style:italic;color:#37474f;}
+.outline-list{list-style:none;}
+.outline-list li{font-size:12.5px;padding:4px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+.outline-list li:last-child{border-bottom:none;}
+.outline-list li b{color:var(--navy);}
+.fig-list{list-style:none;}
+.fig-list li{font-size:12px;padding:3px 0 3px 18px;position:relative;color:var(--text);}
+.fig-list li::before{content:"\25A0";position:absolute;left:0;color:var(--gold);font-size:9px;top:5px;}
+.figwrap{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px;margin:6px 0 14px;}
+.figwrap .figcap{font-size:11px;color:var(--text-l);margin-top:8px;border-top:1px solid var(--grey-l);padding-top:7px;}
+.figwrap svg{width:100%;height:auto;display:block;}
+.full{grid-column:1 / -1;}
+footer{text-align:center;padding:26px;font-size:11.5px;color:var(--text-l);}
+footer .disc{max-width:820px;margin:8px auto 0;font-size:10.5px;color:#90a4ae;}
+footer .disc{max-width:820px;margin:8px auto 0;font-size:10.5px;color:#90a4ae;}
+/* ===== STATUS SYSTEM ===== */
+.status-flag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:14px;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.status-flag .sf-dot{width:8px;height:8px;border-radius:50%;}
+.sf-active{background:#fff3e0;color:#e65100;border:1px solid #ffb74d;}
+.sf-active .sf-dot{background:#ff6d00;animation:pulse 1.6s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,109,0,.5);}70%{box-shadow:0 0 0 6px rgba(255,109,0,0);}100%{box-shadow:0 0 0 0 rgba(255,109,0,0);}}
+.sf-drafted{background:#e8f5e9;color:#1b5e20;border:1px solid #81c784;}
+.sf-drafted .sf-dot{background:#2e7d32;}
+.sf-next{background:#eef2f7;color:#37474f;border:1px solid #cfd8dc;}
+.sf-next .sf-dot{background:#78909c;}
+.sf-hold{background:#fce4ec;color:#ad1457;border:1px solid #f48fb1;}
+.sf-hold .sf-dot{background:#c2185b;}
+.status-strip{background:#fbfcfe;border:1px solid var(--border);border-radius:8px;padding:13px 16px 6px;margin-bottom:16px;}
+.status-strip .ss-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+.status-strip .ss-note{font-size:11.5px;color:var(--text-l);flex:1;min-width:200px;}
+.pipeline{display:flex;margin:10px 0 6px;}
+.pl-step{flex:1;text-align:center;font-size:9.5px;font-weight:700;color:#b0bec5;position:relative;padding-top:24px;letter-spacing:.2px;}
+.pl-step::before{content:"";position:absolute;top:4px;left:50%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:#fff;border:2.5px solid #cfd8dc;z-index:2;}
+.pl-step::after{content:"";position:absolute;top:10.5px;left:-50%;width:100%;height:2.5px;background:#cfd8dc;z-index:1;}
+.pl-step:first-child::after{display:none;}
+.pl-step.done{color:var(--green);}
+.pl-step.done::before{background:var(--green);border-color:var(--green);}
+.pl-step.done::after{background:var(--green);}
+.pl-step.current{color:#e65100;font-weight:800;}
+.pl-step.current::before{background:var(--gold);border-color:#e65100;box-shadow:0 0 0 4px rgba(245,127,23,.2);}
+.pl-step.current::after{background:var(--green);}
+.pl-step.next{color:var(--blue);}
+.pl-step.next::before{background:#fff;border-color:var(--blue);border-style:dashed;}
+.pl-step.hold::before{background:#fff;border-color:#c2185b;border-style:dashed;}
+.pl-step.hold{color:#c2185b;}
+.coauthors{margin-top:16px;background:#f6f8fb;border:1px solid var(--border);border-radius:8px;padding:12px 15px;}
+.coauthors h4{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);margin-bottom:9px;}
+.au-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.au{display:inline-flex;align-items:baseline;gap:5px;font-size:11.5px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:4px 11px;color:var(--text);}
+.au .role{color:var(--text-l);font-size:10px;}
+.au-lead{border-color:var(--blue);background:#e3f2fd;font-weight:700;}
+.au-corr{border-color:var(--purple);background:#f3e5f5;font-weight:700;}
+.au-gap{border:1px dashed #f48fb1;color:#ad1457;background:#fff5f8;font-style:italic;}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:8px;}
+.col{background:#fff;border-radius:10px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;}
+.col-head{padding:10px 14px;font-size:12px;font-weight:800;letter-spacing:.4px;color:#fff;display:flex;align-items:center;justify-content:space-between;}
+.col-body{padding:11px;display:flex;flex-direction:column;gap:9px;}
+.kard{border:1px solid var(--border);border-radius:7px;padding:9px 11px;border-left-width:4px;transition:transform .15s,box-shadow .15s;cursor:pointer;text-decoration:none;display:block;}
+.kard:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.12);}
+.kard .kn{font-size:10px;font-weight:800;color:var(--blue);letter-spacing:.5px;}
+.kard .kt{font-size:11.5px;font-weight:600;color:var(--navy);line-height:1.35;margin:3px 0 4px;}
+.kard .km{font-size:10px;color:var(--text-l);}
+.road{background:#fff;border-radius:10px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:10px;}
+.waves{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;}
+.wave{flex:1;min-width:175px;position:relative;padding:0 14px;}
+.wave:not(:last-child)::after{content:"\2192";position:absolute;right:-9px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--blue);font-weight:bold;z-index:3;}
+.wave .wlab{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:var(--blue);border-radius:12px;padding:3px 11px;display:inline-block;margin-bottom:9px;}
+.wave .wsub{font-size:11px;color:var(--text-l);margin-bottom:9px;min-height:30px;}
+.wave .wpaper{font-size:11.5px;background:#f4f8ff;border:1px solid #c5dbff;border-radius:6px;padding:6px 9px;margin-bottom:6px;color:var(--navy);}
+.wave .wpaper b{color:var(--blue);}
+.w1 .wlab{background:var(--blue2);} .w2 .wlab{background:var(--cyan);} .w3 .wlab{background:var(--purple);} .w4 .wlab{background:var(--green);}
+</style></head><body>
+
+<div class="doc-header">
+  <div class="eyebrow">GAMA Therapeutics &middot; SBIR II Publication Program</div>
+  <h1>Eight Manuscripts from the Existing GAMA Data</h1>
+  <div class="subtitle">A proposed publication slate built entirely from data already collected under US Army contract W81XWH-16-C-0207 and requiring no additionoal benchwork. Prepared for review and collaboration with research partners.</div>
+  <div class="meta">
+    <div class="meta-item"><strong>Prepared for</strong>editorial review</div>
+    <div class="meta-item"><strong>By</strong>Anthony R. Ball</div>
+    <div class="meta-item"><strong>Basis</strong>SBIR II final report, biofilm methodology, RNA-seq deliverables</div>
+    <div class="meta-item"><strong>Constraint</strong>No lab / strains destroyed — existing data + computation only</div>
+  </div>
+</div>
+
+<div class="toc"><a href="#status" style="background:#e65100">🚦 Status &amp; Roadmap</a><a href="#ms1">1. Methods / Protocol</a><a href="#ms2">2. Original Research</a><a href="#ms3">3. Original Research · Flagship</a><a href="#ms4">4. Original Research · Device</a><a href="#ms5">5. Data Note + Genomics</a><a href="#ms6">6. Review</a><a href="#ms7">7. Review / Perspective</a><a href="#ms8">8. Opinion / Viewpoint</a></div>
+
+<div class="body">
+
+  <div class="intro-box">
+    <h2>The opportunity, and the one rule that shapes it</h2>
+    <p>The SBIR II program produced a synergistic two-wavelength light-dose regimen (LDR) that inactivates catheter biofilms by up to ≈7 log₁₀ and, more remarkably, converts MRSA into a stable, antibiotic-susceptible, avirulent phenotype. Three patents protect the IP, so public disclosure is safe. There is enough here for a coordinated run of eight papers spanning photobiology, microbiology/AMR, biomedical optics, genomics, and military medicine.</p>
+    <div class="constraint"><b>Hard constraint:</b> there is no laboratory available and the strains have been destroyed — so <b>no new wet-lab data</b> (no new MICs, cultures, or assays). Every manuscript below is built from data we already hold, or from <b>computational re-analysis</b> of data we already own (the genomics paper). The full GeneWiz dataset was delivered on a hard drive, which is the only missing piece for #5.</div>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#00796b"></span>Methods</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1565c0"></span>Original research</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#2e7d32"></span>Data / genomics</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#5e35b1"></span>Review</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#c2185b"></span>Review / perspective</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#f57f17"></span>Opinion</div>
+    </div>
+  </div>
+
+  <div class="dash"><div class="stat"><div class="num">≈7 log₁₀</div><div class="lab">max biofilm kill achieved</div></div><div class="stat"><div class="num">≈100×</div><div class="lab">less UV-A via synergy</div></div><div class="stat"><div class="num">6 / 6</div><div class="lab">susceptible (4 reverted from resistant)</div></div><div class="stat"><div class="num">Oxacillin S</div><div class="lab">methicillin resistance reversed</div></div><div class="stat"><div class="num">~5% vs 78%</div><div class="lab">survivor vs WT read mapping</div></div><div class="stat"><div class="num">1,400+</div><div class="lab">dose-response data points</div></div><div class="stat"><div class="num">10× / 270×</div><div class="lab">device distance / area gain</div></div><div class="stat"><div class="num">3 patents</div><div class="lab">protecting the IP</div></div></div>
+
+  <div class="section-header"><div class="section-icon" style="background:#e3f2fd">📊</div><h2>Publication slate at a glance</h2></div>
+  <div class="rank-table"><table>
+    <thead><tr><th>#</th><th>Manuscript</th><th>Type</th><th>Readiness</th><th>Target journal</th><th>Data status</th></tr></thead>
+    <tbody><tr>
+      <td class="rank-num">1</td>
+      <td class="role-name"><a href="#ms1" style="color:inherit;text-decoration:none">A continuous-flow reactor and standardized assay for clinically representative multi-species biofilms in catheter segments</a></td>
+      <td><span class="badge" style="background:#00796b">Methods / Protocol</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:95%;background:#00796b"></div></div><span class="fit-pct">95%</span></div></td>
+      <td class="note">Biofilm (Elsevier, open access)</td>
+      <td class="note">Ready now — protocol, run data and SEM already in hand</td>
+    </tr><tr>
+      <td class="rank-num">2</td>
+      <td class="role-name"><a href="#ms2" style="color:inherit;text-decoration:none">Pulse-width-modulated UV-A potentiates UV-C germicidal inactivation of S. aureus biofilms: a synergistic light-dose regimen</a></td>
+      <td><span class="badge" style="background:#1565c0">Original Research</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:90%;background:#1565c0"></div></div><span class="fit-pct">90%</span></div></td>
+      <td class="note">Journal of Photochemistry and Photobiology B: Biology</td>
+      <td class="note">Ready now — full dose-response dataset (1,400+ points)</td>
+    </tr><tr>
+      <td class="rank-num">3</td>
+      <td class="role-name"><a href="#ms3" style="color:inherit;text-decoration:none">A two-wavelength light-dose regimen converts MRSA into a stable, antibiotic-susceptible, avirulent phenotype</a></td>
+      <td><span class="badge" style="background:#0d47a1">Original Research · Flagship</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:88%;background:#0d47a1"></div></div><span class="fit-pct">88%</span></div></td>
+      <td class="note">npj Antimicrobials and Resistance (Nature Portfolio, OA)</td>
+      <td class="note">Ready now — honest disk-diffusion framing; MIC noted as limitation</td>
+    </tr><tr>
+      <td class="rank-num">4</td>
+      <td class="role-name"><a href="#ms4" style="color:inherit;text-decoration:none">A self-sterilizing, anti-shadowing fused-silica light-pipe for in-lumen UV disinfection of catheter connections: design, dosimetry, and validation lessons</a></td>
+      <td><span class="badge" style="background:#00838f">Original Research · Device</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:85%;background:#00838f"></div></div><span class="fit-pct">85%</span></div></td>
+      <td class="note">Journal of Biomedical Optics (SPIE)</td>
+      <td class="note">Ready now — figures to assemble from report + Zemax models</td>
+    </tr><tr>
+      <td class="rank-num">5</td>
+      <td class="role-name"><a href="#ms5" style="color:inherit;text-decoration:none">Transcriptional and genomic divergence of UV-light-selected S. aureus survivors: collapse of the translational apparatus</a></td>
+      <td><span class="badge" style="background:#2e7d32">Data Note + Genomics</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:65%;background:#2e7d32"></div></div><span class="fit-pct">65%</span></div></td>
+      <td class="note">5a: Microbiology Resource Announcements (data) · 5b: Microbial Genomics / BMC Genomics (analysis)</td>
+      <td class="note">Needs the GeneWiz hard drive → then computational re-analysis only (no lab)</td>
+    </tr><tr>
+      <td class="rank-num">6</td>
+      <td class="role-name"><a href="#ms6" style="color:inherit;text-decoration:none">Light against resistance: photo-inactivation, pigment targeting, and anti-virulence phototherapy to restore antibiotic efficacy</a></td>
+      <td><span class="badge" style="background:#5e35b1">Review</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:92%;background:#5e35b1"></div></div><span class="fit-pct">92%</span></div></td>
+      <td class="note">Clinical Microbiology Reviews (ASM)</td>
+      <td class="note">Ready now — no data required (send CMR presubmission inquiry first)</td>
+    </tr><tr>
+      <td class="rank-num">7</td>
+      <td class="role-name"><a href="#ms7" style="color:inherit;text-decoration:none">Non-chemical light-based countermeasures for multidrug-resistant wound and bloodstream infections in prolonged field care and biodefense</a></td>
+      <td><span class="badge" style="background:#c2185b">Review / Perspective</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:92%;background:#c2185b"></div></div><span class="fit-pct">92%</span></div></td>
+      <td class="note">Military Medicine (AMSUS / Oxford)</td>
+      <td class="note">Ready now — no data required; supports DoD/MTEC funding</td>
+    </tr><tr>
+      <td class="rank-num">8</td>
+      <td class="role-name"><a href="#ms8" style="color:inherit;text-decoration:none">Resurrecting obsolete antibiotics with light: selection, not just sterilization</a></td>
+      <td><span class="badge" style="background:#f57f17">Opinion / Viewpoint</span></td>
+      <td><div class="fit-bar"><div class="fit-track"><div class="fit-fill" style="width:95%;background:#f57f17"></div></div><span class="fit-pct">95%</span></div></td>
+      <td class="note">Trends in Microbiology (Opinion) or npj Antimicrobials and Resistance (Comment)</td>
+      <td class="note">Ready now — no data required; fastest to write</td>
+    </tr></tbody>
+  </table></div>
+  <p class="note" style="margin:8px 2px 4px">Readiness = how close to drafting from existing material. Avoid salami-slicing: a standalone optics/Zemax note or a UV-transmissible-polymer note could be carved out, but are stronger folded into #2/#4.</p>
+
+  <div class="section-header" id="status"><div class="section-icon" style="background:#fff3e0">🚦</div><h2>Program status board</h2></div>
+  <p class="note" style="margin:-4px 2px 14px">Where each manuscript sits today (<b>4 June 2026</b>). <b>1 active</b> · <b>2 drafts complete</b> · <b>5 ready to start</b> (no new data needed) · <b>1 awaiting data</b>. Each card jumps to its detail below.</p>
+  <div class="board">
+    <div class="col">
+      <div class="col-head" style="background:#e65100">▶ ACTIVE NOW <span style="font-weight:600;font-size:11px">1</span></div>
+      <div class="col-body">
+        <a class="kard" href="#ms3" style="border-left-color:#0d47a1"><div class="kn">#3 · FLAGSHIP</div><div class="kt">LDR converts MRSA to a susceptible, avirulent phenotype</div><div class="km">Being drafted today → npj Antimicrobials &amp; Resistance</div></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-head" style="background:#2e7d32">✓ DRAFTED <span style="font-weight:600;font-size:11px">2</span></div>
+      <div class="col-body">
+        <a class="kard" href="#ms8" style="border-left-color:#f57f17"><div class="kn">#8 · OPINION</div><div class="kt">Resurrecting obsolete antibiotics with light</div><div class="km">Two drafts complete (npj AMR Comment + Trends Opinion), both with Figure 1 — hold for flagship</div></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-head" style="background:#455a64">○ NEXT UP — no new data <span style="font-weight:600;font-size:11px">5</span></div>
+      <div class="col-body">
+        <a class="kard" href="#ms6" style="border-left-color:#5e35b1"><div class="kn">#6 · REVIEW</div><div class="kt">Light against resistance / anti-virulence phototherapy</div><div class="km">Low-risk · synthesis only → Clin Microbiol Rev</div></a>
+        <a class="kard" href="#ms7" style="border-left-color:#c2185b"><div class="kn">#7 · REVIEW / PERSPECTIVE</div><div class="kt">Light-based countermeasures for field care &amp; biodefense</div><div class="km">Low-risk · supports DoD funding → Military Medicine</div></a>
+        <a class="kard" href="#ms4" style="border-left-color:#00838f"><div class="kn">#4 · DEVICE</div><div class="kt">Self-sterilizing fused-silica light-pipe</div><div class="km">Existing data + Zemax models → J Biomed Opt</div></a>
+        <a class="kard" href="#ms2" style="border-left-color:#1565c0"><div class="kn">#2 · ORIGINAL RESEARCH</div><div class="kt">Dual-wavelength UV-A/UV-C synergy</div><div class="km">1,400+ point dataset ready → J Photochem Photobiol B</div></a>
+        <a class="kard" href="#ms1" style="border-left-color:#00796b"><div class="kn">#1 · METHODS</div><div class="kt">Continuous-flow catheter-biofilm reactor</div><div class="km">Protocol + runs + SEM in hand → Biofilm</div></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-head" style="background:#c2185b">⏸ AWAITING DATA <span style="font-weight:600;font-size:11px">1</span></div>
+      <div class="col-body">
+        <a class="kard" href="#ms5" style="border-left-color:#2e7d32"><div class="kn">#5 · DATA NOTE + GENOMICS</div><div class="kt">Transcriptional / genomic divergence of survivors</div><div class="km">Needs the GeneWiz hard drive → then computational re-analysis only</div></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header"><div class="section-icon" style="background:#e3f2fd">🧭</div><h2>Submission sequencing — flagship first, then cite outward</h2></div>
+  <p class="note" style="margin:-4px 2px 14px">Drafting order ≠ submission order. The reviews and opinion need no data and can be written anytime, but submissions are <b>staggered so the flagship establishes the citable result first</b> — every later paper then references it (and a preprint can lock priority the day it is submitted).</p>
+  <div class="road">
+    <div class="waves">
+      <div class="wave w1">
+        <span class="wlab">Wave 1 · Anchor</span>
+        <div class="wsub">Establish the headline result and lock priority (preprint on submission).</div>
+        <div class="wpaper"><b>#3</b> Flagship — MRSA re-sensitization <span style="color:#e65100;font-weight:700">(active)</span></div>
+      </div>
+      <div class="wave w2">
+        <span class="wlab">Wave 2 · Primary research</span>
+        <div class="wsub">The original-research and methods papers the flagship leans on; each cites #3 and anchors the others.</div>
+        <div class="wpaper"><b>#2</b> Dual-wavelength synergy</div>
+        <div class="wpaper"><b>#4</b> Photodisinfection device</div>
+        <div class="wpaper"><b>#1</b> Biofilm-reactor methods</div>
+      </div>
+      <div class="wave w3">
+        <span class="wlab">Wave 3 · Syntheses</span>
+        <div class="wsub">Reviews and opinion that cite the flagship; #8 is already drafted and simply held until #3 is public.</div>
+        <div class="wpaper"><b>#6</b> Light-vs-resistance review</div>
+        <div class="wpaper"><b>#7</b> Military / biodefense review</div>
+        <div class="wpaper"><b>#8</b> Opinion <span style="color:#2e7d32;font-weight:700">(drafted)</span></div>
+      </div>
+      <div class="wave w4">
+        <span class="wlab">Wave 4 · Mechanism</span>
+        <div class="wsub">Computational genomics once the raw reads are recovered; back-fills mechanism for #3 and #6.</div>
+        <div class="wpaper"><b>#5</b> Survivor transcriptomics</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section-header"><div class="section-icon" style="background:#ede7f6">📝</div><h2>The eight manuscripts in detail</h2></div>
+  
+  <div class="ms" id="ms1">
+    <div class="ms-head" style="background:var(--teal)">
+      
+      <div class="mnum">1</div>
+      <div class="mtitleblock"><div class="mtype">Methods / Protocol</div><h3>A continuous-flow reactor and standardized assay for clinically representative multi-species biofilms in catheter segments</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip"><div class="ss-top"><span class="status-flag sf-next"><span class="sf-dot"></span>Ready to start</span><span class="ss-note">Most publication-ready unit — 55-page protocol, Runs 0–7 and SEM already in hand. Becomes the citable methods anchor for #2 and #4.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step next">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">S. Auger <span class="role">reactor / optics build</span></span><span class="au">D. Gershaw <span class="role">PI</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior / corresponding</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Biofilm (Elsevier, open access)</span><span class="j-alts"> &mdash; explicitly publishes biofilm methods/models. <b>Alternatives:</b> npj Biofilms and Microbiomes (Article); JoVE (companion video protocol); Journal of Microbiological Methods</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Reproducible, clinically representative biofilms are the rate-limiting reagent in evaluating device-disinfection technologies. We describe a continuous-flow biofilm reactor (“Gliese 623B”) and an end-to-end assay that grows mono- and multi-species biofilms on the luminal surface of ISO 594 Tygon 3350 catheter segments under defined hydrodynamic and nutrient conditions. Segments are conditioned with a fibrin/alginate/serum film, inoculated, and perfused (≈1 mL/min) for 48–72 h to yield mature biofilms of S. aureus, S. epidermidis, P. aeruginosa and C. albicans, alone or combined. We detail the reactor build, biosafety blow-out/dry-run testing, media, inoculation verification, and a destructive recovery assay for log-density enumeration, with SEM confirmation of architecture. The method yields 10⁶–10⁷ CFU per segment with defined precision, supporting quantitative dose-response testing.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>Most publication-ready item we have and needs no new data — the 55-page protocol, Runs 0–7 and SEM imagery already exist. It becomes the citable reference anchor for manuscripts #2–#4 and complements (rather than competes with) your 2018 CMR biofilm-methodology review.</p></div>
+      </div>
+      <div class="figwrap full"><svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="70" width="120" height="58" rx="7" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/><text x="76.0" y="93.0" font-size="11.5" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Media reservoir</text><text x="76.0" y="110.0" font-size="9.5" text-anchor="middle" fill="#546e7a" font-family="Segoe UI,Arial" font-weight="normal">TSB/BHI + 5% serum</text><line x1="136" y1="99.0" x2="168" y2="99.0" stroke="#455a64" stroke-width="2"/><path d="M168,94.0 L176,99.0 L168,104.0 Z" fill="#455a64"/><rect x="176" y="70" width="110" height="58" rx="7" fill="#e8eaf6" stroke="#5e35b1" stroke-width="1.5"/><text x="231.0" y="93.0" font-size="11.5" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Peristaltic pump</text><text x="231.0" y="110.0" font-size="9.5" text-anchor="middle" fill="#546e7a" font-family="Segoe UI,Arial" font-weight="normal">1 mL/min</text><line x1="286" y1="99.0" x2="318" y2="99.0" stroke="#455a64" stroke-width="2"/><path d="M318,94.0 L326,99.0 L318,104.0 Z" fill="#455a64"/><rect x="326" y="70" width="150" height="58" rx="7" fill="#e0f2f1" stroke="#00796b" stroke-width="1.5"/><text x="401.0" y="93.0" font-size="11.5" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Catheter segment</text><text x="401.0" y="110.0" font-size="9.5" text-anchor="middle" fill="#546e7a" font-family="Segoe UI,Arial" font-weight="normal">Tygon 3350 · biofilm</text><line x1="476" y1="99.0" x2="508" y2="99.0" stroke="#455a64" stroke-width="2"/><path d="M508,94.0 L516,99.0 L508,104.0 Z" fill="#455a64"/><rect x="516" y="70" width="108" height="58" rx="7" fill="#eceff1" stroke="#607d8b" stroke-width="1.5"/><text x="570.0" y="93.0" font-size="11.5" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Effluent</text><text x="570.0" y="110.0" font-size="9.5" text-anchor="middle" fill="#546e7a" font-family="Segoe UI,Arial" font-weight="normal">waste</text><rect x="166" y="48" width="320" height="102" rx="10" fill="none" stroke="#90a4ae" stroke-dasharray="5 4"/><text x="326.0" y="42.0" font-size="10.5" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold">Heated biosafety enclosure · 35±°C · 48–72 h · blow-out/dry-run qualified</text><line x1="401" y1="128" x2="401" y2="185" stroke="#455a64" stroke-width="2"/><path d="M396,177 L401,185 L406,177 Z" fill="#455a64"/><rect x="250" y="185" width="300" height="42" rx="7" fill="#fff8e1" stroke="#f57f17" stroke-width="1.5"/><text x="400.0" y="210.0" font-size="11" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Destructive recovery → CFU log-density  +  SEM architecture</text><rect x="16" y="185" width="210" height="42" rx="7" fill="#fce4ec" stroke="#c2185b" stroke-width="1.5"/><text x="121.0" y="210.0" font-size="11" text-anchor="middle" fill="#0d1b2a" font-family="Segoe UI,Arial" font-weight="bold">Pre-conditioning film</text><text x="121.0" y="215.0" font-size="9" text-anchor="middle" fill="#546e7a" font-family="Segoe UI,Arial" font-weight="normal">0.01% fibrin / 0.1% alginate / 5% serum</text></svg><div class="figcap">Fig. (generated): continuous-flow catheter-biofilm reactor — conditioning, perfusion, heated biosafety enclosure, and destructive recovery readouts.</div></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — why catheter-relevant, flow-grown, multi-species biofilms matter</li><li><b>Review of biofilm devices</b> — drip-flow, Robbins/modified Robbins, rotating-disk, Calgary peg-lid — rationale for a catheter-lumen reactor</li><li><b>Materials</b> — strains (ATCC 12228/10231/9027/700788/33592), media recipes, reactor bill of materials</li><li><b>Reactor design &amp; assembly</b> — enclosure, heater, manifold/single-link, serpentine feedthrough, air filtration</li><li><b>Biosafety qualification</b> — blow-out and dry-run dye-penetration testing</li><li><b>Protocol</b> — conditioning → inoculation → assembly → perfusion → maturation</li><li><b>Recovery &amp; enumeration</b> — destructive sampling, CFU log-density, inoculation verification</li><li><b>Characterization, precision, limitations, adaptability</b> — SEM of mono/multi-species biofilms</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Reactor flow schematic (below)</li><li>Device-comparison table</li><li>Media formulations + parts list tables</li><li>Reactor assembly figures (enclosure, heater, manifold)</li><li>Dye-penetration/blow-out qualification figure</li><li>False-color SEM of multi-species biofilm on Tygon</li><li>Representative CFU log-density tables</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms2">
+    <div class="ms-head" style="background:var(--blue)">
+      
+      <div class="mnum">2</div>
+      <div class="mtitleblock"><div class="mtype">Original Research</div><h3>Pulse-width-modulated UV-A potentiates UV-C germicidal inactivation of S. aureus biofilms: a synergistic light-dose regimen</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip"><div class="ss-top"><span class="status-flag sf-next"><span class="sf-dot"></span>Ready to start</span><span class="ss-note">Full 1,400+ point dose-response dataset and the PCA/regression backbone are in hand — no new data needed.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step next">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">R. Santos <span class="role">biostatistics — PCA/regression</span></span><span class="au">M.R. Hamblin <span class="role">photobiology</span></span><span class="au">D. Gershaw <span class="role">PI</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Journal of Photochemistry and Photobiology B: Biology</span><span class="j-alts"> &mdash; core venue for antimicrobial photoinactivation; you have published here. <b>Alternatives:</b> Photochemistry and Photobiology (ASP); Photochemical &amp; Photobiological Sciences (Springer); npj Biofilms and Microbiomes</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Ultraviolet germicidal irradiation is dose-limited by tissue/material tolerance and microbial repair. We report that combining sub-germicidal UV-A (365 nm) under pulse-width modulation (100 Hz, 75% duty cycle) with continuous UV-C (265 nm) produces strong synergy against S. aureus biofilms inside catheter lumens. Across a designed set of &gt;1,400 measurements analyzed by multiple-regression and principal-component analysis, the combined regimen achieved up to ≈7 log₁₀ inactivation at fluences far below either wavelength alone (≈100-fold less UV-A and 3–4-fold less UV-C), a statistically significant ≈1 log₁₀ improvement over the model intercept. Concurrent pulse-modulated UV-A without pretreatment was optimal; saline lumen filling and strain identity were significant negative covariates. We propose sub-cidal UV-A stimulates endogenous chromophores (including staphyloxanthin) that UV-C then photo-oxidizes to ROS, compounding direct UV-C DNA damage.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>Synergy at ≈100× lower UV-A dose is a real, quantitative photobiology result with immediate device-design relevance (lower dose = safer, faster, lower-power). The PCA/regression backbone (R. Santos) is rigor most UV-inactivation papers lack.</p></div>
+      </div>
+      <div class="figwrap full"><svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg"><line x1="150.0" y1="28" x2="150.0" y2="200" stroke="#eceff1"/><text x="150.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10⁰</text><line x1="225.0" y1="28" x2="225.0" y2="200" stroke="#eceff1"/><text x="225.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10¹</text><line x1="300.0" y1="28" x2="300.0" y2="200" stroke="#eceff1"/><text x="300.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10²</text><line x1="375.0" y1="28" x2="375.0" y2="200" stroke="#eceff1"/><text x="375.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10³</text><line x1="450.0" y1="28" x2="450.0" y2="200" stroke="#eceff1"/><text x="450.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10⁴</text><line x1="525.0" y1="28" x2="525.0" y2="200" stroke="#eceff1"/><text x="525.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10⁵</text><line x1="600.0" y1="28" x2="600.0" y2="200" stroke="#eceff1"/><text x="600.0" y="214.0" font-size="10" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10⁶</text><text x="375.0" y="232.0" font-size="11" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold">Fluence required for ≈6 log₁₀ reduction (mJ/cm², log scale)</text><text x="142.0" y="57.0" font-size="11.5" text-anchor="end" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">UV-A alone</text><rect x="150" y="40" width="375.0" height="26" rx="3" fill="#ef9a9a"/><text x="533.0" y="57.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">100 J/cm²</text><text x="142.0" y="97.0" font-size="11.5" text-anchor="end" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">LDR – UV-A part</text><rect x="150" y="80" width="238.2" height="26" rx="3" fill="#1565c0"/><text x="396.2" y="97.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">1.5 J/cm²  (≈100× less)</text><text x="142.0" y="137.0" font-size="11.5" text-anchor="end" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">UV-C alone</text><rect x="150" y="120" width="97.6" height="26" rx="3" fill="#ffcc80"/><text x="255.6" y="137.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">20 mJ/cm²</text><text x="142.0" y="177.0" font-size="11.5" text-anchor="end" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">LDR – UV-C part</text><rect x="150" y="160" width="80.9" height="26" rx="3" fill="#00796b"/><text x="238.9" y="177.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">12 mJ/cm²  (3–4× less)</text></svg><div class="figcap">Fig. (generated): fluence needed for ≈6 log₁₀ reduction of a 10⁶ CFU biofilm — the LDR reaches it with ≈100× less UV-A and 3–4× less UV-C than either wavelength alone.</div></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — UVGI dose limits; rationale for multi-wavelength/waveform regimens (Tyrrell, Wengraitis, Li)</li><li><b>Materials &amp; methods</b> — emitters/wavelengths; dosimetry; biofilm model (cite #1); design matrix; statistics</li><li><b>Results — calibration</b> — Petri-dish dose-response for UV-A and UV-C</li><li><b>Results — biofilm dose-response</b> — catheter-segment kill across the variable matrix</li><li><b>Results — synergy</b> — UV-A-alone vs UV-C-alone vs combined (below)</li><li><b>Results — multivariate model</b> — regression coefficients/significance; PCA</li><li><b>Discussion</b> — ROS/chromophore mechanism; bi-modal select-then-kill; design implications</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Synergy fluence comparison (below)</li><li>Petri-dish UV-A/UV-C calibration tables</li><li>Biofilm log-reduction master tables / surface plots</li><li>Regression coefficient table (significant terms)</li><li>PCA score/loading plots</li><li>Type I/II ROS mechanism schematic</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms3">
+    <div class="ms-head" style="background:var(--blue2)">
+      <div class="ribbon">FLAGSHIP</div>
+      <div class="mnum">3</div>
+      <div class="mtitleblock"><div class="mtype">Original Research · Flagship</div><h3>A two-wavelength light-dose regimen converts MRSA into a stable, antibiotic-susceptible, avirulent phenotype</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip" style="border-color:#ffb74d;background:#fffaf3"><div class="ss-top"><span class="status-flag sf-active"><span class="sf-dot"></span>Active — drafting today</span><span class="ss-note"><b>The centerpiece, and first to submit.</b> A preprint on submission locks priority so every later paper can cite it. Draft in progress now.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step current">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">first author</span></span><span class="au">L. Leanse <span class="role">phenotype characterization</span></span><span class="au">T. Dai <span class="role">independent avirulence confirmation</span></span><span class="au">R. Santos <span class="role">statistics</span></span><span class="au">M.R. Hamblin <span class="role">senior / photomedicine</span></span><span class="au">D. Gershaw <span class="role">PI</span></span><span class="au au-corr">G.P. Tegos <span class="role">corresponding</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>npj Antimicrobials and Resistance (Nature Portfolio, OA)</span><span class="j-alts"> &mdash; scope explicitly covers mechanisms of action/resistance and genomics of resistance. <b>Alternatives:</b> Antimicrobial Agents and Chemotherapy (ASM); Microbiology Spectrum (ASM); mBio; (reach: Advanced Science)</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Antimicrobial resistance erodes the utility of established antibiotics. We report that a synergistic two-wavelength light-dose regimen (LDR; concurrent 265 nm UV-C and pulse-modulated 365 nm UV-A) not only inactivates S. aureus biofilms but selects survivors with a fundamentally altered phenotype. Survivors from treated MRSA (ATCC 33592) biofilms were depigmented, producing ≥6-fold less staphyloxanthin (below detection) and losing β-hemolysis on blood agar, consistent with attenuated virulence. By CLSI disk-diffusion criteria survivors were susceptible to all six antibiotics tested; critically, the four agents to which the parent was resistant — oxacillin (reversal of methicillin resistance), cefprozil, rifampin and tetracycline — became susceptible. The susceptible, depigmented phenotype was stable through serial passage on antibiotic-free media across two generations. Comparative transcriptomics showed marked divergence concentrated in the translational apparatus. Confirmation by broth-microdilution MIC is a noted limitation.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>“Using light to make MRSA treatable again” is the single most novel, compelling story in the dataset — sitting at the intersection of AMR, photobiology and virulence. It is patent-protected (disclosure is safe), and the honest framing (disk diffusion + four orthogonal phenotypes) is defensible without new data.</p></div>
+      </div>
+      <div class="figwrap full"><svg viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg"><line x1="64" y1="266.0" x2="630" y2="266.0" stroke="#eceff1"/><text x="56.0" y="269.0" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0</text><line x1="64" y1="218.8" x2="630" y2="218.8" stroke="#eceff1"/><text x="56.0" y="221.8" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">10</text><line x1="64" y1="171.6" x2="630" y2="171.6" stroke="#eceff1"/><text x="56.0" y="174.6" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">20</text><line x1="64" y1="124.4" x2="630" y2="124.4" stroke="#eceff1"/><text x="56.0" y="127.4" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">30</text><line x1="64" y1="77.2" x2="630" y2="77.2" stroke="#eceff1"/><text x="56.0" y="80.2" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">40</text><line x1="64" y1="30.0" x2="630" y2="30.0" stroke="#eceff1"/><text x="56.0" y="33.0" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">50</text><text x="16.0" y="148.0" font-size="11" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold" transform="rotate(-90 16.0 148.0)">Zone of inhibition (mm)</text><line x1="64" y1="171.6" x2="630" y2="171.6" stroke="#c62828" stroke-width="1.4" stroke-dasharray="6 4"/><text x="628.0" y="166.6" font-size="10" text-anchor="end" fill="#c62828" font-family="Segoe UI,Arial" font-weight="bold">≈ susceptible breakpoint (≥~20 mm)</text><line x1="64" y1="266" x2="630" y2="266" stroke="#90a4ae" stroke-width="1.3"/><rect x="81.2" y="262.0" width="17" height="4" fill="#eceff1" stroke="#b0bec5" stroke-dasharray="2 2"/><text x="89.7" y="259.0" font-size="10" text-anchor="middle" fill="#c62828" font-family="Segoe UI,Arial" font-weight="bold">R</text><rect x="102.2" y="133.8" width="17" height="132.2" rx="2" fill="#1565c0"/><text x="110.7" y="130.8" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">28</text><rect x="123.2" y="137.1" width="17" height="128.9" rx="2" fill="#26a69a"/><text x="131.7" y="134.1" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">27</text><text x="110.7" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Oxacillin</text><rect x="174.5" y="262.0" width="17" height="4" fill="#eceff1" stroke="#b0bec5" stroke-dasharray="2 2"/><text x="183.0" y="259.0" font-size="10" text-anchor="middle" fill="#c62828" font-family="Segoe UI,Arial" font-weight="bold">R</text><rect x="195.5" y="63.0" width="17" height="203.0" rx="2" fill="#1565c0"/><text x="204.0" y="60.0" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">43</text><rect x="216.5" y="63.0" width="17" height="203.0" rx="2" fill="#26a69a"/><text x="225.0" y="60.0" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">43</text><text x="204.0" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Cefprozil</text><rect x="267.8" y="262.0" width="17" height="4" fill="#eceff1" stroke="#b0bec5" stroke-dasharray="2 2"/><text x="276.3" y="259.0" font-size="10" text-anchor="middle" fill="#c62828" font-family="Segoe UI,Arial" font-weight="bold">R</text><rect x="288.8" y="53.6" width="17" height="212.4" rx="2" fill="#1565c0"/><text x="297.3" y="50.6" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">45</text><rect x="309.8" y="36.1" width="17" height="229.9" rx="2" fill="#26a69a"/><text x="318.3" y="33.1" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">49</text><text x="297.3" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Rifampin</text><rect x="361.2" y="262.0" width="17" height="4" fill="#eceff1" stroke="#b0bec5" stroke-dasharray="2 2"/><text x="369.7" y="259.0" font-size="10" text-anchor="middle" fill="#c62828" font-family="Segoe UI,Arial" font-weight="bold">R</text><rect x="382.2" y="102.2" width="17" height="163.8" rx="2" fill="#1565c0"/><text x="390.7" y="99.2" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">35</text><rect x="403.2" y="118.3" width="17" height="147.7" rx="2" fill="#26a69a"/><text x="411.7" y="115.3" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">31</text><text x="390.7" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Tetracycline</text><rect x="454.5" y="118.3" width="17" height="147.7" rx="2" fill="#b0bec5"/><text x="463.0" y="115.3" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">31</text><rect x="475.5" y="100.3" width="17" height="165.7" rx="2" fill="#1565c0"/><text x="484.0" y="97.3" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">35</text><rect x="496.5" y="111.2" width="17" height="154.8" rx="2" fill="#26a69a"/><text x="505.0" y="108.2" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">33</text><text x="484.0" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Linezolid</text><rect x="547.8" y="135.3" width="17" height="130.7" rx="2" fill="#b0bec5"/><text x="556.3" y="132.3" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">28</text><rect x="568.8" y="111.7" width="17" height="154.3" rx="2" fill="#1565c0"/><text x="577.3" y="108.7" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">33</text><rect x="589.8" y="123.5" width="17" height="142.5" rx="2" fill="#26a69a"/><text x="598.3" y="120.5" font-size="9.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">30</text><text x="577.3" y="281.0" font-size="10.5" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Norfloxacin</text><rect x="64" y="10" width="12" height="12" rx="2" fill="#b0bec5"/><text x="80.0" y="20.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">WT MRSA</text><rect x="174" y="10" width="12" height="12" rx="2" fill="#1565c0"/><text x="190.0" y="20.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">Survivor G1</text><rect x="284" y="10" width="12" height="12" rx="2" fill="#26a69a"/><text x="300.0" y="20.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">Survivor G2</text></svg><div class="figcap">Fig. (generated): CLSI disk-diffusion zone diameters. Wild-type MRSA shows no zone (resistant, “R”) to oxacillin/cefprozil/rifampin/tetracycline; both survivor generations are susceptible to all six agents. (Oxacillin/norfloxacin lack standard disk breakpoints — shown for comparison.)</div></div><div class="figwrap full"><svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg"><line x1="52" y1="188.0" x2="540" y2="188.0" stroke="#eceff1"/><text x="44.0" y="191.0" font-size="9.5" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0.00</text><line x1="52" y1="147.5" x2="540" y2="147.5" stroke="#eceff1"/><text x="44.0" y="150.5" font-size="9.5" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0.25</text><line x1="52" y1="107.0" x2="540" y2="107.0" stroke="#eceff1"/><text x="44.0" y="110.0" font-size="9.5" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0.50</text><line x1="52" y1="66.5" x2="540" y2="66.5" stroke="#eceff1"/><text x="44.0" y="69.5" font-size="9.5" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0.75</text><line x1="52" y1="26.0" x2="540" y2="26.0" stroke="#eceff1"/><text x="44.0" y="29.0" font-size="9.5" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">1.00</text><text x="52.0" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0</text><text x="127.1" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">4</text><text x="202.2" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">8</text><text x="277.2" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">12</text><text x="352.3" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">16</text><text x="427.4" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">20</text><text x="502.5" y="202.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">24</text><text x="296.0" y="215.0" font-size="10.5" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold">Time (h)</text><line x1="52" y1="188" x2="540" y2="188" stroke="#90a4ae"/><polyline points="52.0,185.4 61.4,183.9 70.8,181.7 80.2,178.3 89.5,173.3 98.9,166.2 108.3,156.3 117.7,143.5 127.1,128.1 136.5,111.0 145.8,94.0 155.2,78.6 164.6,65.8 174.0,55.9 183.4,48.8 192.8,43.8 202.2,40.4 211.5,38.2 220.9,36.7 230.3,35.8 239.7,35.2 249.1,34.8 258.5,34.5 267.8,34.4 277.2,34.3 286.6,34.2 296.0,34.2 305.4,34.1 314.8,34.1 324.2,34.1 333.5,34.1 342.9,34.1 352.3,34.1 361.7,34.1 371.1,34.1 380.5,34.1 389.8,34.1 399.2,34.1 408.6,34.1 418.0,34.1 427.4,34.1 436.8,34.1 446.2,34.1 455.5,34.1 464.9,34.1 474.3,34.1 483.7,34.1 493.1,34.1 502.5,34.1 511.8,34.1 521.2,34.1 530.6,34.1 540.0,34.1" fill="none" stroke="#455a64" stroke-width="2.6"/><rect x="305" y="31" width="12" height="12" rx="2" fill="#455a64"/><text x="322.0" y="41.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">WT MRSA (log phase ≈6 h)</text><polyline points="52.0,187.8 61.4,187.8 70.8,187.7 80.2,187.6 89.5,187.6 98.9,187.4 108.3,187.3 117.7,187.1 127.1,186.9 136.5,186.6 145.8,186.3 155.2,185.9 164.6,185.4 174.0,184.7 183.4,183.9 192.8,182.9 202.2,181.7 211.5,180.2 220.9,178.3 230.3,176.1 239.7,173.3 249.1,170.1 258.5,166.2 267.8,161.6 277.2,156.3 286.6,150.3 296.0,143.5 305.4,136.1 314.8,128.1 324.2,119.7 333.5,111.0 342.9,102.4 352.3,94.0 361.7,86.0 371.1,78.6 380.5,71.8 389.8,65.8 399.2,60.5 408.6,55.9 418.0,52.0 427.4,48.8 436.8,46.0 446.2,43.8 455.5,41.9 464.9,40.4 474.3,39.2 483.7,38.2 493.1,37.4 502.5,36.7 511.8,36.2 521.2,35.8 530.6,35.5 540.0,35.2" fill="none" stroke="#1565c0" stroke-width="2.6"/><rect x="305" y="49" width="12" height="12" rx="2" fill="#1565c0"/><text x="322.0" y="59.0" font-size="11" text-anchor="start" fill="#37474f" font-family="Segoe UI,Arial" font-weight="normal">Depigmented survivor (log phase ≈24 h)</text><text x="18.0" y="107.0" font-size="10.5" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold" transform="rotate(-90 18.0 107.0)">OD₆₀₀</text></svg><div class="figcap">Fig. (generated): depigmented survivors reach log phase ≈24 h vs ≈6 h for wild-type — the growth defect consistent with metabolic/translational disruption.</div></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — AMR; the case for resistance-reversal / anti-virulence; staphyloxanthin biology (Liu 2005)</li><li><b>Results — depigmentation</b> — LDR selects staphyloxanthin-negative survivors (spectra)</li><li><b>Results — re-sensitization</b> — CLSI zone diameters, WT vs G1/G2 (below); susceptibility heatmap</li><li><b>Results — stability</b> — susceptibility maintained across two passaged generations</li><li><b>Results — avirulence</b> — loss of hemolysis; growth defect (below)</li><li><b>Results — transcriptional collapse</b> — survivor expression divergence (links to #5)</li><li><b>Discussion</b> — depigmentation→ROS-susceptibility→selection model; therapeutic/IPC implications; limits</li><li><b>Methods</b> — LDR parameters; survivor isolation/passage; pigment spectroscopy; CLSI; hemolysis; growth; RNA-seq</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>CLSI zone-diameter grouped bar chart (below)</li><li>Survivor growth-curve delay (below)</li><li>Staphyloxanthin absorption spectra (WT vs G1/G2)</li><li>Kirby-Bauer plate images</li><li>Susceptibility resistant→susceptible heatmap</li><li>Blood-agar hemolysis images</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms4">
+    <div class="ms-head" style="background:var(--cyan)">
+      
+      <div class="mnum">4</div>
+      <div class="mtitleblock"><div class="mtype">Original Research · Device</div><h3>A self-sterilizing, anti-shadowing fused-silica light-pipe for in-lumen UV disinfection of catheter connections: design, dosimetry, and validation lessons</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip"><div class="ss-top"><span class="status-flag sf-next"><span class="sf-dot"></span>Ready to start</span><span class="ss-note">Figures to assemble from the final report + Zemax ray-trace models; candid failure-mode post-mortem de-risks future grant/commercialization work.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step next">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">S. Auger · Bio-Device <span class="role">Zemax optical modeling</span></span><span class="au">J. Gatling <span class="role">GAMAVIEW control software</span></span><span class="au">D. Gershaw <span class="role">PI</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Journal of Biomedical Optics (SPIE)</span><span class="j-alts"> &mdash; fits optical-engineering + dosimetry + device-validation content. <b>Alternatives:</b> Lasers in Surgery and Medicine; American Journal of Infection Control (IPC framing); npj Biofilms and Microbiomes</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Catheter-related bloodstream infections motivate point-of-care disinfection of the catheter–connector interface, but delivering germicidal UV around an ISO 594 luer is an unsolved optics problem. We describe a reusable, self-sterilizing fused-silica light-pipe with a machined male-luer taper that couples a multi-emitter UV-A/UV-C package into the luer and lumen while a light-blocking harness suppresses photoreactivation. Zemax ray-trace modeling and fiber-optic power mapping quantified delivery and identified dominant loss terms. Relative to a single-LED predecessor, treatable distance increased ≈10-fold and treatable area ≈270-fold, with high-log biofilm inactivation and a dedicated self-sterilization mode. We report transparently where the prototype fell short in independent testing — optical cold spots from debris on the taper, an underpowered budget (≈10% of light reaching the luer), and incompatibility with needleless access devices — and define the redesign these imply.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>A complete optical-engineering arc (design → modeling → bench efficacy → independent validation), patent-protected, and the candid failure-mode post-mortem is genuinely useful and rarely published. It also de-risks future commercialization/grant work by documenting exactly what redesign is needed.</p></div>
+      </div>
+      <div class="figwrap full"><svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="uv" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7e57c2" stop-opacity="0.95"/><stop offset="0.35" stop-color="#9575cd" stop-opacity="0.7"/><stop offset="1" stop-color="#d1c4e9" stop-opacity="0.12"/></linearGradient></defs><rect x="20" y="76" width="84" height="68" rx="6" fill="#263238"/><text x="62.0" y="108.0" font-size="12" text-anchor="middle" fill="#fff" font-family="Segoe UI,Arial" font-weight="bold">MEP</text><text x="62.0" y="123.0" font-size="9" text-anchor="middle" fill="#b0bec5" font-family="Segoe UI,Arial" font-weight="normal">265+365 nm</text><circle cx="100" cy="96" r="5" fill="#5e35b1"/><circle cx="100" cy="124" r="5" fill="#3949ab"/><polygon points="106,80 250,90 250,130 106,140" fill="#b3e5fc" stroke="#0288d1" stroke-width="1.5"/><text x="178.0" y="76.0" font-size="10" text-anchor="middle" fill="#0277bd" font-family="Segoe UI,Arial" font-weight="bold">fused-silica mixing rod</text><polygon points="250,98 300,103 300,117 250,122" fill="#81d4fa" stroke="#0288d1" stroke-width="1.2"/><text x="258.0" y="138.0" font-size="9.5" text-anchor="middle" fill="#0277bd" font-family="Segoe UI,Arial" font-weight="normal">male luer taper</text><rect x="300" y="88" width="300" height="44" rx="6" fill="#eceff1" stroke="#90a4ae"/><rect x="300" y="94" width="285" height="32" rx="4" fill="url(#uv)"/><text x="450.0" y="80.0" font-size="10.5" text-anchor="middle" fill="#455a64" font-family="Segoe UI,Arial" font-weight="bold">luer connection → catheter lumen</text><line x1="300" y1="132" x2="300" y2="142" stroke="#90a4ae"/><text x="300.0" y="154.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0</text><line x1="395" y1="132" x2="395" y2="142" stroke="#90a4ae"/><text x="395.0" y="154.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">2.5 cm</text><line x1="585" y1="132" x2="585" y2="142" stroke="#90a4ae"/><text x="585.0" y="154.0" font-size="9.5" text-anchor="middle" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">4.5 cm</text><text x="470.0" y="118.0" font-size="10" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">irradiance falls off → (≈10% reaches luer)</text><rect x="120" y="186" width="190" height="40" rx="8" fill="#e8f5e9" stroke="#2e7d32"/><text x="215.0" y="203.0" font-size="11" text-anchor="middle" fill="#1b5e20" font-family="Segoe UI,Arial" font-weight="bold">10× treatable distance</text><text x="215.0" y="218.0" font-size="9" text-anchor="middle" fill="#388e3c" font-family="Segoe UI,Arial" font-weight="normal">vs Phase I single-LED</text><rect x="330" y="186" width="190" height="40" rx="8" fill="#e3f2fd" stroke="#1565c0"/><text x="425.0" y="203.0" font-size="11" text-anchor="middle" fill="#0d47a1" font-family="Segoe UI,Arial" font-weight="bold">270× treatable area</text><text x="425.0" y="218.0" font-size="9" text-anchor="middle" fill="#1976d2" font-family="Segoe UI,Arial" font-weight="normal">anti-shadowing light pipe</text></svg><div class="figcap">Fig. (generated): optical path — multi-emitter package → fused-silica mixing rod → male luer taper into the catheter lumen, with modeled irradiance falloff and the Phase I→II distance/area gains.</div></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — CRBSI/CLABSI burden; the luer/lumen disinfection geometry problem</li><li><b>Optical design</b> — multi-emitter package; fused-silica light-pipe + luer taper; anti-shadowing harness; self-sterilization</li><li><b>Modeling &amp; dosimetry</b> — Zemax ray tracing; irradiance vs distance; fiber-optic surface power mapping</li><li><b>Bench performance</b> — log reductions; self-sterilization fluence thresholds (MRSA, C. albicans)</li><li><b>Independent validation &amp; failure analysis</b> — third-party results; cold spots; power budget; NAD incompatibility</li><li><b>Redesign requirements &amp; discussion</b> — emitter count/placement, lensing efficiency, cleaning tolerance</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Device/light-pipe schematic with irradiance falloff (below)</li><li>MEP schematics + device renderings</li><li>Zemax ray-trace figures</li><li>Incoherent-irradiance vs distance heat maps</li><li>Surface-area/fluence tables</li><li>Self-sterilization assay tables</li><li>Annotated cold-spot figures</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms5">
+    <div class="ms-head" style="background:var(--green)">
+      
+      <div class="mnum">5</div>
+      <div class="mtitleblock"><div class="mtype">Data Note + Genomics</div><h3>Transcriptional and genomic divergence of UV-light-selected S. aureus survivors: collapse of the translational apparatus</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip" style="border-color:#f48fb1;background:#fff7fa"><div class="ss-top"><span class="status-flag sf-hold"><span class="sf-dot"></span>Awaiting data</span><span class="ss-note">Blocked only on locating the GeneWiz raw reads (hard drive). Once recovered, everything is <b>computational re-analysis — no lab required</b>: re-map to isogenic ATCC 33592, Kraken2 identity, finish DE.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step hold">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au au-gap">+ bioinformatician — re-mapping / Kraken2 / DESeq2 (to recruit)</span><span class="au">R. Santos <span class="role">statistics</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>5a: Microbiology Resource Announcements (data) · 5b: Microbial Genomics / BMC Genomics (analysis)</span><span class="j-alts"> &mdash; MRA requires raw reads deposited in SRA/ENA before submission — feasible from the drive. <b>Alternatives:</b> Fold the mechanistic genomics into #3 or into npj Antimicrobials and Resistance</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Survivors of a two-wavelength UV light-dose regimen exhibit a stable, depigmented, antibiotic-susceptible, avirulent phenotype. To define the molecular basis we analyzed comparative RNA-seq of MRSA ATCC 33592 and two survivor lineages (triplicate design). Whereas parental reads mapped as expected to the reference, survivor reads mapped at dramatically reduced rates — a divergence so large the vendor initially suspected contamination, but which taxonomic classification confirms is genuine, heavily remodeled Staphylococcus sequence rather than foreign DNA. Differential expression and manual annotation localized the most extreme changes to the translational machinery (tRNA loci) alongside altered capsule and surface/secretion determinants, consistent with slow growth, regulatory dysfunction, and loss of staphyloxanthin and hemolysis. We re-map all libraries to the isogenic ATCC 33592 genome to provide a fair comparison and quantify true divergence.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>Supplies the mechanistic backbone for the flagship and publicly rebuts the contamination misread — exactly the objection a reviewer will raise. The tRNA/translation-apparatus signal is real and interesting. Re-mapping to the correct reference is the single most valuable computational fix available — and it needs no laboratory.</p></div>
+      </div>
+      <div class="figwrap full"><svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="170.0" x2="540" y2="170.0" stroke="#eceff1"/><text x="52.0" y="173.0" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">0%</text><line x1="60" y1="134.5" x2="540" y2="134.5" stroke="#eceff1"/><text x="52.0" y="137.5" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">25%</text><line x1="60" y1="99.0" x2="540" y2="99.0" stroke="#eceff1"/><text x="52.0" y="102.0" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">50%</text><line x1="60" y1="63.5" x2="540" y2="63.5" stroke="#eceff1"/><text x="52.0" y="66.5" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">75%</text><line x1="60" y1="28.0" x2="540" y2="28.0" stroke="#eceff1"/><text x="52.0" y="31.0" font-size="10" text-anchor="end" fill="#90a4ae" font-family="Segoe UI,Arial" font-weight="normal">100%</text><line x1="60" y1="170" x2="540" y2="170" stroke="#90a4ae"/><rect x="100.0" y="59.2" width="70" height="110.8" rx="3" fill="#455a64"/><text x="135.0" y="53.2" font-size="12" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">78.0%</text><text x="135.0" y="185.0" font-size="11" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">WT parent</text><rect x="240.0" y="162.5" width="70" height="7.5" rx="3" fill="#1565c0"/><text x="275.0" y="156.5" font-size="12" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">5.3%</text><text x="275.0" y="185.0" font-size="11" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Survivor G1</text><rect x="380.0" y="162.2" width="70" height="7.8" rx="3" fill="#26a69a"/><text x="415.0" y="156.2" font-size="12" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">5.5%</text><text x="415.0" y="185.0" font-size="11" text-anchor="middle" fill="#37474f" font-family="Segoe UI,Arial" font-weight="bold">Survivor G2</text><text x="300.0" y="16.0" font-size="11.5" text-anchor="middle" fill="#607d8b" font-family="Segoe UI,Arial" font-weight="bold">RNA-seq reads mapping to S. aureus reference</text></svg><div class="figcap">Fig. (generated): RNA-seq read mapping to the S. aureus reference — 78% for the parent vs ≈5% for survivors. This is genuine sequence divergence from photodamage, not contamination (confirmed by taxonomic classification).</div></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — the survivor phenotype; why transcriptomics; the reference-strain caveat</li><li><b>Methods</b> — GeneWiz Illumina triplicate A/B/C design, 3 pairwise comparisons; re-map to ATCC 33592; de novo assembly + taxonomic classification; DESeq2</li><li><b>Results — mapping &amp; divergence</b> — read-mapping collapse (below); sample-distance/PCA</li><li><b>Results — identity</b> — taxonomic confirmation rebutting contamination</li><li><b>Results — differential expression</b> — tRNA/translation, capsule, secretion; volcano/heatmap</li><li><b>Discussion</b> — low-fidelity-repair / “semi-viable” model; limits (RNA-seq vs WGS; confirm replicate structure)</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Read-mapping bar chart (below)</li><li>Sequence-statistics &amp; QC tables</li><li>Per-base quality figures</li><li>Sample-distance &amp; PCA plots</li><li>Volcano plot + annotated DE gene table (tRNA/translation emphasis)</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms6">
+    <div class="ms-head" style="background:var(--purple)">
+      
+      <div class="mnum">6</div>
+      <div class="mtitleblock"><div class="mtype">Review</div><h3>Light against resistance: photo-inactivation, pigment targeting, and anti-virulence phototherapy to restore antibiotic efficacy</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip"><div class="ss-top"><span class="status-flag sf-next"><span class="sf-dot"></span>Ready to start · low-risk</span><span class="ss-note">No data required — pure synthesis. Send a CMR presubmission inquiry first (must be broad/critical, not self-centered).</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step next">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">M.R. Hamblin <span class="role">senior / photomedicine</span></span><span class="au">L. Leanse <span class="role">phenotype</span></span><span class="au au-gap">invite J.-X. Cheng / M. Seleem — staphyloxanthin photolysis (optional)</span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Clinical Microbiology Reviews (ASM)</span><span class="j-alts"> &mdash; accepts unsolicited reviews via presubmission inquiry; must be broad/critical, not self-centered. <b>Alternatives:</b> FEMS Microbiology Reviews; Clinical Microbiology &amp; Infection; npj Antimicrobials and Resistance (Review); Photochemistry &amp; Photobiology</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>As antibiotic pipelines lag resistance, light-based antimicrobials are re-emerging as complements. This review synthesizes how ultraviolet, violet-blue, and photosensitizer-mediated approaches inactivate pathogens and, increasingly, alter them — targeting protective pigments such as staphyloxanthin, exploiting endogenous chromophores to generate ROS, and selecting against virulence and resistance traits. We compare wavelengths, waveforms, and combination regimens; examine evidence that light can re-sensitize MDR organisms and attenuate virulence; and assess the translational landscape for wound, device, and environmental applications, including photoreactivation risk and the methodological standards (biofilm models, dosimetry) needed for reproducible progress.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>High-impact, citation-generating review that frames our own original work (#2/#3) within the broader field, builds authority in the resistance-reversal niche, and is achievable now with zero data.</p></div>
+      </div>
+      
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — AMR and the light renaissance</li><li><b>Mechanisms of photo-antimicrobial action</b> — direct DNA damage; ROS Type I/II; pigment photo-oxidation</li><li><b>Wavelengths &amp; waveforms compared</b> — comparison table</li><li><b>Pigment-targeting &amp; anti-virulence phototherapy</b> — staphyloxanthin and beyond</li><li><b>Evidence for resistance re-sensitization</b></li><li><b>Biofilms, dosimetry &amp; photoreactivation</b> — methodological standards</li><li><b>Translational applications &amp; open questions</b> — wound, device, environmental</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Mechanism schematics (Type I/II ROS; pigment photo-oxidation)</li><li>Wavelength/waveform comparison table</li><li>Summary table of re-sensitization evidence</li><li>Translational landscape figure</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms7">
+    <div class="ms-head" style="background:var(--pink)">
+      
+      <div class="mnum">7</div>
+      <div class="mtitleblock"><div class="mtype">Review / Perspective</div><h3>Non-chemical light-based countermeasures for multidrug-resistant wound and bloodstream infections in prolonged field care and biodefense</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip"><div class="ss-top"><span class="status-flag sf-next"><span class="sf-dot"></span>Ready to start · low-risk</span><span class="ss-note">No data required. Repackages the military relevance the Army already funded and supports future DoD / DARPA / MTEC proposals.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step next">Draft</div><div class="pl-step">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">T. Dai <span class="role">military wound/burn models</span></span><span class="au">M.R. Hamblin <span class="role">photomedicine</span></span><span class="au">D. Gershaw <span class="role">PI</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Military Medicine (AMSUS / Oxford)</span><span class="j-alts"> &mdash; publishes reviews and commentaries; natural federal-medicine venue matching the report framing. <b>Alternatives:</b> Military Medical Research (Springer, higher IF); Burns (ISBI); Advances in Wound Care; Health Security</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>Multidrug-resistant organisms dominate the infectious burden of modern combat casualty care, and prolonged field care extends the window in which catheter- and wound-associated infections arise far from definitive treatment. Antibiotics and conventional dressings are increasingly inadequate. We review light-based, non-chemical countermeasures — ultraviolet germicidal irradiation and combination light-dose regimens — for point-of-care disinfection of vascular-access connections, treatment of contaminated wounds and burns, and inactivation of environmental and biothreat agents. We summarize efficacy against biofilms and resistant organisms, the emerging capacity of some regimens to re-sensitize and de-virulence pathogens, device/dosimetry considerations for far-forward use, and safety/human-factors constraints, mapping these to USAMRMC/DHA priorities.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>Repackages the military relevance the Army already funded into a citable review, supports future DoD/DARPA/MTEC proposals, and reaches the federal-medicine readership that matters for follow-on funding — with no new data.</p></div>
+      </div>
+      
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>Introduction</b> — MDRO burden in OIF/OEF; prolonged field care</li><li><b>The clinical problem</b> — CRBSI, wound/burn infection, biothreat exposure</li><li><b>Light modalities &amp; mechanisms</b> — brief; cites #6</li><li><b>Evidence</b> — device disinfection, wound care, agent inactivation — efficacy tables</li><li><b>Device &amp; dosimetry requirements for field use</b></li><li><b>Safety / human factors; alignment with military priorities &amp; roadmap</b> — care-echelon use-case map</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Care-echelon use-case map figure</li><li>Summary efficacy tables (device / wound / agent)</li><li>Field-deployment requirements table</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms" id="ms8">
+    <div class="ms-head" style="background:var(--gold)">
+      
+      <div class="mnum">8</div>
+      <div class="mtitleblock"><div class="mtype">Opinion / Viewpoint</div><h3>Resurrecting obsolete antibiotics with light: selection, not just sterilization</h3></div>
+    </div>
+    <div class="ms-body">
+      <div class="status-strip" style="border-color:#81c784;background:#f5fbf6"><div class="ss-top"><span class="status-flag sf-drafted"><span class="sf-dot"></span>Drafts complete</span><span class="ss-note"><b>Two full drafts done</b> — npj AMR Comment (~1,165 words) and Trends Opinion (~2,022 words), both with Figure 1. Held in pre-submission until the flagship is public so it can be cited.</span></div><div class="pipeline"><div class="pl-step done">Concept</div><div class="pl-step done">Outline</div><div class="pl-step done">Draft</div><div class="pl-step current">Review</div><div class="pl-step">Submit</div><div class="pl-step">In&nbsp;review</div></div></div>
+      <div class="coauthors"><h4>Co-author considerations</h4><div class="au-chips"><span class="au au-lead">A.R. Ball <span class="role">lead</span></span><span class="au">M.R. Hamblin <span class="role">photomedicine</span></span><span class="au au-corr">G.P. Tegos <span class="role">senior</span></span></div></div>
+      <div class="ms-journals"><span class="j-primary"><span class="pin">TARGET</span>Trends in Microbiology (Opinion) or npj Antimicrobials and Resistance (Comment)</span><span class="j-alts"> &mdash; both take concise idea-driven pieces and are realistic for unsolicited submission. <b>Alternatives:</b> Aspirational: Lancet Infectious Diseases Comment / Personal View (mostly commissioned — treat as a stretch)</span></div>
+      <div class="grid2">
+        <div class="block b-abstract"><h4>Example abstract</h4><p>We argue for reframing ultraviolet and combination-light antimicrobials: beyond killing microbes, sub-lethal light can act as a selective and de-virulencing force, driving resistant populations toward susceptible, avirulent states. Drawing on emerging evidence that light-dose regimens can re-sensitize MRSA and strip protective pigments, we propose that “photo-selection” deserves study as a deliberate anti-resistance strategy, outline the mechanistic and ethical questions it raises, and call for the dosimetry and genomic standards needed to evaluate it rigorously.</p></div>
+        <div class="block b-why"><h4>Why it&rsquo;s worthwhile</h4><p>Low effort, high reach; plants a flag on the conceptual framing ahead of competitors (e.g., staphyloxanthin-photolysis groups) and seeds citations for the primary papers.</p></div>
+      </div>
+      
+      <div class="grid2" style="margin-top:14px">
+        <div class="block b-outline"><h4>Organization &mdash; headings &amp; subheadings</h4><ul class="outline-list"><li><b>The provocation</b> — sterilization → selection</li><li><b>What the data suggest</b></li><li><b>Why it matters for AMR</b></li><li><b>The hard questions</b> — mechanism, reversibility, safety, resistance-to-the-resistance</li><li><b>A call for standards</b> — dosimetry + genomic reporting</li></ul></div>
+        <div class="block b-fig"><h4>Data, tables &amp; figures to include</h4><ul class="fig-list"><li>Single conceptual schematic (kill-vs-select dose axis)</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  GAMA Therapeutics LLC unpublished research · Manuscript program brief · prepared for editoral review
+  <div class="disc">All figures are generated in code (inline SVG) from the actual SBIR II data. Example abstracts and outlines are drafts for discussion. Disk-diffusion susceptibility is reported per CLSI M100; broth-microdilution MIC confirmation is noted as a limitation. Copyrighted 2019, Updated 2026 by Anthony R. Ball. Do not copy, do not transcribe!</div>
+</footer>
+
+</body></html>
