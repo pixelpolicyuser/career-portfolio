@@ -1,456 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Academic Preparations &amp; Transcript Architecture — Anthony R. Ball</title>
-<style>
-  :root {
-    --navy: #0d1b2a;
-    --blue: #1565c0;
-    --blue-dark: #0d47a1;
-    --teal: #00838f;
-    --gold: #f57f17;
-    --gold-light: #fff8e1;
-    --green: #2e7d32;
-    --purple: #673ab7;
-    --grey: #455a64;
-    --grey-light: #eceff1;
-    --white: #ffffff;
-    --text: #212121;
-    --text-light: #546e7a;
-    --border: #cfd8dc;
-    --shadow: 0 4px 12px rgba(0,0,0,0.10);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: var(--text); font-size: 14px; line-height: 1.6; }
-
-  /* HEADER */
-  .doc-header { background: linear-gradient(135deg, var(--navy), var(--blue-dark)); color: white; padding: 40px 48px 32px; border-bottom: 4px solid var(--teal); }
-  .doc-header .eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #64b5f6; font-weight: 700; }
-  .doc-header h1 { font-size: 28px; font-weight: 700; margin-top: 6px; letter-spacing: 0.5px; }
-  .doc-header .subtitle { font-size: 14px; color: #b0bec5; margin-top: 8px; max-width: 850px; }
-  .doc-header .meta { margin-top: 20px; display: flex; gap: 32px; flex-wrap: wrap; }
-  .doc-header .meta-item { font-size: 12px; color: #90a4ae; }
-  .doc-header .meta-item strong { color: #e0f2f1; display: block; font-size: 13px; }
-
-  /* NAVIGATION STICKY BAR */
-  .toc { background: var(--blue); padding: 12px 48px; display: flex; gap: 8px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .toc a { color: white; text-decoration: none; font-size: 12px; padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,0.14); transition: all 0.2s; }
-  .toc a:hover { background: var(--teal); }
-
-  /* MAIN CONTAINER */
-  .body { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
-
-  /* GRID FOR BIO AND CHART */
-  .bio-viz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
-  @media (max-width: 900px) { .bio-viz-grid { grid-template-columns: 1fr; } }
-
-  /* BIOGRAPHY BOX */
-  .bio-box { background: white; border-left: 5px solid var(--blue); border-radius: 6px; padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; }
-  .bio-box h2 { font-size: 18px; color: var(--navy); margin-bottom: 12px; font-weight: 700; }
-  .bio-box p { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 12px; }
-  .bio-box p:last-child { margin-bottom: 0; }
-  
-  /* DASHBOARD STATS */
-  .dash { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 32px; }
-  .stat { background: #fff; border-radius: 8px; box-shadow: var(--shadow); padding: 16px 18px; border-top: 3px solid var(--blue); }
-  .stat .num { font-size: 22px; font-weight: 800; color: var(--navy); line-height: 1.1; }
-  .stat .lab { font-size: 11px; color: var(--text-light); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
-
-  /* SVG CHART INTERACTIVE STYLING */
-  .chart-box { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px; }
-  .donut-sector { transition: transform 0.2s ease, opacity 0.2s ease; cursor: pointer; transform-origin: center; }
-  .donut-sector:hover { transform: scale(1.03); opacity: 0.9; }
-  #chart-details { text-align: center; margin-top: 14px; min-height: 50px; font-size: 13px; font-weight: 600; color: var(--navy); padding: 8px 16px; background: #f8f9fa; border-radius: 6px; width: 100%; border: 1px dashed var(--border); }
-
-  /* INTERACTIVE TABS SYSTEM */
-  .tabs-container { background: white; border-radius: 8px; box-shadow: var(--shadow); padding: 24px; margin-bottom: 32px; border: 1px solid var(--border); }
-  .tabs-header { display: flex; gap: 10px; border-bottom: 2px solid var(--grey-light); padding-bottom: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-  .tab-btn { padding: 10px 18px; border: none; background: var(--grey-light); color: var(--grey); font-weight: 600; font-size: 13px; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; }
-  .tab-btn.active { background: var(--teal); color: white; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  /* SECTION STAGE MARKS */
-  .section-header { display: flex; align-items: center; gap: 12px; margin: 40px 0 18px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
-  .section-header h2 { font-size: 20px; color: var(--navy); }
-  .section-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; background: var(--blue); }
-
-  /* DATA STRUCTURE TABLES */
-  .matrix-table { background: white; border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 24px; border: 1px solid var(--border); }
-  .matrix-table table { width: 100%; border-collapse: collapse; }
-  .matrix-table thead { background: var(--navy); color: white; }
-  .matrix-table thead th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
-  .matrix-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  .matrix-table tbody tr:hover { background: #f0f4ff; }
-  .matrix-table tbody td { padding: 10px 14px; font-size: 13px; vertical-align: middle; }
-  
-  /* REPOSITORY CARD LAYOUTS */
-  .pub-list, .acc-timeline { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
-  .pub-card, .acc-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 16px 20px; box-shadow: var(--shadow); border-left: 4px solid var(--blue); transition: transform 0.15s ease; }
-  .pub-card:hover, .acc-card:hover { transform: translateY(-2px); }
-  .pub-title { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
-  .pub-authors { font-style: italic; color: var(--text-light); font-size: 12.5px; margin-bottom: 4px; }
-  .pub-journal { color: var(--teal); font-weight: 600; font-size: 12.5px; }
-
-  .acc-card { border-left-color: var(--gold); }
-  .acc-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; flex-wrap: wrap; gap: 6px; }
-  .acc-title { font-weight: 700; color: var(--navy); font-size: 14px; }
-  .acc-year { background: var(--gold-light); color: #b75a00; font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 4px; }
-  .acc-merit { font-size: 13px; color: var(--text); }
-
-  /* BADGES & MARKS */
-  .badge { display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: 10.5px; font-weight: 700; color: white; white-space: nowrap; }
-  .badge-gwu { background: var(--teal); }
-  .badge-neu { background: var(--blue); }
-  .badge-wsu { background: var(--purple); }
-  .badge-grade-a { background: var(--green); }
-  .badge-grade-b { background: #1976d2; }
-  .badge-pass { background: var(--grey); }
-
-  .institution-banner { background: #f8f9fa; padding: 14px 20px; font-weight: 700; font-size: 14px; color: var(--navy); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-  .inst-meta { font-size: 12px; color: var(--text-light); font-weight: 400; }
-
-  footer { text-align: center; padding: 32px 24px; font-size: 12px; color: #b0bec5; background: var(--navy); margin-top: 40px; }
-  footer .disc { max-width: 850px; margin: 10px auto 0; font-size: 11px; color: #78909c; line-height: 1.5; }
-</style>
-</head>
-<body>
-
-<div class="doc-header">
-  <div class="eyebrow">Comprehensive Knowledge Architecture Map</div>
-  <h1>Anthony R. Ball, NRCM, MSHS</h1>
-  <div class="subtitle">An elite, cross-disciplinary integration of advanced life sciences, clinical methodologies, global regulatory governance, and translational engineering matrices compiled from multi-institutional execution.</div>
-  <div class="meta">
-    <div class="meta-item"><strong>Target Focus</strong>Regulatory Affairs, Translational Science, and Leadership</div>
-    <div class="meta-item"><strong>Industry Credentials</strong>NRCM Registered Microbiologist (#5108) · RAPS RAC Mastery Tracking</div>
-    <div class="meta-item"><strong>Compiled Baseline</strong>May 2026 Architectural Data Update</div>
-  </div>
-</div>
-
-<div class="toc">
-  <a href="#overview">Executive Profile</a>
-  <a href="#taxonomy">Functional Taxonomy</a>
-  <a href="#accomplishments">Key Milestones</a>
-  <a href="#publications">Publications Repository</a>
-  <a href="#gwu">GWU SMHS</a>
-  <a href="#neu-grad">Northeastern (Graduate)</a>
-</div>
-
-<div class="body">
-
-  <div class="bio-viz-grid" id="overview">
-    <div class="bio-box">
-      <h2>Executive Narrative</h2>
-      <p>I operate at the specialized intersection of advanced bench research, high-stakes clinical translation, and international regulatory strategy. My career architecture spans over two decades of technical evolution: moving from exploratory molecular biology tracking (NEU PhD candidacy) to directing 70+ formal FDA 510(k) product safety evaluations across global medical device vectors.</p>
-      <p>By coupling hands-on mastery of microbial architecture with a advanced MSHS configuration in global clearance systems, I transform complex biomedical pipelines into scalable, bullet-proof compliant operations. Whether negotiating technical parameters under $1.6M US Army development initiatives, spearheading SCADA enterprise tech automation, or managing cGLP/cGMP quality auditing systems, my objective remains focused: utilizing rigorous data metrics to drive regulatory velocity and protect patient outcomes.</p>
-    </div>
-
-    <div class="chart-box">
-      <h3 style="font-size:14px; color:var(--navy); margin-bottom:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px;">Operational Scope Matrix</h3>
-      <svg width="220" height="220" viewBox="0 0 42 42" class="donut">
-        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
-        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#eceff1" stroke-width="4.5"></circle>
-        
-        <circle class="donut-sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="var(--gold)" stroke-width="4.8" stroke-dasharray="35 65" stroke-dashoffset="100" onmouseover="showDetails('Regulatory Affairs: FDA 510(k), NDA/BLA protocols, cGMP/cGLP compliance architectures, ISO 13485 quality systems.')" onmouseout="clearDetails()"></circle>
-        <circle class="donut-sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="var(--blue)" stroke-width="4.8" stroke-dasharray="25 75" stroke-dashoffset="65" onmouseover="showDetails('Clinical Sciences: Epidemiological modeling, translational biostatistics, clinical trial risk assessment, assay controls.')" onmouseout="clearDetails()"></circle>
-        <circle class="donut-sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="var(--teal)" stroke-width="4.8" stroke-dasharray="25 75" stroke-dashoffset="40" onmouseover="showDetails('Life Sciences: Molecular microbiology, genomic expression data mapping, phenotypic virulence assays, antimicrobial kinetics.')" onmouseout="clearDetails()"></circle>
-        <circle class="donut-sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="var(--purple)" stroke-width="4.8" stroke-dasharray="15 85" stroke-dashoffset="15" onmouseover="showDetails('Leadership & Analytics: Program execution, federal asset management ($18M+ pipelines), multi-organizational orchestration.')" onmouseout="clearDetails()"></circle>
-      </svg>
-      <div id="chart-details">Mouse over sectors to interrogate architectural competency domains.</div>
-    </div>
-  </div>
-
-  <div class="dash">
-    <div class="stat"><div class="num">MSHS</div><div class="lab">GWU SMHS 2024</div></div>
-    <div class="stat"><div class="num">3.33</div><div class="lab">GWU Graduate GPA</div></div>
-    <div class="stat"><div class="num">PhD (abd)</div><div class="lab">NEU 45.0 Earned Credits</div></div>
-    <div class="stat"><div class="num">70+</div><div class="lab">FDA 510(k) Studies Directed</div></div>
-    <div class="stat"><div class="num">$18M+</div><div class="lab">Grants &amp; Capital Secured</div></div>
-  </div>
-
-  <div id="taxonomy">
-    <div class="section-header">
-      <div class="section-icon">🎯</div>
-      <h2>Strategic Competency Architecture (Cross-Institutional Taxonomy)</h2>
-    </div>
-  </div>
-
-  <div class="tabs-container">
-    <div class="tabs-header">
-      <button class="tab-btn active" onclick="switchTab('reg-sci')">Regulatory Affairs</button>
-      <button class="tab-btn" onclick="switchTab('clin-sci')">Clinical Sciences</button>
-      <button class="tab-btn" onclick="switchTab('trans-sci')">Translational &amp; Life Sciences</button>
-      <button class="tab-btn" onclick="switchTab('lead-anal')">Leadership &amp; Analytics</button>
-    </div>
-
-    <div id="reg-sci" class="tab-content active">
-      <div class="matrix-table">
-        <table>
-          <thead>
-            <tr><th>Module</th><th>Core Knowledge Domain Focus</th><th>Standard Operational Scope</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>RAFF 6205</td><td>Regulatory Affairs Compliance</td><td>Comprehensive review of FDA enforcement structures, GMP/GCP quality management systems audits, warning letter resolutions.</td></tr>
-            <tr><td>RAFF 6202</td><td>Regulatory Drug Biologics</td><td>IND/NDA/BLA clearance pathways, chemistry manufacturing controls (CMC), clinical phase documentation gates.</td></tr>
-            <tr><td>RAFF 6203</td><td>Regulatory Device Diagnostics</td><td>Classification rules for medical hardware, 510(k) predicates, pre-market approvals (PMA), software validation paradigms.</td></tr>
-            <tr><td>RAFF 6201</td><td>Intro to Global Reg Affairs</td><td>Harmonized submission documents (CTD format), global landscape analyses (EU, Health Canada, TGA metrics).</td></tr>
-            <tr><td>RAFF 6206</td><td>International Reg Affairs</td><td>Cross-border serialization metrics, EU MDR/IVDR registration structures, international compliance strategies.</td></tr>
-            <tr><td>BI980 (WSU)</td><td>ST: Drug Discovery</td><td>Target screening parameters, synthetic validation loops, toxicology testing integration models.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="clin-sci" class="tab-content">
-      <div class="matrix-table">
-        <table>
-          <thead>
-            <tr><th>Module</th><th>Core Knowledge Domain Focus</th><th>Standard Operational Scope</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>HSCI 6264</td><td>Epidemiology Translational Res</td><td>Cohort monitoring configurations, diagnostic test evaluation architectures, pattern identification in patient cohorts.</td></tr>
-            <tr><td>HSCI 6263</td><td>Biostatistics Transl Research</td><td>Multi-factor ANOVA tools, linear/logistic regressions, power calculation models for validation trials.</td></tr>
-            <tr><td>RAFF 6204</td><td>Clinical Research for Reg. Aff</td><td>Informed consent verification protocols, clinical trial design, data safety monitoring board (DSMB) setups.</td></tr>
-            <tr><td>HSCI 6240</td><td>Issues &amp; Trends in Health Syst</td><td>Institutional care dynamics, clinical protocol integration constraints, healthcare quality standard delivery maps.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="trans-sci" class="tab-content">
-      <div class="matrix-table">
-        <table>
-          <thead>
-            <tr><th>Module</th><th>Core Knowledge Domain Focus</th><th>Standard Operational Scope</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>BIOG 301</td><td>Mol Cel Bio (Northeastern Graduate)</td><td>Intracellular signaling cascades, functional genomic replication frameworks, transcription feedback mechanics.</td></tr>
-            <tr><td>BIOG 383</td><td>TopBiochem (Northeastern Graduate)</td><td>Protein stabilization pathways, enzyme reaction modeling, advanced metabolic engineering structures.</td></tr>
-            <tr><td>BI980 (WSU)</td><td>ST: Cellular Regltry Mechnsm</td><td>Feedback loops inside cellular models, check-point suppression tracking, signaling abnormalities.</td></tr>
-            <tr><td>BIOU 549</td><td>Microbiotec (Northeastern Undergrad)</td><td>Industrial fermentation strategies, scale-up dynamics for bioactive molecule collection.</td></tr>
-            <tr><td>BIOU 701</td><td>BioCapstone (Northeastern Undergrad)</td><td>Advanced data cross-examination, unifying experimental molecular readouts into formal technical structures.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="lead-anal" class="tab-content">
-      <div class="matrix-table">
-        <table>
-          <thead>
-            <tr><th>Module</th><th>Core Knowledge Domain Focus</th><th>Standard Operational Scope</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>RAFF 6275</td><td>Leadership in Regulatory Affairs</td><td>Executive consensus generation tools, risk-benefit optimization maps for corporate launch paths.</td></tr>
-            <tr><td>HSCI 6223</td><td>Topics — Health Care Leadership</td><td>Change management logistics, cross-functional organizational architectures, operational velocity design.</td></tr>
-            <tr><td>HSCI 6241</td><td>The Health Care Enterprise</td><td>Macroeconomic payment infrastructure, fiscal delivery mechanics, operational pipeline economics.</td></tr>
-            <tr><td>BIOG 380</td><td>Exp Col Tch (Northeastern Graduate)</td><td>Mentorship models, educational deployment schemes, presentation metrics for complex life science files.</td></tr>
-            <tr><td>COP 1010</td><td>Exper Learn (Northeastern Undergrad)</td><td>On-site commercial execution and industrial laboratory management inside life science structures.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div id="accomplishments">
-    <div class="section-header">
-      <div class="section-icon">🏆</div>
-      <h2>Strategic Career Milestones &amp; Track Record</h2>
-    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Matrix | Anthony R. Ball</title>
+    <meta name="description" content="Academic preparations, transcripts, and degree architecture for Anthony R. Ball.">
     
-    <div class="acc-timeline">
-      <div class="acc-card">
-        <div class="acc-header">
-          <span class="acc-title">VP of Global Compliance — BioCellR8 LLC</span>
-          <span class="acc-year">2021 – 2024</span>
-        </div>
-        <div class="acc-merit">Spearheaded international regulatory strategies for biologics pipelines; orchestrated complex standard alignments covering EMA, FDA, and ICH verification protocols.</div>
-      </div>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      <div class="acc-card">
-        <div class="acc-header">
-          <span class="acc-title">Co-Founder — GROW-RI LLC (Acquired by OEE Datawatch)</span>
-          <span class="acc-year">2020 – 2022</span>
-        </div>
-        <div class="acc-merit">Pioneered SCADA systemic process automations for complex indoor farming systems; managed technical evolution from prototype through complete private corporate acquisition.</div>
-      </div>
+    <style>
+        /* LIGHT MODE VARIABLES */
+        :root {
+            --bg-color: #f4f7f6;        
+            --text-main: #0d1b2a;       
+            --text-muted: #4a5568;
+            --card-bg: #ffffff;         
+            --btn-bg: #f4f7f6;          
+            --btn-text: #0d1b2a;        
+            --btn-hover: #00838f;       
+            --btn-hover-text: #ffffff;  
+            --accent-color: #00838f;    
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            
+            /* Status Dot Colors */
+            --dot-complete: #2e7d32;
+            --dot-progress: #f57f17;
+            --dot-waived: #1565c0;
+        }
 
-      <div class="acc-card">
-        <div class="acc-header">
-          <span class="acc-title">Co-Founder &amp; Principal Investigator — GAMA Therapeutics LLC</span>
-          <span class="acc-year">2017 – 2020</span>
-        </div>
-        <div class="acc-merit">Delivered 12 advanced UVGI operational prototypes under a $1.6M US Army development initiative; awarded the highly selective Marie Skłodowska-Curie Fellowship recognizing global photomedicine innovation.</div>
-      </div>
+        /* DARK MODE VARIABLES */
+        body.dark-mode {
+            --bg-color: #121212;        
+            --text-main: #e0e0e0;       
+            --text-muted: #a0aec0;
+            --card-bg: #1e1e1e;         
+            --btn-bg: #2d2d2d;          
+            --btn-text: #e0e0e0;        
+            --btn-hover: #00acc1;       
+            --btn-hover-text: #121212;  
+            --accent-color: #00acc1;    
+            --border-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
 
-      <div class="acc-card">
-        <div class="acc-header">
-          <span class="acc-title">Founder — Gliese 623B Consulting LLC</span>
-          <span class="acc-year">2014 – 2017</span>
-        </div>
-        <div class="acc-merit">Scaled standalone advisory operations to $300K annual run rate inside 36 months; secured foundational federal funding targets via specialized NIH SBIR engineering allocations.</div>
-      </div>
+            /* Muted Status Dot Colors for Dark Mode */
+            --dot-complete: #4caf50;
+            --dot-progress: #ffb300;
+            --dot-waived: #4fc3f7;
+        }
 
-      <div class="acc-card">
-        <div class="acc-header">
-          <span class="acc-title">FDA Study Director &amp; Committee Representative — Toxikon Corporation</span>
-          <span class="acc-year">2009 – 2014</span>
-        </div>
-        <div class="acc-merit">Directed over 70 complete product validation investigations for FDA 510(k) clearances under rigorous cGLP/cGMP parameters; acted as a Voting Representative on the AAMI Infusion Device Standards Committee and co-authored national AAMI TIR38 safety guidelines.</div>
-      </div>
-    </div>
-  </div>
+        /* CORE PAGE STRUCTURE */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
 
-  <div id="publications">
-    <div class="section-header">
-      <div class="section-icon">📚</div>
-      <h2>Peer-Reviewed Literature &amp; Intellectual Contributions for PHD Thesis (2005-2007)</h2>
-    </div>
-
-    <div class="pub-list">
-      <div class="pub-card">
-        <div class="pub-title">Light-based technologies for management of COVID-19 pandemic crisis</div>
-        <div class="pub-authors">Sabino, C. P., Ball, A. R., Baptista, M. S., Dai, T., Hamblin, M. R., Ribeiro, M. S., Santos, A. L., Sellera, F. P., Tegos, G. P., &amp; Wainwright, M.</div>
-        <div class="pub-journal">Journal of Photochemistry and Photobiology. B, Biology (2020) · Vol. 212, 111999</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Options and Limitations in Clinical Investigation of Bacterial Biofilms</div>
-        <div class="pub-authors">Magana, M., Sereti, C., Ioannidis, A., Mitchell, C. A., Ball, A. R., Magiorkinis, E., Chatzipanagiotou, S., Hamblin, M. R., Hadjifrangiskou, M., &amp; Tegos, G. P.</div>
-        <div class="pub-journal">Clinical Microbiology Reviews (2018) · Vol. 31, Issue 3, e00084-16</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Attaching the NorA Efflux Pump Inhibitor INF55 to Methylene Blue Enhances Antimicrobial Photodynamic Inactivation of Methicillin-Resistant Staphylococcus aureus in Vitro and in Vivo</div>
-        <div class="pub-authors">Rineh, A., Dolla, N. K., Ball, A. R., Magana, M., Bremner, J. B., Hamblin, M. R., Tegos, G. P., &amp; Kelso, M. J.</div>
-        <div class="pub-journal">ACS Infectious Diseases (2017) · Vol. 3, Issue 10, pp. 756–766</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Microbial Efflux Systems and Inhibitors: Approaches to Drug Discovery and the Challenge of Clinical Implementation</div>
-        <div class="pub-authors">Kourtesi, C., Ball, A. R., Huang, Y.-Y., Jachak, S. M., Vera, D. M. A., Khondkar, P., Gibbons, S., Hamblin, M. R., &amp; Tegos, G. P.</div>
-        <div class="pub-journal">The Open Microbiology Journal (2013) · Vol. 7, pp. 34–52</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Identification of novel antimicrobials using a live-animal infection model</div>
-        <div class="pub-authors">Moy, T. I., Ball, A. R., Anklesaria, Z., Casadei, G., Lewis, K., &amp; Ausubel, F. M.</div>
-        <div class="pub-journal">Proceedings of the National Academy of Sciences (2006) · Vol. 103, Issue 27, pp. 10414–10419</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Conjugating Berberine to a Multidrug Resistance Pump Inhibitor Creates an Effective Antimicrobial</div>
-        <div class="pub-authors">Ball, A. R., Casadei, G., Samosorn, S., Bremner, J. B., Ausubel, F. M., Moy, T. I., &amp; Lewis, K.</div>
-        <div class="pub-journal">ACS Chemical Biology (2006) · Vol. 1, Issue 9, pp. 594–600</div>
-      </div>
-
-      <div class="pub-card">
-        <div class="pub-title">Metabolites of the "Smoke Tree", Dalea spinosa, Potentiate Antibiotic Activity against Multidrug-Resistant Staphylococcus aureus</div>
-        <div class="pub-authors">Belofsky, G., Carreno, R., Lewis, K., Ball, A., Casadei, G., &amp; Tegos, G. P.</div>
-        <div class="pub-journal">Journal of Natural Products (2006) · Vol. 69, Issue 2, pp. 261–264</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="gwu">
-    <div class="section-header">
-      <div class="section-icon">🏛️</div>
-      <h2>1. George Washington University (SMHS)</h2>
-    </div>
-  </div>
-
-  <div class="matrix-table">
-    <div class="institution-banner">
-      <span>Master of Science in Health Sciences (MSHS)</span>
-      <span class="inst-meta">Conferred: 05/19/2024 · Major: Regulatory Affairs · Cumulative Graduate GPA: 3.33</span>
-    </div>
-    <table>
-      <thead>
-        <tr><th>Code</th><th>Course Title</th><th>Credits</th><th>Grade</th><th>Quality Points</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>RAFF 6201</td><td>Intro to Global Reg Affairs</td><td>3.00</td><td><span class="badge badge-grade-b">B+</span></td><td>9.90</td></tr>
-        <tr><td>HSCI 6223</td><td>Topics — Health Care Leadership</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-        <tr><td>RAFF 6202</td><td>Regulatory Drug Biologics</td><td>3.00</td><td><span class="badge badge-grade-b">A-</span></td><td>11.10</td></tr>
-        <tr><td>HSCI 6264</td><td>Epidemiology Translational Res</td><td>3.00</td><td><span class="badge badge-grade-b">A-</span></td><td>11.10</td></tr>
-        <tr><td>RAFF 6203</td><td>Regulatory Device Diagnostics</td><td>3.00</td><td><span class="badge badge-grade-b">B</span></td><td>9.00</td></tr>
-        <tr><td>HSCI 6263</td><td>Biostatistics Transl Research</td><td>3.00</td><td><span class="badge badge-grade-b">C+</span></td><td>6.90</td></tr>
-        <tr><td>RAFF 6205</td><td>Regulatory Affairs Compliance</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-        <tr><td>HSCI 6240</td><td>Issues &amp; Trends in Health Syst</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-        <tr><td>RAFF 6206</td><td>International Reg Affairs</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-        <tr><td>HSCI 6241</td><td>The Health Care Enterprise</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-        <tr><td>RAFF 6204</td><td>Clinical Research for Reg. Aff (Reattempt Frame)</td><td>3.00</td><td><span class="badge badge-grade-b">B+</span></td><td>9.90</td></tr>
-        <tr><td>RAFF 6275</td><td>Leadership in Regulatory Affairs</td><td>3.00</td><td><span class="badge badge-grade-a">A</span></td><td>12.00</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="neu-grad">
-    <div class="section-header">
-      <div class="section-icon">🧬</div>
-      <h2>2. Northeastern University (Graduate School)</h2>
-    </div>
-  </div>
-
-  <div class="matrix-table">
-    <div class="institution-banner">
-      <span>Doctoral Track Repository (PhD abd status verified)</span>
-      <span class="inst-meta">Sequence: 2005 – 2007 · Focus: Molecular Microbiology · 45.0 Total Earned SH</span>
-    </div>
-    <table>
-      <thead>
-        <tr><th>Code</th><th>Course Title</th><th>Credits</th><th>Grade</th><th>Domain Analysis</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>BIOG 301</td><td>Mol Cel Bio</td><td>2.00</td><td><span class="badge badge-grade-b">B</span></td><td>Advanced genomic regulatory signaling structures</td></tr>
-        <tr><td>BIOG 381</td><td>Bio Ethics</td><td>2.00</td><td><span class="badge badge-grade-b">B</span></td><td>Ethical frameworks for clinical validation steps</td></tr>
-        <tr><td>BIOG 502</td><td>Dir Read (Advanced Tracking)</td><td>3.00</td><td><span class="badge badge-grade-a">A / A-</span></td><td>Targeted molecular assay methodology screening</td></tr>
-        <tr><td>BIOG 861</td><td>Doct Rsrch Sequence</td><td>1.00</td><td><span class="badge badge-grade-a">A</span></td><td>Autonomous protocol design and tool execution</td></tr>
-        <tr><td>BIOG 380</td><td>Exp Col Tch</td><td>2.00</td><td><span class="badge badge-grade-a">A</span></td><td>Academic lecture design and student team mechanics</td></tr>
-        <tr><td>BIOG 382</td><td>Prob Slvng Metrics</td><td>2.00</td><td><span class="badge badge-grade-b">A-</span></td><td>Quantitative analysis loops for experimental failures</td></tr>
-        <tr><td>BIOG 383</td><td>TopBiochem Matrix</td><td>4.00</td><td><span class="badge badge-grade-a">A</span></td><td>Enzymatic kinetics and protein configuration paths</td></tr>
-        <tr><td>BIOG 504</td><td>Dir Read (Specialized Tier)</td><td>8.00</td><td><span class="badge badge-grade-a">A / B</span></td><td>Continuous review of high-complexity drug data logs</td></tr>
-        <tr><td>BIOG 864</td><td>Doct Rsrch Advanced Block</td><td>4.00</td><td><span class="badge badge-grade-b">B</span></td><td>System validation testing under extreme parameters</td></tr>
-        <tr><td>BIOG 299</td><td>Entomology Mapping</td><td>4.00</td><td><span class="badge badge-grade-b">C+</span></td><td>Vector profiling and pathogen carriage geometry</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
-
-<footer>
-  Knowledge Matrix Architecture · Compiled dynamically for deployment asset loading
-  <div class="disc">Data curated inside this static file directly maps to primary institutional registries on file through May 2026. Grade conversions and transcript weight calculations align with AACRAO collegiate standard parameters. All source data blocks are non-tracking and optimized for low-latency portfolio hosting.</div>
-</footer>
-
-<script>
-  function switchTab(tabId) {
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.classList.remove('active'));
-    
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    
-    document.getElementById(tabId).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
-
-  function showDetails(text) {
-    document.getElementById('chart-details').innerText = text;
-    document.getElementById('chart-details').style.borderStyle = 'solid';
-    document.getElementById('chart-details').style.borderColor = 'var(--teal)';
-  }
-
-  function clearDetails() {
-    document.getElementById('chart-details').innerText = 'Mouse over sectors to interrogate architectural competency domains.';
-    document.getElementById('chart-details').style.borderStyle = 'dashed';
-    document.getElementById('chart-details').style.borderColor = 'var(--border)';
-  }
-</script>
-
-</body>
-</html>
-
+        /* WHATSAPP-STYLE BACKGROUND OVERLAY */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v
