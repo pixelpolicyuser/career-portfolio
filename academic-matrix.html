@@ -6,8 +6,18 @@
     <title>Academic Matrix | Anthony R. Ball</title>
     <meta name="description" content="Academic preparations, transcripts, and degree architecture for Anthony R. Ball.">
     
+    <meta name="keywords" content="Anthony R. Ball, Ball, A, ARBALL, Microbiologist, Regulatory Affairs, Translational Science, Antimicrobial Drug Discovery, FDA 510(k) SME, Preclinical Research, ISO 13485, Medical Device Commercialization, BioCellR8, Executive Leadership, UVGI, microbial biofilms, multidrug efflux pumps, efflux pump inhibitors, natural product chemistry, medicinal chemistry, Photochemistry, Photobiology, ultraviolet germicidal irradiation, inventor, optics, Gama Therapeutics, Gliese 623B, Northeastern University, Antimicrobial Discovery Center, Wellman Center for Photomedicine, MGH/Harvard, Mendon, Boston, life sciences, medtech, life science entrepreneur, Massachusetts Medical Device Development Center, M2D2, Umass Lowell, 110 Canal St, GLP, Good Laboratory Practice, ISO/IEC 17025, 21 CFR Part 58, 21 CFR Part 11, IND/IDE, Quality Management Systems, Caenorhabditis elegans, High-throughput screening">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX'); 
+    </script>
 
     <style>
         /* LIGHT MODE VARIABLES */
@@ -71,4 +81,489 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%2300838f' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.15; 
+            z-index: -1; 
+            pointer-events: none; 
+            transition: opacity 0.4s ease;
+        }
+
+        body.dark-mode::before { opacity: 0.05; }
+
+        .container {
+            width: 100%;
+            max-width: 850px; 
+            padding: 40px 20px;
+            box-sizing: border-box; 
+        }
+
+        /* DARK MODE TOGGLE BUTTON */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 26px;
+            cursor: pointer;
+            z-index: 1000; 
+            transition: transform 0.3s ease;
+            padding: 10px;
+        }
+        .theme-toggle:hover { transform: scale(1.15); }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .back-btn i { margin-right: 8px; }
+        .back-btn:hover { color: var(--text-main); }
+
+        /* HEADER STYLES */
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+            text-align: center;
+        }
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* SECTION CARD */
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* INTERACTIVE VISUALIZER */
+        .visualizer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .vis-bar {
+            display: flex;
+            height: 35px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        .vis-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 12px;
+            transition: opacity 0.3s ease;
+        }
+        .vis-segment:hover { opacity: 0.8; }
+        
+        /* Bar Segments proportional to transcript weight */
+        .seg-reg { background-color: var(--accent-color); width: 25%; }
+        .seg-bio { background-color: var(--dot-complete); width: 60%; }
+        .seg-phd { background-color: var(--dot-progress); width: 15%; }
+
+        .vis-details {
+            padding: 15px;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            background-color: var(--btn-bg);
+            color: var(--text-muted);
+            font-size: 14px;
+            text-align: center;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        /* TAB BUTTONS */
+        .tab-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: var(--btn-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+        .tab-btn:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        /* TABLE STYLING */
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+        .matrix-table th, .matrix-table td {
+            padding: 14px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .matrix-table th {
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .matrix-table tr:last-child td { border-bottom: none; }
+        .matrix-table tbody tr:hover { background-color: var(--btn-bg); }
+
+        /* STATUS DOTS */
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .dot-green { background-color: var(--dot-complete); }
+        .dot-orange { background-color: var(--dot-progress); }
+        .dot-blue { background-color: var(--dot-waived); }
+        
+        .status-text {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* STAT SUMMARY BOXES */
+        .stat-grid {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-box {
+            flex: 1;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .stat-box h3 { margin: 0; font-size: 24px; color: var(--accent-color); }
+        .stat-box p { margin: 5px 0 0 0; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        .footer { margin-top: 20px; font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 40px;}
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-in { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="container">
+        
+        <a href="index.html" class="back-btn animate-in delay-1">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
+        </a>
+
+        <div class="animate-in delay-1">
+            <h1 class="page-title">Academic Matrix</h1>
+            <p class="page-subtitle">A granular architecture of collegiate preparations, translational frameworks, and degree progression.</p>
+        </div>
+
+        <div class="section-card animate-in delay-2">
+            <div class="section-title">Knowledge Distribution</div>
+            
+            <div class="visualizer-container">
+                <div class="vis-bar">
+                    <div class="vis-segment seg-reg" onmouseover="showDetails('Regulatory Affairs & Leadership (MSHS) - 36 Credits. Focus on global compliance, FDA frameworks, and device validations.', 'var(--accent-color)')" onmouseout="clearDetails()">Reg. Affairs</div>
+                    <div class="vis-segment seg-bio" onmouseover="showDetails('Biological Sciences (B.Sc.) - 141 Credits. Focus on foundational life sciences, organic chemistry, and microbiology.', 'var(--dot-complete)')" onmouseout="clearDetails()">Biology Core</div>
+                    <div class="vis-segment seg-phd" onmouseover="showDetails('Molecular Biology/Bacteriology (Ph.D. prep) - Focus on high-throughput drug discovery, in vivo models, and pathogen virulence.', 'var(--dot-progress)')" onmouseout="clearDetails()">Ph.D. / Research</div>
+                </div>
+                <div class="vis-details" id="chart-details">
+                    Hover over the sectors above to interrogate architectural competency domains.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card animate-in delay-3">
+            
+            <div class="tab-controls">
+                <button class="tab-btn active" onclick="switchTab('tab-mshs', this)">MSHS Regulatory Affairs</button>
+                <button class="tab-btn" onclick="switchTab('tab-phd', this)">Ph.D. Bacteriology (ABD)</button>
+                <button class="tab-btn" onclick="switchTab('tab-bs', this)">B.Sc. Biology</button>
+            </div>
+
+            <div id="tab-mshs" class="tab-content active">
+                <div class="stat-grid">
+                    <div class="stat-box"><h3>2024</h3><p>Completion</p></div>
+                    <div class="stat-box"><h3>GWU</h3><p>Institution</p></div>
+                    <div class="stat-box"><h3>3.33</h3><p>GPA</p></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Course Title</th>
+                                <th>Credits</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Intro to Global Regulatory Affairs</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Regulatory Strategy (Drugs & Biologics)</td>
+                                <td>6.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Regulatory Affairs: Diagnostics & Devices</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Medicines Development & Clinical Analysis</td>
+                                <td>6.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Clinical Research & Regulatory Compliance</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Corporate Compliance & Patient Safety</td>
+                                <td>6.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Healthcare Quality Measurement</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Leadership in Regulatory Affairs</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-phd" class="tab-content">
+                <div class="stat-grid">
+                    <div class="stat-box"><h3>ABD</h3><p>Status</p></div>
+                    <div class="stat-box"><h3>Northeastern</h3><p>Institution</p></div>
+                    <div class="stat-box"><h3>Micro</h3><p>Focus</p></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Course Title</th>
+                                <th>Credits</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Molecular Cell Biology I & II</td>
+                                <td>8.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Principles of Microbiology</td>
+                                <td>4.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ethics in Biological Research</td>
+                                <td>2.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Graduate Seminar & Biological Colloquium</td>
+                                <td>3.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Independent Research (Microbiology)</td>
+                                <td>4.0</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Doctoral Dissertation Research</td>
+                                <td>10.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-orange"></span> In Progress (ABD)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-bs" class="tab-content">
+                <div class="stat-grid">
+                    <div class="stat-box"><h3>2004</h3><p>Completion</p></div>
+                    <div class="stat-box"><h3>Northeastern</h3><p>Institution</p></div>
+                    <div class="stat-box"><h3>141</h3><p>Credits</p></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Course Category / Title</th>
+                                <th>Credits</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>General Biology & Genetics</td>
+                                <td>12.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>General & Organic Chemistry (w/ Labs)</td>
+                                <td>20.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Biochemistry & Microbiology</td>
+                                <td>8.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Calculus & Physics for Life Sciences</td>
+                                <td>16.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Minor: History (Western Civ, US Hist)</td>
+                                <td>20.0+</td>
+                                <td><span class="status-text"><span class="status-dot dot-green"></span> Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer animate-in delay-3">
+            Data curated inside this static file directly maps to primary institutional registries on file. Grade conversions and transcript weight calculations align with AACRAO collegiate standard parameters.<br><br>
+            &copy; 2026 Anthony R. Ball. Independently Architected & Hosted via GitHub Pages.
+        </div>
+
+    </div>
+
+    <script>
+        // --- TAB LOGIC ---
+        function switchTab(tabId, btnElement) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        // --- HOVER VISUALIZER LOGIC ---
+        function showDetails(text, borderColor) {
+            const detailsBox = document.getElementById('chart-details');
+            detailsBox.innerText = text;
+            detailsBox.style.borderStyle = 'solid';
+            detailsBox.style.borderColor = borderColor;
+            detailsBox.style.color = 'var(--text-main)';
+        }
+
+        function clearDetails() {
+            const detailsBox = document.getElementById('chart-details');
+            detailsBox.innerText = 'Hover over the sectors above to interrogate architectural competency domains.';
+            detailsBox.style.borderStyle = 'dashed';
+            detailsBox.style.borderColor = 'var(--border-color)';
+            detailsBox.style.color = 'var(--text-muted)';
+        }
+
+        // --- DARK MODE LOGIC ---
+        const themeBtn = document.getElementById('themeBtn');
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+
+</body>
+</html>
