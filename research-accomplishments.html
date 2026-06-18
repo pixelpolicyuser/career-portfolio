@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Accomplishments | Anthony R. Ball</title>
+    <meta name="description" content="Detailed research portfolio, methodologies, and validations for Anthony R. Ball.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* LIGHT MODE VARIABLES */
+        :root {
+            --bg-color: #f4f7f6;        
+            --text-main: #0d1b2a;       
+            --text-muted: #4a5568;
+            --card-bg: #ffffff;         
+            --btn-bg: #f4f7f6;          
+            --btn-text: #0d1b2a;        
+            --btn-hover: #00838f;       
+            --btn-hover-text: #ffffff;  
+            --accent-color: #00838f;    
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* DARK MODE VARIABLES */
+        body.dark-mode {
+            --bg-color: #121212;        
+            --text-main: #e0e0e0;       
+            --text-muted: #a0aec0;
+            --card-bg: #1e1e1e;         
+            --btn-bg: #2d2d2d;          
+            --btn-text: #e0e0e0;        
+            --btn-hover: #00acc1;       
+            --btn-hover-text: #121212;  
+            --accent-color: #00acc1;    
+            --border-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* CORE PAGE STRUCTURE */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* WHATSAPP-STYLE BACKGROUND OVERLAY */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%2300838f' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.15; 
+            z-index: -1; 
+            pointer-events: none; 
+            transition: opacity 0.4s ease;
+        }
+
+        body.dark-mode::before { opacity: 0.05; }
+
+        .container {
+            width: 100%;
+            max-width: 800px; /* Slightly wider for reading long text */
+            padding: 40px 20px;
+            box-sizing: border-box; 
+        }
+
+        /* DARK MODE TOGGLE BUTTON */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 26px;
+            cursor: pointer;
+            z-index: 1000; 
+            transition: transform 0.3s ease;
+            padding: 10px;
+        }
+        .theme-toggle:hover { transform: scale(1.15); }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .back-btn i { margin-right: 8px; }
+        .back-btn:hover { color: var(--text-main); }
+
+        /* HEADER STYLES */
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+            text-align: center;
+        }
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* SECTION CARD */
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+
+        /* ACCORDION STYLING */
+        .accordion-item {
+            background-color: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header {
+            padding: 18px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--btn-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--btn-hover);
+            color: var(--btn-hover-text);
+        }
+
+        .accordion-header i { transition: transform 0.3s ease; }
+        .accordion-header.active i { transform: rotate(180deg); }
+        .accordion-header.active { background-color: var(--btn-hover); color: var(--btn-hover-text); }
+
+        .accordion-content {
+            display: none;
+            padding: 25px;
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .accordion-content.open {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .meta-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-content h4 {
+            color: var(--accent-color);
+            font-size: 16px;
+            margin: 25px 0 10px 0;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+        
+        .accordion-content p { margin: 0 0 12px 0; }
+        .accordion-content ul { margin: 0 0 20px 0; padding-left: 20px; }
+        .accordion-content li { margin-bottom: 8px; }
+
+        .footer { margin-top: 20px; font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 40px;}
+
+        /* ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-in { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="container">
+        
+        <a href="index.html" class="back-btn animate-in delay-1">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
+        </a>
+
+        <div class="animate-in delay-1">
+            <h1 class="page-title">Research & Accomplishments</h1>
+            <p class="page-subtitle">A comprehensive index of translational science, methodological validations, and device development.</p>
+        </div>
+
+        <div class="section-card animate-in delay-2">
+            
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Chemical Library Preparation & Screening
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="meta-text">
+                        <strong>Years:</strong> 2005 to 2013<br>
+                        <strong>Purpose:</strong> Novel antimicrobial discovery applications targeting membrane translocases of pathogenic multidrug-resistant (MDR) bacteria and yeast; to discover small molecule potentiators of antimicrobial, antibiotic, and antifungal agents. Characterization of extracts from plants of medicinal value.
+                    </div>
+                    <p>Obtained the NCI Natural Products Repository comprised of extracts from 80,000 plants of medicinal value gathered from Africa and Madagascar, Central and South America, and Southeast Asia, 20,000 marine invertebrates and marine algae collected, mainly from the Indo-Pacific region, and 16,000 microbes accrued by the US Department of Agriculture. Obtained a portion of the Chembridge library comprising 1.3 million diverse and target-focused screening compounds.</p>
+                    
+                    <h4>Prodrug and Anti-infective Discovery</h4>
+                    <ul>
+                        <li><strong>Details:</strong> High throughput identification of small molecules and natural product extracts targeting virulence in <em>E. faecalis</em>, promotors of host compliment, or prodrugs.</li>
+                        <li><strong>Outcomes:</strong> Screened 6,000 synthetic compounds and 1,136 natural product extracts & identified 16 compounds and 9 extracts that promoted nematode survival.</li>
+                        <li><strong>Comments:</strong> On the cover of the Proceedings of the National Academy of Sciences (PNAS), featured in Nature Reviews: Microbiology & Nature Reviews: Biotechnology. Work conducted in collaboration with F. Ausubel.</li>
+                    </ul>
+
+                    <h4>Functionalized Natural Product Antimicrobials</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Conjugating Berberine to a Multidrug Resistance Pump Inhibitor. Synthesis of Functionalised 2-Aryl-5-Nitro-1H-Indoles.</li>
+                        <li><strong>Outcomes:</strong> Discovery of two new 2-arylbenzofuran aldehydes isolated from organic extracts of <em>Dalea spinosa</em> exhibiting synergism to amphipathic cationic antimicrobials.</li>
+                        <li><strong>Comments:</strong> Presented at 2nd Gordon Research Conference on Multi-Drug Efflux Systems, Oxford UK & 2006 Boston Bacterial Meeting. Awarded the Bioorganic & Medicinal Chemistry Most Cited Paper 2006–2009 Award. On the cover of ACS Chemical Biology. Work conducted in collaboration with J. Bremner.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Functionalized Natural Product Polymers
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="meta-text">
+                        <strong>Years:</strong> 2007 to 2009<br>
+                        <strong>Purpose:</strong> Creation of various medical device involving impregnated & eluting plastics using natural product derived polymers.<br>
+                        <strong>Comments:</strong> Branched complex glucan has multiple uses in medical applications and high biocompatibility, including implantable devices such as Foley catheters, with several desirable properties including high surface viscous and is non-irritating. Resulted in NIH SBIR award 1R43AI077174-01A2 "Continuous Biofilm Disrupting Materials".
+                    </div>
+                    <p>Development of new and novel applications of Levan, a naturally occurring polymer comprised of levorotatory polysaccharides as a suitable biocompatible plastic for indwelling medical devices.</p>
+
+                    <h4>Natural Product Iron Chelators</h4>
+                    <ul>
+                        <li><strong>Outcomes:</strong> Pyridine-2,6-dithiocarboxylic acid (PDTC) complexed with antimicrobial silver in nanosuspensions of Levan demonstrated broad spectrum activity against ESKAPE pathogens including <em>Pseudomonas aeruginosa</em>.</li>
+                        <li><strong>Comments:</strong> PDTC is secreted by <em>Pseudomonas aeruginosa</em> and used to sequester iron from nonpseudomonads but inactive against <em>P. aeruginosa</em>; complexed with cationic silver, Ag-PDTC acts like a trojan horse with broad spectrum activity including inactivation of pseudomonads.</li>
+                    </ul>
+
+                    <h4>Phage Derived Narrow Spectrum Agents targeting Streptococci</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Applications of bacteriophage derived lysins and incorporation into medical grade polymers for pediatric treatment of Strep throat.</li>
+                        <li><strong>Outcomes:</strong> Exhibited up to 9-log reduction of <em>Streptococcus pyogenes</em> applied to the surface lysin impregnated disks of Levan.</li>
+                        <li><strong>Comments:</strong> Lysins are hydrolytic enzymes encoded by bacteriophage of Streptococci species. Work conducted in collaboration with VA Fischetti.</li>
+                    </ul>
+
+                    <h4>Natural Product Gene Delivery Vehicles</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Utility of natural polymers as gene delivery vehicles.</li>
+                        <li><strong>Outcomes:</strong> Demonstrated uptake of Levan nanoparticles loaded with siRNA by repression of GFP-expression in adipocyte and skeletal muscle cell lines.</li>
+                        <li><strong>Comments:</strong> Proof-of-concept siRNA delivery vehicles.</li>
+                    </ul>
+
+                    <h4>Antimicrobial Silver Eluting Plastics for Catheters</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Creation of antimicrobial eluting catheters impregnated with antimicrobial silver with extended release properties.</li>
+                        <li><strong>Outcomes:</strong> Using urinary tract isolates, demonstrated at least a 5 log reduction of antimicrobial silver eluting Levan after 10 & 21 days of media conditioning and multiple media replacements (urine) against several species of Gram Positive & Gram Negative pathogens including VRE, MRSA, <em>E. coli</em>, and <em>Klebsiella spp</em>.</li>
+                        <li><strong>Comments:</strong> Supported by NIH R44DK055891-06, "A Total Infection Control Foley Catheter System", system involved design of a device that prevented ingression of microbes to the bladder both intra & extra lumenally using engineering controls. Catheter Associated Urinary Tract Infections, CAUTIs, comprising >40% of all institutionally acquired infections is a huge and silent reservoir of multi drug resistant organisms, delay patient recovery, and increase healthcare costs. (800-3000/episode). Over 80-100 million Foley catheters are used world wide per year. About 2/3rds of the microorganisms causing CAUTI gain access to the bladder extraluminally (via the external surface of the catheter), and about 1/3rd of the infections occur intraluminally from the collection bag.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Light-Based Microbial Inactivation
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="meta-text">
+                        <strong>Years:</strong> 2011 to 2021<br>
+                        <strong>Purpose:</strong> Applications included exploration of novel photosensitizing agents active against ESKAPE pathogens, dual-purpose photobiomodulatory wound healing & germicidal light based concepts, and ultraviolet germicidal irradiation synergism for the US warfighter & first responders.<br>
+                        <strong>Comments:</strong> Work produced 3 publications & a book chapter between 2012-2018. Antimicrobial photodynamic inactivation (aPDI) uses photosensitizers (PSs) and harmless visible light to generate reactive oxygen species (ROS) and kill microbes.
+                    </div>
+                    <p>To explore the concept of synergism (potentiation/enhancement) of microbial inactivation using light-mediated modalities such as photosensitization and ultraviolet germicidal irradiation.</p>
+
+                    <h4>Potentiation of Antimicrobial Dyes by Linkage to Efflux Pump Inhibitors</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Investigate the photoantimicrobial activity of the efflux pump inhibitor-methylene blue conjugated compounds for activity against methicillin-resistant <em>Staphylococcus aureus</em> (MRSA).</li>
+                        <li><strong>Outcomes:</strong> Evaluated 16 different 5-nitro-1H-indole derivatives of INF55 conjugated to Methylene Blue (originally identified by Penelope Markham as efflux pump inhibitors (EPIs)) and demonstration of microbial clearance and wound healing in a murine model of MRSA infection.</li>
+                        <li><strong>Comments:</strong> Supported by 2R01AI050875-09A1 "Photodynamic Therapy of Localized Infections". INF55 is an indole based efflux pump inhibitor originally identified by Penelope Markham with activity against NorA, a translocase of the major facilitator superfamily. NorA confers antimicrobial resistance to certain fluoroquinolones and amphipathic cations, including photosensitizing dyes such as methylene blue. Work conducted in collaboration with M Hamblin.</li>
+                    </ul>
+
+                    <h4>Synergistic Ultraviolet Germicidal Irradiation</h4>
+                    <ul>
+                        <li><strong>Details:</strong> To develop a precision controlled test bed for querying synergism of multiwavelength waveform variable ultraviolet germicidal irradiation concepts.</li>
+                        <li><strong>Outcomes:</strong> A self-sterilizing, anti-shadowing, re-usable, handheld and battery powered UVGI medical device was produced to specifications by the US Army. Patented discovery that proprietary ultraviolet light dose regiments can reverse antibiotic drug resistance in Methicillin-resistant <em>Staphylococcus aureus</em>.</li>
+                        <li><strong>Comments:</strong> Supported by W81XWH-16-C-0207 "Miniature, point-of-care device for establishing sterile connections in combat environments". Over 7 million in capital funds raised. Work produced two patents US20200398077A1 "System and method to eradicate a majority of disease-causing germs and produce avirulent phenotype survivors susceptible to microbicides using a light dose regiment" & US20180369560A1 "System and method for sterilization using ultraviolet radiation" and lead to the formation of two MedTech start-ups, UV Light Care Incorporated & GAMA Therapeutics LLC.</li>
+                    </ul>
+
+                    <h4>Photo mediated Dual Purpose Wound Healing & Microbial Inactivation</h4>
+                    <ul>
+                        <li><strong>Details:</strong> To develop proof of concept applications in medical technology around the dual utility of light to mediate wound healing and inactivate microorganisms for dermatological disorders.</li>
+                        <li><strong>Outcomes:</strong> Development of engineering concepts and the creation of a compact precision controlled test bed designed to emit 5 distinct therapeutic wavelengths of light in the red & blue spectrum and formatted for microtiter plate-based assays.</li>
+                        <li><strong>Comments:</strong> Awarded US Army 2019 Army xTechSearch Challenge and 2016 MassMedic MedTech Showcase. Work produced patent US20180093107A1 "System and Method For Healing and/or Disinfecting Wounds and Burns".</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    High Throughput Antimicrobial Drug Discovery
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="meta-text">
+                        <strong>Years:</strong> 2005 to 2007<br>
+                        <strong>Purpose:</strong> The intent of this work was to develop screening techniques for the discovery of novel agents which would ordinarily be missed using conventional hit-to-lead screening of large multimillion compound chemical libraries.
+                    </div>
+                    <p>Development of assays to query synergism between small molecules active against human pathogens and biowarefare agents.</p>
+                    <p><strong>Overall Outcomes:</strong> Identification of novel efflux pump inhibitors active against membrane translocases that confer multidrug resistance to various antimicrobials, antibiotics, and antifungals. Many agents were found to have little to no activity alone but in combination with weak antimicrobials such as berberine or ethidium bromide produced between a 4-fold and 1,000-fold increase in sensitivity against microbes of clinical importance such as methicillin-resistant <em>Staphylococcus aureus</em>, <em>Enterococci</em>, <em>Pseudomonas aeruginosa</em>, <em>Candida albicans</em>, and <em>Bacillus anthracis</em>.</p>
+
+                    <h4>Antimicrobials and Prodrugs using a Live Animal Model</h4>
+                    <ul>
+                        <li><strong>Details:</strong> To discover novel antimicrobials, a screening assay was devised to identify compounds that promoted the survival of the model laboratory nematode <em>Caenorhabditis elegans</em> infected with the human opportunistic pathogen <em>Enterococcus faecalis</em>.</li>
+                        <li><strong>Outcomes:</strong> Screened 6,000 synthetic compounds and 1,136 natural product extracts & identified 16 compounds and 9 extracts that promoted nematode survival.</li>
+                        <li><strong>Comments:</strong> On the cover of the Proceedings of the National Academy of Sciences of the United States of America (PNAS), featured in Nature Reviews: Microbiology & Nature Reviews: Biotechnology. Work conducted in collaboration with F. Ausubel.</li>
+                    </ul>
+
+                    <h4>Potentiation against Multi Drug Resistant Pathogens</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Identification of new hit to lead compounds using a novel live-animal model high-throughput screening method to expand chemical space around non-traditional antimicrobial agents such as efflux pump inhibitors, pro-drugs, and anti-infectives.</li>
+                        <li><strong>Outcomes:</strong> Creation of a conjugated Berberine-5-nitro-1H-indole molecule with 1000-fold increase in efficacy to the parent molecule berberine.</li>
+                        <li><strong>Comments:</strong> Presented at 2nd Gordon Research Conference on Multi-Drug Efflux Systems, Oxford UK & 2006 Boston Bacterial Meeting, Cambridge, MA. Awarded the Bioorganic & Medicinal Chemistry Most Cited Paper 2006 – 2009 Award. On the cover of ACS Chemical Biology. Work conducted in collaboration with J. Bremner.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Medical Device Methodologies & Validations
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="meta-text">
+                        <strong>Purpose:</strong> Several assays were developed to support pre-clinical biosafety and efficacy studies for FDA 510(k) premarket approval applications.
+                    </div>
+                    <p>GLP studies to support pre-clinical efficacy studies towards FDA 510(k) premarket approval.</p>
+                    <p><strong>Overall Outcomes:</strong> Several new methodologies were developed and submitted to the FDA leading to product registration of various medical devices including needleless access devices, infusion pumps, and antimicrobial catheters.</p>
+
+                    <h4>1. Evaluation of Antimicrobial Silver Eluting Foley Catheters</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Efficacy studies carried out using urological isolates such as <em>Pseudomonas aeruginosa</em>, <em>Escherichia coli</em>, <em>Proteus mirabilis</em>, <em>Enterococci spp.</em> etc. using a specialized chamber simulating the human bladder for eluting time course microbial inactivation.</li>
+                        <li><strong>Outcomes:</strong> Demonstrated antimicrobial efficacy against several urological isolates (99.99% reduction) by antimicrobial silver eluting coatings on 3 cm segments of Foley catheters up to 21-days and with several media exchanges (sterile human urine) over the time course of the assay.</li>
+                        <li><strong>Comments:</strong> Supported by NIH R44DK055891-06.</li>
+                    </ul>
+
+                    <h4>2. Evaluation of Chlorohexadine PICC & CVC Catheters</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Efficacy study of antimicrobial chlorhexidine eluting angiographic PICC catheters pre-conditioned with contrast (ISOVUE-300) against clinical isolates of <em>P. aeruginosa</em>, <em>C. albicans</em>, and <em>S. aureus</em>.</li>
+                        <li><strong>Outcomes:</strong> Demonstrated antimicrobial efficacy (99.99% reduction) against several clinical isolates from the ESKAPE list of CDC pathogens in time-dependent trial lasting 21-days.</li>
+                        <li><strong>Comments:</strong> Supported by Teleflex Medical/Arrow International.</li>
+                    </ul>
+
+                    <h4>3. Antimicrobial Textiles</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Efficacy study of nanodeposited antimicrobial silver & copper ions onto wound dressings against <em>P. aeruginosa</em>, <em>C. albicans</em>, and <em>S. aureus</em>.</li>
+                        <li><strong>Outcomes:</strong> Demonstrated antimicrobial efficacy (99.99% reduction) against several clinical isolates associated with Hospital Acquired Infections (HAIs) & nosocomial wounds.</li>
+                    </ul>
+
+                    <h4>4. Disinfection Studies (70% Ethyl Alcohol Towelettes)</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Supported Instructions for Use of "scrub the hub" disinfection procedures in comparison to antimicrobial impregnated needleless access devices and to establish the percentage of microbes passed through effluent during simulated use studies.</li>
+                        <li><strong>Outcomes:</strong> Established that following the CDC's recommended guidelines for disinfection of intravascular administration set hubs using a 60-second wiping procedure with sterile 70% IPA wipes significantly reduced the presence of microbes in flushate effluent compared to products that rely on antimicrobial efficacy alone.</li>
+                        <li><strong>Comments:</strong> Supported by Hospira Pharmaceutical Company, Covidien Medical device company, and NP Medical.</li>
+                    </ul>
+
+                    <h4>5. Surrogate Hepatitis Model for Viral Ingression Studies</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Supported FDA guidance to industry around development of models for assaying viral transmission of Hepatitis and viral bloodborne infections in medical device products intended for multi-patient use.</li>
+                        <li><strong>Outcomes:</strong> A new model was developed based on prior FDA guidance around viral penetration into fabrics utilizing Phi X174, an RNA bacteriophage of <em>E. coli</em> with physiological properties similar to Hepatitis.</li>
+                        <li><strong>Comments:</strong> Supported by Carticept Medical Incorporated and Angiodynamics. This model was presented to the FDA in August 2011 (Pre-IDE meeting with FDA CDRH, Division of Cardiovascular Devices) and was used to support several 510(K) applications.</li>
+                    </ul>
+
+                    <h4>6. Dye Marker Model for Viral Ingression Studies & Backflow Prevention</h4>
+                    <ul>
+                        <li><strong>Details:</strong> To demonstrate that the detection of Allura AC is an analytical assay that is sensitive, linear, accurate, precise, reproducible, and an adequate process for demonstrating sterile barrier function against back-flow of multi-use infusion devices.</li>
+                        <li><strong>Outcomes:</strong> Validated a detection capacity of 2.40 x 10^-7M by spectroscopy.</li>
+                        <li><strong>Comments:</strong> Work resulted in the approval of the Carticept Navigator Delivery System (DS) (see FDA # K120830) & supported the early prototypes of the Namic Duet Automated Power Injector for radiology.</li>
+                    </ul>
+
+                    <h4>7. Immunological Detection of Blood Soil for Reusable Device Cleaning</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Quantification of hemoglobin (Hb) as an indicator of residual blood. Hb makes up approximately 97% of all protein in the red blood cell (RBC).</li>
+                        <li><strong>Outcomes:</strong> Established the instruments lower limit of quantification (LLOQ = 0.167). The upper range was established for the linear range of concentration determination based on absorbance. This range is 7.5 to 209 ng/mL human hemoglobin.</li>
+                        <li><strong>Comments:</strong> Supported by Carticept Medical Incorporated and Angiodynamics. Study provided enhanced methodology in the detection of blood proteins over the Bradford Assay.</li>
+                    </ul>
+
+                    <h4>8. Minimum Inactivation Photon Flux Density For Microbial Growth</h4>
+                    <ul>
+                        <li><strong>Details:</strong> Qualitative/semi-quantitative assay was used to establish an initial model around the relative contribution of the different light wavelengths to microbial inactivation.</li>
+                        <li><strong>Outcomes:</strong> Used to establish preliminary optical power calculations necessary to achieve sterilization in a 3D model of a biofouled catheter segment.</li>
+                        <li><strong>Comments:</strong> Supported by Gliese 623B LLC, UV Light Care Incorporated, GAMA Therapeutics LLC, & US Army Surgical Research Acquisition Activity (Contract # W81XWH-16-C-0207). Resulted in patent US20180369560A1 and US20200398077A1.</li>
+                    </ul>
+
+                    <h4>9. UVGI Studies of Intraluminal Biofilms on Catheters</h4>
+                    <ul>
+                        <li><strong>Details:</strong> To determine the optimal parameters (power output, duration of exposure, wavelength mix, waveforms etc) to disinfect a 6 cm catheter segment containing microbial biofilms.</li>
+                        <li><strong>Outcomes:</strong> Resulted in the creation of prototype medical devices that could guarantee the sterile connections of intravascular lines placed on the battlefield that reduced reliance on compliance to existing rigorous disinfection protocols.</li>
+                        <li><strong>Comments:</strong> Supported by Gliese 623B LLC, UV Light Care Incorporated, GAMA Therapeutics LLC, & US Army Surgical Research Acquisition Activity. Resulted in patent US20180369560A1 and US20200398077A1.</li>
+                    </ul>
+
+                    <h4>10. Photomediated In Vitro Wound Healing Assays</h4>
+                    <ul>
+                        <li><strong>Details:</strong> An optical test bed device was specified that would allow for analysis of Macrophages, Keratinocytes, and Fibroblasts response to UV & visible light for cellular & molecular indications of wound healing.</li>
+                        <li><strong>Outcomes:</strong> Resulted in the creation of a multiparametric test bed device conformant to 12-well plate format for use in cytotoxicity and immunoassay based studies.</li>
+                        <li><strong>Comments:</strong> Supported by Gliese 623B LLC and GAMA Therapeutics LLC. Awarded June 2019 Army xTechSearch Challenge & 2015 MassMEDIC MedTech Showcase. Resulted in patent US20180093107A1.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer animate-in delay-2">
+            &copy; 2026 Anthony R. Ball. Independently Architected & Hosted via GitHub Pages.
+        </div>
+
+    </div>
+
+    <script>
+        // --- ACCORDION LOGIC ---
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                content.classList.toggle('open');
+            });
+        });
+
+        // --- DARK MODE LOGIC ---
+        const themeBtn = document.getElementById('themeBtn');
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
+
+</body>
+</html>
