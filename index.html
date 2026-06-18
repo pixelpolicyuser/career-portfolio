@@ -7,7 +7,7 @@
     <meta name="description" content="Portfolio, patents, publications, and professional links for Anthony R. Ball.">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -18,18 +18,35 @@
     </script>
 
     <style>
-        /* HOW TO CHANGE COLORS: Edit the hex codes below to instantly re-theme your entire site */
+        /* LIGHT MODE VARIABLES (Default) */
         :root {
-            --bg-color: #f4f7f6;        /* Light grey background for the whole page */
-            --text-main: #0d1b2a;       /* Dark navy text for headers */
-            --btn-bg: #ffffff;          /* White backgrounds for the link buttons */
-            --btn-text: #0d1b2a;        /* Dark text on the link buttons */
-            --btn-hover: #00838f;       /* Teal color when hovering over buttons (matches your matrix) */
-            --btn-hover-text: #ffffff;  /* Turns text white when hovering */
-            --accent-color: #00838f;    /* Teal color for section titles and borders */
+            --bg-color: #f4f7f6;        
+            --text-main: #0d1b2a;       
+            --card-bg: #ffffff;         /* White cards */
+            --btn-bg: #f4f7f6;          /* Light grey buttons inside white cards */
+            --btn-text: #0d1b2a;        
+            --btn-hover: #00838f;       
+            --btn-hover-text: #ffffff;  
+            --accent-color: #00838f;    
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* Core structure of the page */
+        /* DARK MODE VARIABLES (Triggered by the toggle button) */
+        body.dark-mode {
+            --bg-color: #121212;        /* Deep charcoal background */
+            --text-main: #e0e0e0;       /* Off-white text */
+            --card-bg: #1e1e1e;         /* Dark grey cards */
+            --btn-bg: #2d2d2d;          /* Slightly lighter grey buttons */
+            --btn-text: #e0e0e0;        
+            --btn-hover: #00acc1;       /* Brighter teal for contrast in dark mode */
+            --btn-hover-text: #121212;  
+            --accent-color: #00acc1;    
+            --border-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* CORE PAGE STRUCTURE */
         body {
             margin: 0;
             padding: 0;
@@ -38,172 +55,239 @@
             color: var(--text-main);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Keeps everything dead center */
+            align-items: center; 
+            transition: background-color 0.4s ease, color 0.4s ease; /* Smooth dark mode fade */
         }
 
-        /* The invisible box that holds all your content. Max width is 600px to look like Linktree */
         .container {
             width: 100%;
-            max-width: 600px; 
+            max-width: 650px; 
             padding: 40px 20px;
             box-sizing: border-box;
             text-align: center;
         }
 
-        /* Styling for your Profile Picture */
+        /* DARK MODE TOGGLE BUTTON */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1); /* Slight grow on hover */
+        }
+
+        /* PROFILE HEADER */
         .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Makes it a perfect circle */
+            width: 130px;
+            height: 130px;
+            border-radius: 50%; 
             object-fit: cover;
-            border: 3px solid var(--accent-color);
+            border: 4px solid var(--accent-color);
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
+        }
+        .profile-name { font-size: 26px; font-weight: 700; margin: 0 0 5px 0; }
+        .profile-bio { font-size: 16px; font-weight: 400; color: #888; margin-bottom: 30px; }
+
+        /* THE NEW 'CARD' UI FOR SECTIONS */
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
-        .profile-name { font-size: 24px; font-weight: 700; margin: 0 0 5px 0; }
-        .profile-bio { font-size: 16px; font-weight: 400; color: #555; margin-bottom: 30px; }
-
-        /* The headers above each group of links (e.g., "Publications") */
         .section-title {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: var(--accent-color);
-            margin: 35px 0 10px 0;
+            margin: 0 0 20px 0;
             font-weight: 700;
-            text-align: left; /* Pushes the title to the left side */
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
+            text-align: center;
         }
 
-        /* Master formatting for all the link buttons */
+        /* BUTTON STYLING (Upgraded for mobile spacing) */
         .link-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 16px 20px;
-            margin-bottom: 15px;
+            padding: 16px 50px; /* Increased side padding so text doesn't hit icons */
+            margin-bottom: 12px;
             background-color: var(--btn-bg);
             color: var(--btn-text);
-            text-decoration: none; /* Removes default blue underlines */
-            font-size: 16px;
+            text-decoration: none; 
+            font-size: 15px;
             font-weight: 600;
-            border-radius: 8px; /* Slightly rounded edges */
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.3s ease; /* Makes hover color changes smooth, not instant */
+            border-radius: 8px; 
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease; 
             position: relative;
         }
 
-        /* Hover interaction */
         .link-btn:hover {
             background-color: var(--btn-hover);
             color: var(--btn-hover-text);
-            transform: translateY(-2px); /* Makes the button physically lift up 2 pixels */
+            transform: translateY(-3px); /* Lifts higher on hover */
             border-color: var(--btn-hover);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
 
-        /* Icon placement inside the button */
         .link-btn i {
             position: absolute;
-            left: 20px; /* Locks the icon 20 pixels from the left edge */
+            left: 20px; 
             font-size: 20px;
         }
         
-        /* Custom highlight color for your Upwork button */
+        /* Custom highlight color for Upwork */
         .btn-highlight { background-color: #14a800; color: white; border: none; }
-        .btn-highlight:hover { background-color: #0d7a00; }
+        .btn-highlight:hover { background-color: #0d7a00; color: white; }
 
-        .footer { margin-top: 40px; font-size: 12px; color: #888; margin-bottom: 40px;}
+        .footer { margin-top: 20px; font-size: 12px; color: #888; margin-bottom: 40px;}
+
+        /* ======================================================================= */
+        /* ENTRANCE ANIMATIONS (The cascading load effect)                           */
+        /* ======================================================================= */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* We apply this class to anything we want to animate in */
+        .animate-in {
+            opacity: 0; /* Starts hidden */
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        /* We use animation delays so they load one after the other (cascade) */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.7s; }
+        .delay-5 { animation-delay: 0.9s; }
     </style>
 </head>
 <body>
 
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
     <div class="container">
         
-        <img src="https://via.placeholder.com/150" alt="Anthony R. Ball" class="profile-img">
-        <h1 class="profile-name">Anthony R. Ball</h1>
-        <p class="profile-bio">Strategic Innovator | Technical Professional</p>
+        <div class="animate-in delay-1">
+            <img src="me.png" alt="Anthony R. Ball" class="profile-img">
+            <h1 class="profile-name">Anthony R. Ball</h1>
+            <p class="profile-bio">Strategic Innovator | Technical Professional</p>
+        </div>
 
-        <div class="section-title">Connect & Collaborate</div>
+        <div class="section-card animate-in delay-2">
+            <div class="section-title">Connect & Collaborate</div>
 
-        <a href="https://www.upwork.com/freelancers/~01d9bc0431ccbba5b1?mp_source=share" class="link-btn btn-highlight" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-upwork"></i> Hire Me on Upwork
-        </a>
+            <a href="mailto:your.email@example.com" class="link-btn">
+                <i class="fa-solid fa-envelope"></i>
+                Send an Email
+            </a>
 
-        <a href="https://www.linkedin.com/in/anthonyballgama/" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-linkedin"></i>
-            LinkedIn Profile
-        </a>
+            <a href="https://www.upwork.com/freelancers/~01d9bc0431ccbba5b1?mp_source=share" class="link-btn btn-highlight" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-upwork"></i> Hire Me on Upwork
+            </a>
 
-        <a href="https://x.com/NorAMDR" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-x-twitter"></i>
-            X (Twitter)
-        </a>
+            <a href="https://www.linkedin.com/in/anthonyballgama/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+            </a>
 
-        <a href="https://api.whatsapp.com/send/?phone=15083413715&text&type=phone_number&app_absent=0" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-whatsapp"></i>
-            Direct Message via WhatsApp
-        </a>
+            <a href="https://x.com/NorAMDR" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+            </a>
 
-        <div class="section-title">Knowledge Architecture</div>
+            <a href="https://api.whatsapp.com/send/?phone=15083413715&text&type=phone_number&app_absent=0" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Direct Message via WhatsApp
+            </a>
+        </div>
 
-        <a href="academic-matrix.html" class="link-btn">
-            <i class="fa-solid fa-graduation-cap"></i>
-            Academic Preparation & Matrix
-        </a>
+        <div class="section-card animate-in delay-3">
+            <div class="section-title">Knowledge Architecture</div>
 
-        <a href="https://drive.google.com/drive/folders/1q6AobPAn6zQyfyL8ojFCsHT4yXGEtOnp?usp=sharing" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-folder-open"></i>
-            Professional Asset Portfolio
-        </a>
+            <a href="academic-matrix.html" class="link-btn">
+                <i class="fa-solid fa-graduation-cap"></i> Academic Preparation & Matrix
+            </a>
 
-        <a href="https://drive.google.com/drive/folders/1Gv15QKEJfkMEx-WzMpsjGjHAElD3hJhC" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-google-drive"></i>
-            Extended Project Drive
-        </a>
+            <a href="https://drive.google.com/drive/folders/1q6AobPAn6zQyfyL8ojFCsHT4yXGEtOnp?usp=sharing" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-folder-open"></i> Professional Asset Portfolio
+            </a>
 
-        <div class="section-title">Publications & Research</div>
+            <a href="https://drive.google.com/drive/folders/1Gv15QKEJfkMEx-WzMpsjGjHAElD3hJhC" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-google-drive"></i> Extended Project Drive
+            </a>
+        </div>
 
-        <a href="https://www.ncbi.nlm.nih.gov/myncbi/anthony.ball.1/bibliography/public/" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-book-medical"></i>
-            NCBI Bibliography
-        </a>
+        <div class="section-card animate-in delay-4">
+            <div class="section-title">Publications & Research</div>
 
-        <a href="https://scholar.google.com/citations?user=4ksbbpAAAAAJ&hl=en" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-microscope"></i>
-            Google Scholar Profile
-        </a>
+            <a href="https://www.ncbi.nlm.nih.gov/myncbi/anthony.ball.1/bibliography/public/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-book-medical"></i> NCBI Bibliography
+            </a>
 
-        <a href="https://orcid.org/0000-0002-3212-269X" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-orcid"></i>
-            ORCID Registry
-        </a>
+            <a href="https://scholar.google.com/citations?user=4ksbbpAAAAAJ&hl=en" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-microscope"></i> Google Scholar Profile
+            </a>
 
-        <div class="section-title">Intellectual Property</div>
+            <a href="https://orcid.org/0000-0002-3212-269X" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-orcid"></i> ORCID Registry
+            </a>
+        </div>
 
-        <a href="https://patents.google.com/patent/US12194267B2" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-certificate"></i>
-            Patent: US12194267B2
-        </a>
+        <div class="section-card animate-in delay-5">
+            <div class="section-title">Intellectual Property</div>
 
-        <a href="https://patents.google.com/patent/US20200398077A1/en" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-certificate"></i>
-            Patent: US20200398077A1
-        </a>
+            <a href="https://patents.google.com/patent/US12194267B2" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-certificate"></i> Patent: US12194267B2
+            </a>
 
-        <a href="https://patents.google.com/patent/US20220080222A1" class="link-btn" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-certificate"></i>
-            Patent: US20220080222A1
-        </a>
+            <a href="https://patents.google.com/patent/US20200398077A1/en" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-certificate"></i> Patent: US20200398077A1
+            </a>
 
-        <div class="footer">
+            <a href="https://patents.google.com/patent/US20220080222A1" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-certificate"></i> Patent: US20220080222A1
+            </a>
+        </div>
+
+        <div class="footer animate-in delay-5">
             &copy; 2026 Anthony R. Ball. Independently Architected & Hosted via GitHub Pages.
         </div>
 
     </div>
+
+    <script>
+        const themeBtn = document.getElementById('themeBtn');
+        const icon = themeBtn.querySelector('i');
+
+        // When the user clicks the moon/sun icon...
+        themeBtn.addEventListener('click', () => {
+            // Toggle the 'dark-mode' class on the whole body
+            document.body.classList.toggle('dark-mode');
+            
+            // Swap the icon between a moon and a sun
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 
 </body>
 </html>
