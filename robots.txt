@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /career-portfolio/Science,%20Research,%20%26%20Grantwriting/Archived/
-Disallow: /career-portfolio/Computer%20Services/Archived/
 
 Sitemap: https://pixelpolicyuser.github.io/career-portfolio/sitemap.xml
