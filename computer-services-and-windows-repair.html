@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Services & Windows Repair | Anthony R. Ball | Mendon MA</title>
+    <meta name="description" content="Computer services, Windows repair, PowerShell automation, file organization, AI-assisted workflows, website deployment, and technical advocacy by Anthony R. Ball in Mendon, Massachusetts and remote.">
+    <meta name="keywords" content="computer services Mendon MA, Windows repair Massachusetts, PowerShell automation, PC cleanup, file organization, AI workflow setup, small business computer help, data migration, technical documentation, GitHub Pages website help, remote computer support, New England computer services">
+    <meta name="author" content="Anthony R. Ball">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pixelpolicyuser.github.io/career-portfolio/Computer%20Services/computer-services-and-windows-repair.html">
+    <meta property="og:title" content="Computer Services & Windows Repair | Anthony R. Ball">
+    <meta property="og:description" content="Practical Windows remediation, automation, file-system organization, website support, and AI-assisted workflow help for individuals and small organizations.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://pixelpolicyuser.github.io/career-portfolio/Computer%20Services/computer-services-and-windows-repair.html">
+    <meta property="og:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Computer Services & Windows Repair | Anthony R. Ball">
+    <meta name="twitter:description" content="Windows repair, PowerShell automation, file organization, AI workflows, and practical technical support.">
+    <meta name="twitter:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-main: #0d1b2a;
+            --text-muted: #4a5568;
+            --card-bg: #ffffff;
+            --btn-bg: #f4f7f6;
+            --btn-text: #0d1b2a;
+            --btn-hover: #00838f;
+            --btn-hover-text: #ffffff;
+            --accent-color: #00838f;
+            --accent-soft: rgba(0, 131, 143, 0.10);
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300838f' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-main: #e0e0e0;
+            --text-muted: #a0aab5;
+            --card-bg: #1e1e1e;
+            --btn-bg: #2a2a2a;
+            --btn-text: #e0e0e0;
+            --btn-hover: #00acc1;
+            --btn-hover-text: #121212;
+            --accent-color: #00acc1;
+            --accent-soft: rgba(0, 172, 193, 0.12);
+            --border-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+            --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300acc1' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg-color);
+            background-image: var(--bg-pattern);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container { width: 100%; max-width: 920px; }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            font-size: 1.05rem;
+        }
+        .theme-toggle:hover { color: var(--accent-color); transform: translateY(-2px); }
+        .hero { text-align: center; margin-bottom: 30px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 6px; letter-spacing: -0.04em; }
+        .hero p { font-size: 1.12rem; color: var(--accent-color); font-weight: 700; margin-bottom: 12px; }
+        .location-badge {
+            display: inline-block;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            box-shadow: var(--shadow);
+        }
+        .page-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 34px; flex-wrap: wrap; }
+        .page-nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+        }
+        .page-nav a:hover { color: var(--btn-hover-text); background: var(--accent-color); border-color: var(--accent-color); }
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: clamp(22px, 4vw, 34px);
+            margin-bottom: 26px;
+            box-shadow: var(--shadow);
+            scroll-margin-top: 20px;
+        }
+        .section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 800;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .lead { font-size: 1.04rem; margin-bottom: 16px; text-align: justify; }
+        .highlight-box {
+            background: var(--accent-soft);
+            border: 1px solid color-mix(in srgb, var(--accent-color) 30%, var(--border-color));
+            border-left: 4px solid var(--accent-color);
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+        .service-grid, .proof-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+        }
+        .mini-card {
+            border: 1px solid var(--border-color);
+            background: var(--btn-bg);
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s ease;
+        }
+        .mini-card:hover { transform: translateY(-2px); border-color: var(--accent-color); box-shadow: var(--shadow); }
+        .mini-card h3 { font-size: 1rem; margin-bottom: 8px; color: var(--text-main); }
+        .mini-card p, .mini-card li { font-size: 0.94rem; color: var(--text-muted); }
+        .mini-card ul { list-style: none; margin-top: 8px; }
+        .mini-card li { margin-bottom: 6px; padding-left: 18px; position: relative; }
+        .mini-card li::before { content: "›"; position: absolute; left: 0; color: var(--accent-color); font-weight: 900; }
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .step { border: 1px dashed var(--border-color); border-radius: 10px; padding: 16px; background: var(--btn-bg); }
+        .step strong { display: block; color: var(--accent-color); margin-bottom: 6px; }
+        .tabs-nav { display: flex; gap: 10px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px; }
+        .tab-btn {
+            min-height: 44px;
+            padding: 8px 16px;
+            background: var(--btn-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .tab-btn.active { background: var(--accent-color); color: var(--btn-hover-text); border-color: var(--accent-color); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .accordion-item { border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+        .accordion-header {
+            width: 100%;
+            background: var(--btn-bg);
+            color: var(--text-main);
+            padding: 15px 18px;
+            cursor: pointer;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 0;
+            text-align: left;
+            font-size: 0.98rem;
+        }
+        .accordion-content { display: none; padding: 18px; border-top: 1px solid var(--border-color); color: var(--text-muted); }
+        .accordion-content.open { display: block; }
+        .quote-form { display: grid; gap: 12px; }
+        input, textarea, select {
+            width: 100%;
+            min-height: 44px;
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--btn-bg);
+            color: var(--text-main);
+            font: inherit;
+        }
+        textarea { min-height: 120px; resize: vertical; }
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            background: var(--accent-color);
+            color: var(--btn-hover-text);
+            text-decoration: none;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 131, 143, 0.22); }
+        .fine-print { font-size: 0.86rem; color: var(--text-muted); margin-top: 10px; }
+        .suite-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .suite-link { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; padding: 7px 12px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--card-bg); transition: all 0.2s ease; }
+        .suite-link:hover, .suite-link.active { color: var(--accent-color); border-color: var(--accent-color); }
+        .footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 20px; }
+        @media (max-width: 760px) {
+            body { padding: 28px 14px; }
+            .workflow { grid-template-columns: 1fr; }
+            .theme-toggle { position: absolute; }
+            .lead { text-align: left; }
+        }
+        @media print {
+            body { display: block; padding: 0; background: #fff; color: #000; }
+            .theme-toggle, .page-nav, .quote-form, .suite-nav { display: none; }
+            .section-card { box-shadow: none; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    <main class="container">
+        <header class="hero">
+            <h1>Anthony R. Ball</h1>
+            <p>Computer Services · Windows Repair · AI Workflow Support</p>
+            <div class="location-badge">Mendon, Massachusetts · Remote support available · New England service orientation</div>
+        </header>
+
+        <nav class="page-nav" aria-label="Page navigation">
+            <a href="#overview">Overview</a>
+            <a href="#services">Services</a>
+            <a href="#proof">Work Examples</a>
+            <a href="#process">Process</a>
+            <a href="#quote">Quote</a>
+        </nav>
+
+        <section id="overview" class="section-card">
+            <div class="section-title">Technical Advocacy for Real-World Computer Problems</div>
+            <p class="lead">I help individuals, households, sole proprietors, teachers, researchers, and small organizations make their computers less chaotic and more useful. My work combines careful Windows troubleshooting, PowerShell-assisted repair, file organization, website support, AI-enabled productivity, and plain-English documentation.</p>
+            <p class="lead">This is not a rushed “click-and-hope” repair model. I work like a technical advocate: identify the actual problem, protect your data, document what changed, and leave you with a system that is easier to understand after I am gone.</p>
+            <div class="highlight-box">
+                <strong>Best fit:</strong> messy Windows machines, overloaded storage, confusing file trees, failed migrations, broken workflows, website deployment headaches, Google/Office automation, AI tool setup, and “I know this computer can work better but I do not know where to begin” situations.
+            </div>
+        </section>
+
+        <section id="services" class="section-card">
+            <div class="section-title">Core Services</div>
+            <div class="service-grid">
+                <article class="mini-card">
+                    <h3>Windows Repair & Optimization</h3>
+                    <ul>
+                        <li>Startup, storage, update, and performance diagnosis</li>
+                        <li>Driver, device, VM, and subsystem troubleshooting</li>
+                        <li>Safe cleanup of bloat, temp files, and background clutter</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>PowerShell & Automation</h3>
+                    <ul>
+                        <li>Repeatable file operations and administrative scripts</li>
+                        <li>Folder audits, renaming, search, extraction, and reporting</li>
+                        <li>Practical automations that reduce repetitive work</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>Data Migration & File Organization</h3>
+                    <ul>
+                        <li>Large-folder cleanup and archive structuring</li>
+                        <li>Document conversion, transcript extraction, and indexing</li>
+                        <li>Integrity-minded movement of important files</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>AI-Assisted Workflows</h3>
+                    <ul>
+                        <li>Practical setup of AI tools for writing, research, and admin</li>
+                        <li>Prompt workflows for resumes, documents, websites, and planning</li>
+                        <li>Human-reviewed outputs with traceable file organization</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>Web & Portfolio Support</h3>
+                    <ul>
+                        <li>Single-file HTML landing pages and profile pages</li>
+                        <li>GitHub Pages deployment and SEO metadata cleanup</li>
+                        <li>Small-business service pages, link hubs, and contact forms</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>Technical Documentation</h3>
+                    <ul>
+                        <li>Plain-English remediation notes and change logs</li>
+                        <li>Step-by-step user guides for repeated processes</li>
+                        <li>Documentation for families, freelancers, and small teams</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="proof" class="section-card">
+            <div class="section-title">Representative Work Product</div>
+            <div class="tabs-nav" role="tablist" aria-label="Work categories">
+                <button class="tab-btn active" onclick="switchTab(event, 'proof-windows')">Windows Systems</button>
+                <button class="tab-btn" onclick="switchTab(event, 'proof-data')">Data & Documents</button>
+                <button class="tab-btn" onclick="switchTab(event, 'proof-web')">Websites</button>
+                <button class="tab-btn" onclick="switchTab(event, 'proof-ai')">AI Workflows</button>
+            </div>
+            <div id="proof-windows" class="tab-content active">
+                <div class="proof-grid">
+                    <div class="mini-card"><h3>CLI Remediation</h3><p>Structured PowerShell work for locating files, inspecting directories, repairing workflow bottlenecks, and making Windows environments more navigable.</p></div>
+                    <div class="mini-card"><h3>Environment Recovery</h3><p>Diagnosis of VM, subsystem, storage, and workspace-startup errors, including disk pressure and dependency issues.</p></div>
+                </div>
+            </div>
+            <div id="proof-data" class="tab-content">
+                <div class="proof-grid">
+                    <div class="mini-card"><h3>Transcript & PDF Extraction</h3><p>Conversion of multiple academic transcript PDFs into a single clean text file for later use in applications and profile content.</p></div>
+                    <div class="mini-card"><h3>Portfolio File Organization</h3><p>Systematic mapping of employment, resume, publication, and website assets across a large personal knowledge base.</p></div>
+                </div>
+            </div>
+            <div id="proof-web" class="tab-content">
+                <div class="proof-grid">
+                    <div class="mini-card"><h3>Single-File HTML Profiles</h3><p>Design and cleanup of standalone professional profile pages with embedded CSS/JS, mobile responsiveness, and recruiter-facing metadata.</p></div>
+                    <div class="mini-card"><h3>GitHub Pages Orientation</h3><p>Support for portfolio pages designed to be uploaded, indexed, and shared as direct links.</p></div>
+                </div>
+            </div>
+            <div id="proof-ai" class="tab-content">
+                <div class="proof-grid">
+                    <div class="mini-card"><h3>AI as Assistant, Not Autopilot</h3><p>Creation of human-reviewed workflows where AI helps draft, extract, organize, and compare materials without surrendering judgment.</p></div>
+                    <div class="mini-card"><h3>Career & Business Systems</h3><p>AI-assisted resume packages, job-search files, Upwork positioning, and structured application materials.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section-card">
+            <div class="section-title">How I Work</div>
+            <div class="workflow">
+                <div class="step"><strong>1. Triage</strong>Clarify the symptom, urgency, data risk, and desired outcome.</div>
+                <div class="step"><strong>2. Protect</strong>Avoid destructive changes. Identify what must be preserved first.</div>
+                <div class="step"><strong>3. Remediate</strong>Use the simplest reliable fix: settings, cleanup, command line, automation, or rebuild.</div>
+                <div class="step"><strong>4. Document</strong>Leave clear notes so the system remains understandable.</div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <div class="section-title">Common Engagements</div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">Computer cleanup after years of accumulated files <span>⌄</span></button>
+                <div class="accordion-content">I map where your important files actually live, separate active files from archives, clean obvious junk cautiously, and create a folder structure that makes sense to a human.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">Small-business or personal website help <span>⌄</span></button>
+                <div class="accordion-content">I can help turn a service idea, career portfolio, tutoring page, or computer-services pitch into a clean single-file HTML page with metadata and a contact workflow.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">AI tool setup for practical productivity <span>⌄</span></button>
+                <div class="accordion-content">I help you use AI for concrete work: document summaries, file inventories, application materials, research notes, SOP drafts, and administrative scripts.</div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAcc(this)">Windows errors that do not explain themselves <span>⌄</span></button>
+                <div class="accordion-content">I translate opaque computer errors into a plan: what failed, what is risky, what can be tried safely, and what should be escalated to a specialist or hardware repair shop.</div>
+            </div>
+        </section>
+
+        <section id="quote" class="section-card">
+            <div class="section-title">Request a Quote</div>
+            <form id="quoteForm" class="quote-form">
+                <input type="text" id="name" placeholder="Full name" required>
+                <input type="email" id="email" placeholder="Email address" required>
+                <input type="text" id="zip" placeholder="Zip code or remote support only" required>
+                <select id="serviceType" required>
+                    <option value="">What kind of help do you need?</option>
+                    <option>Windows repair / PC cleanup</option>
+                    <option>File organization / data migration</option>
+                    <option>PowerShell or automation help</option>
+                    <option>Website / GitHub Pages support</option>
+                    <option>AI workflow setup</option>
+                    <option>Not sure — please triage</option>
+                </select>
+                <textarea id="issue" placeholder="Describe the problem, goal, deadline, and whether this is remote or on-site." required></textarea>
+                <button class="primary-btn" type="button" onclick="prepareEmail()">Prepare Quote Request Email</button>
+                <p class="fine-print">On-site service is generally oriented around Mendon, MA and surrounding communities. Travel fee: $0.82/mile beyond Mendon, MA. Remote support may be available depending on the issue.</p>
+            </form>
+        </section>
+
+        <nav class="suite-nav" aria-label="Career portfolio navigation">
+            <a href="../index.html" class="suite-link">Home Hub</a>
+            <a href="../Science, Research, & Grantwriting/version 2/profile-scientific-v2.html" class="suite-link">Science & Grants</a>
+            <a href="../Regulatory Affairs/regulatory-affairs.html" class="suite-link">Regulatory Affairs</a>
+            <a href="../Executive Leadership/executive-leadership.html" class="suite-link">Executive Leadership</a>
+            <a href="../Middle School Science Teacher & Tutoring/middle-school-science-teacher-and-tutor.html" class="suite-link">Teaching & Tutoring</a>
+            <a href="#" class="suite-link active">Computer Services</a>
+        </nav>
+        <footer class="footer">&copy; 2026 Anthony R. Ball. Computer services, Windows repair, automation, and technical advocacy.</footer>
+    </main>
+
+    <script>
+        function switchTab(evt, id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        function toggleAcc(el) {
+            const content = el.nextElementSibling;
+            content.classList.toggle('open');
+        }
+        function prepareEmail() {
+            const name = encodeURIComponent(document.getElementById('name').value.trim());
+            const email = encodeURIComponent(document.getElementById('email').value.trim());
+            const zip = encodeURIComponent(document.getElementById('zip').value.trim());
+            const serviceType = encodeURIComponent(document.getElementById('serviceType').value);
+            const issue = encodeURIComponent(document.getElementById('issue').value.trim());
+            const subject = encodeURIComponent('Computer Services Quote Request');
+            const body = `Name: ${name}%0AEmail: ${email}%0AZip / Remote: ${zip}%0AService Type: ${serviceType}%0A%0ADescription:%0A${issue}%0A%0AOn-site travel fee note: $0.82/mile beyond Mendon, MA.`;
+            window.location.href = `mailto:Nora.mdr@gmail.com?subject=${subject}&body=${body}`;
+        }
+        document.getElementById('themeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('aball-computer-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+        if (localStorage.getItem('aball-computer-theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Anthony R. Ball Computer Services",
+      "description": "Computer services, Windows repair, PowerShell automation, file organization, AI workflow setup, and website support.",
+      "areaServed": ["Mendon MA", "Worcester County MA", "Rhode Island", "Remote"],
+      "founder": {
+        "@type": "Person",
+        "name": "Anthony R. Ball"
+      },
+      "serviceType": ["Windows repair", "PowerShell automation", "Data migration", "AI workflow setup", "Website support"]
+    }
+    </script>
+</body>
+</html>

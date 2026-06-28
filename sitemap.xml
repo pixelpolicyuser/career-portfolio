@@ -2,12 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pixelpolicyuser.github.io/career-portfolio/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pixelpolicyuser.github.io/career-portfolio/academic-matrix.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <loc>https://pixelpolicyuser.github.io/career-portfolio/Science,%20Research,%20%26%20Grantwriting/version%202/profile-scientific-v2.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pixelpolicyuser.github.io/career-portfolio/Regulatory%20Affairs/regulatory-affairs.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://pixelpolicyuser.github.io/career-portfolio/Executive%20Leadership/executive-leadership.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pixelpolicyuser.github.io/career-portfolio/Middle%20School%20Science%20Teacher%20%26%20Tutoring/middle-school-science-teacher-and-tutor.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pixelpolicyuser.github.io/career-portfolio/Computer%20Services/computer-services-and-windows-repair.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
