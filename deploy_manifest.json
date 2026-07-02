@@ -1,0 +1,29 @@
+{
+  "live_base": "https://pixelpolicyuser.github.io/career-portfolio/",
+  "deploy_folder": "D:\\01 ABALL Personal\\02 Personal Ventures, Stores, and Websites\\03 Websites\\Linktree Clone\\_deploy",
+  "copied_files": [
+    "index.html",
+    "profile-scientific-v2.html",
+    "regulatory-affairs.html",
+    "executive-leadership.html",
+    "middle-school-science-teacher-and-tutor.html",
+    "computer-services-and-windows-repair.html",
+    "sitemap.xml",
+    "robots.txt",
+    "me.png",
+    "nih-biosketch.pdf",
+    "Anthony Ball Resume.pdf",
+    "github-avatar-pixelpolicyuser.jpg",
+    "DoctorPixelPolicy.png",
+    "google6dac579b16fd686f.html"
+  ],
+  "warnings": [],
+  "expected_public_urls": [
+    "https://pixelpolicyuser.github.io/career-portfolio/",
+    "https://pixelpolicyuser.github.io/career-portfolio/computer-services-and-windows-repair.html",
+    "https://pixelpolicyuser.github.io/career-portfolio/executive-leadership.html",
+    "https://pixelpolicyuser.github.io/career-portfolio/middle-school-science-teacher-and-tutor.html",
+    "https://pixelpolicyuser.github.io/career-portfolio/profile-scientific-v2.html",
+    "https://pixelpolicyuser.github.io/career-portfolio/regulatory-affairs.html"
+  ]
+}
