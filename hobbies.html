@@ -16,183 +16,189 @@
             --red: #8b0000;
             --border: #5c4033;
             --crt-green: #00ff9f;
+            --shadow: 6px 6px 0 var(--gold);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: #1a120b;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 255, 159, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 159, 0.03) 1px, transparent 1px);
             background-size: 3px 3px;
             font-family: 'Press Start 2P', system-ui, -apple-system, sans-serif;
             color: var(--ink);
-            line-height: 1.5;
+            line-height: 1.55;
             padding: 20px;
             min-height: 100vh;
         }
 
+        a { color: #0066cc; }
         .container {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
             background-color: var(--parchment);
             border: 12px solid var(--border);
-            box-shadow: 
-                0 0 0 6px var(--gold),
-                0 0 0 14px var(--border),
-                0 0 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 0 6px var(--gold), 0 0 0 14px var(--border), 0 0 40px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
         }
-
         .container::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(rgba(139, 0, 0, 0.04) 1px, transparent 1px);
+            inset: 0;
+            background-image: linear-gradient(rgba(139, 0, 0, 0.04) 1px, transparent 1px);
             background-size: 4px 4px;
             pointer-events: none;
             z-index: 1;
         }
-
         header {
             background: linear-gradient(#5c4033, #3d2b1f);
             color: var(--gold);
-            padding: 32px 40px 28px;
+            padding: 32px 40px 30px;
             text-align: center;
             border-bottom: 8px solid var(--gold);
             position: relative;
             z-index: 2;
         }
-
         .character-name {
-            font-size: 2.4rem;
-            margin-bottom: 6px;
+            font-size: clamp(1.7rem, 5vw, 2.4rem);
+            margin-bottom: 8px;
             text-shadow: 4px 4px 0 #000;
             letter-spacing: 3px;
         }
-
-        .character-subtitle {
-            font-size: 1.15rem;
-            color: #f4e4c8;
-            margin-bottom: 10px;
-        }
-
+        .character-subtitle { font-size: 1.05rem; color: #f4e4c8; margin-bottom: 12px; }
         .tagline {
-            font-size: 0.95rem;
-            font-style: italic;
-            color: #d4c8a0;
-            max-width: 620px;
-            margin: 0 auto 16px;
+            font-size: 0.78rem;
+            color: #ead9b7;
+            max-width: 760px;
+            margin: 0 auto 18px;
         }
-
+        .tagline a { color: #fff6d5; text-decoration: underline; }
         .return-button {
             display: inline-block;
             background: var(--gold);
             color: #2a1f14;
-            font-family: 'Press Start 2P', system-ui, sans-serif;
-            font-size: 1rem;
-            padding: 14px 36px;
+            font-size: 0.82rem;
+            padding: 12px 26px;
             text-decoration: none;
             border: 5px solid #2a1f14;
             margin: 12px 0;
-            transition: all 0.1s ease;
             box-shadow: 5px 5px 0 #2a1f14;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+            transition: all 0.1s ease;
         }
+        .return-button:hover { background: #f4e4c8; transform: translateY(-3px); box-shadow: 7px 7px 0 #2a1f14; }
 
-        .return-button:hover {
-            background: #f4e4c8;
-            transform: translateY(-3px);
-            box-shadow: 7px 7px 0 #2a1f14;
-        }
-
-        main {
-            padding: 36px 42px;
+        .portrait-crest {
+            width: 190px;
+            height: 210px;
+            margin: 18px auto 10px;
             position: relative;
-            z-index: 2;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
         }
+        .portrait-crest::before,
+        .portrait-crest::after {
+            content: "⚔";
+            position: absolute;
+            top: 76px;
+            font-size: 3.4rem;
+            color: var(--gold);
+            text-shadow: 3px 3px 0 #000;
+            z-index: 0;
+        }
+        .portrait-crest::before { left: -26px; transform: rotate(-35deg); }
+        .portrait-crest::after { right: -26px; transform: scaleX(-1) rotate(-35deg); }
+        .portrait-frame {
+            width: 154px;
+            height: 176px;
+            clip-path: polygon(50% 0, 92% 18%, 84% 78%, 50% 100%, 16% 78%, 8% 18%);
+            border: 6px solid var(--gold);
+            background: #2a1f14;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 0 5px #2a1f14, 0 0 18px rgba(0,0,0,0.6);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .portrait-frame img,
+        .portrait-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .portrait-frame video { display: none; }
+        .portrait-crest.playing img { display: none; }
+        .portrait-crest.playing video { display: block; }
+        .crest-note { font-size: 0.62rem; color: #ead9b7; margin-top: 6px; }
 
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--red);
-            border-bottom: 5px solid var(--gold);
-            padding-bottom: 10px;
-            margin-bottom: 22px;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
+        .dice-panel {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 14px auto;
+            max-width: 720px;
         }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 3px;
-            background: linear-gradient(to right, var(--gold), transparent);
+        .dice-panel select,
+        .dice-panel input,
+        .dice-panel button {
+            font-family: inherit;
+            font-size: 0.72rem;
+            min-height: 36px;
+            border: 4px solid #2a1f14;
+            background: #f4e4c8;
+            color: #2a1f14;
+            padding: 6px 8px;
         }
-
-        /* Interactive Dice */
-        .dice {
-            display: inline-block;
-            font-size: 2.2rem;
+        .dice-panel input { width: 72px; }
+        .dice-panel button {
+            background: var(--gold);
             cursor: pointer;
-            transition: transform 0.1s ease;
+            box-shadow: 3px 3px 0 #2a1f14;
+        }
+        .dice-icon {
+            display: inline-block;
+            font-size: 0.9rem;
+            min-width: 44px;
+            text-align: center;
+            padding: 8px 6px;
+            border: 4px solid #2a1f14;
+            background: var(--gold);
+            color: #2a1f14;
+            box-shadow: 3px 3px 0 #2a1f14;
+            cursor: pointer;
             user-select: none;
-            margin-left: 12px;
+            animation: attention-jiggle 2.8s ease-in-out infinite;
         }
-
-        .dice.rolling {
-            animation: roll 0.6s ease;
-        }
-
-        @keyframes roll {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.3); }
-            50% { transform: rotate(180deg) scale(0.9); }
-            75% { transform: rotate(270deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
+        .dice-icon.rolling { animation: roll 0.65s ease; }
         .result {
-            font-size: 1.1rem;
+            display: block;
+            min-height: 24px;
             color: var(--red);
-            margin-left: 10px;
-            font-weight: bold;
+            font-size: 0.78rem;
+            margin-top: 8px;
         }
-
-        /* Interactive Skull */
         .skull {
             position: absolute;
             top: 24px;
             right: 32px;
             font-size: 2.8rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             z-index: 10;
             user-select: none;
+            animation: attention-jiggle 3.4s ease-in-out infinite;
         }
-
         .skull.glow {
             color: #ff0000;
-            text-shadow: 0 0 12px #ff0000,
-                        0 0 24px #ff0000;
+            text-shadow: 0 0 12px #ff0000, 0 0 24px #ff0000;
             animation: skull-pulse 1.2s infinite;
         }
-
-        @keyframes skull-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
         .rat {
             position: absolute;
             top: 68px;
@@ -202,160 +208,73 @@
             transition: all 0.4s ease;
             z-index: 11;
         }
+        .skull.glow + .rat { opacity: 1; transform: translateY(8px); }
 
-        .skull.glow + .rat {
-            opacity: 1;
-            transform: translateY(8px);
-        }
-
-        /* Inventory Grid */
-        .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 22px;
-            margin-bottom: 32px;
-        }
-
-        .inventory-card {
-            background: #fffef5;
-            border: 6px solid var(--border);
-            padding: 20px;
-            box-shadow: 6px 6px 0 var(--gold);
-            position: relative;
-        }
-
-        .inventory-card h3 {
+        main { padding: 36px 42px; position: relative; z-index: 2; }
+        .section-title {
+            font-size: 1.25rem;
             color: var(--red);
-            font-size: 1.1rem;
-            margin-bottom: 14px;
-            border-bottom: 3px solid #d4c8a0;
-            padding-bottom: 6px;
+            border-bottom: 5px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-
-        .inventory-card ul {
-            list-style: none;
-        }
-
-        .inventory-card li {
-            margin-bottom: 9px;
-            padding-left: 6px;
-            position: relative;
-        }
-
-        .inventory-card li::before {
-            content: "▸";
-            color: var(--gold);
-            position: absolute;
-            left: -2px;
-        }
-
-        /* Quest Log */
-        .quest-log {
-            background: #fffef5;
-            border: 6px solid var(--border);
-            padding: 24px;
-            box-shadow: 6px 6px 0 var(--gold);
-            margin-bottom: 32px;
-        }
-
-        .quest-item {
-            margin-bottom: 18px;
-            padding-bottom: 16px;
-            border-bottom: 2px dotted #d4c8a0;
-        }
-
-        .quest-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .quest-item h4 {
-            color: var(--red);
-            font-size: 1.05rem;
-            margin-bottom: 6px;
-        }
-
-        /* Allies & Enemies */
-        .allies-enemies {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-
-        .faction-card {
-            background: #fffef5;
-            border: 6px solid var(--border);
-            padding: 22px;
-            box-shadow: 6px 6px 0 var(--gold);
-        }
-
-        .faction-card h3 {
-            color: var(--red);
-            margin-bottom: 14px;
-            font-size: 1.15rem;
-        }
-
-        /* Hidden Library */
+        .section-title::after { content: ''; flex: 1; height: 3px; background: linear-gradient(to right, var(--gold), transparent); }
+        .grid-2,
+        .inventory-grid,
         .library-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 18px;
+            gap: 22px;
             margin-bottom: 32px;
         }
-
-        .library-card {
-            background: #fffef5;
-            border: 5px solid var(--border);
-            padding: 18px;
-            box-shadow: 5px 5px 0 var(--gold);
-        }
-
-        .library-card h4 {
-            color: var(--red);
-            margin-bottom: 8px;
-        }
-
-        .library-card a {
-            color: #0066cc;
-            text-decoration: underline;
-        }
-
-        /* Arcane Media Vault */
+        .card,
+        .inventory-card,
+        .quest-log,
+        .faction-card,
+        .library-card,
         .media-vault {
             background: #fffef5;
             border: 6px solid var(--border);
-            padding: 24px;
-            box-shadow: 6px 6px 0 var(--gold);
-            margin-bottom: 32px;
+            padding: 20px;
+            box-shadow: var(--shadow);
         }
-
-        .media-section {
-            margin-bottom: 28px;
-        }
-
-        .media-section h4 {
+        .card h3,
+        .inventory-card h3,
+        .faction-card h3,
+        .library-card h4,
+        .media-section h4,
+        .quest-item h4 {
             color: var(--red);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            border-bottom: 3px solid #d4c8a0;
+            padding-bottom: 6px;
         }
-
-        .media-list {
-            list-style: none;
+        ul { list-style: none; }
+        li { margin-bottom: 9px; padding-left: 18px; position: relative; }
+        li::before { content: "▸"; color: var(--gold); position: absolute; left: 0; }
+        p { margin-bottom: 10px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
-
-        .media-list li {
-            margin-bottom: 8px;
-            padding-left: 4px;
+        .stat {
+            background: var(--dark-parchment);
+            border: 4px solid var(--border);
+            padding: 10px;
+            text-align: center;
         }
-
-        .media-list a {
-            color: #0066cc;
-            text-decoration: underline;
-        }
-
-        /* Interactive Mimic Chest */
+        .stat strong { display: block; color: var(--red); margin-bottom: 4px; }
+        .spell-list li::before { content: "✦"; }
+        .quest-item { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 2px dotted #d4c8a0; }
+        .quest-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .media-section { margin-bottom: 28px; }
         .mimic-chest {
             display: inline-block;
             font-size: 3.5rem;
@@ -364,301 +283,242 @@
             transition: transform 0.2s ease;
             user-select: none;
         }
-
-        .mimic-chest.open {
-            transform: scale(1.1) rotate(8deg);
-        }
-
-        .mimic-chest::after {
-            content: "🗡️";
-            position: absolute;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .mimic-chest.open::after {
-            content: "👅";
-            opacity: 1;
-            transform: translate(18px, -12px);
-        }
-
-        .mimic-result {
-            font-size: 1rem;
-            color: var(--red);
-            margin-left: 12px;
-            font-weight: bold;
-        }
-
-        .footer {
-            background: #3d2b1f;
-            color: #d4c8a0;
-            text-align: center;
-            padding: 18px;
-            font-size: 0.85rem;
-            border-top: 7px solid var(--gold);
-        }
-
+        .mimic-chest.open { transform: scale(1.1) rotate(8deg); }
+        .mimic-result { font-size: 0.82rem; color: var(--red); margin-left: 12px; font-weight: bold; }
         .secret-notice {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--red);
             text-align: center;
             margin-top: 24px;
             font-style: italic;
         }
+        .footer {
+            background: #3d2b1f;
+            color: #d4c8a0;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.75rem;
+            border-top: 7px solid var(--gold);
+        }
 
-        @media (max-width: 700px) {
-            .container {
-                border-width: 8px;
-            }
-            header {
-                padding: 24px 20px 20px;
-            }
-            .character-name {
-                font-size: 1.9rem;
-            }
-            main {
-                padding: 24px 20px;
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.25); }
+            50% { transform: rotate(180deg) scale(0.92); }
+            75% { transform: rotate(270deg) scale(1.15); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes attention-jiggle {
+            0%, 88%, 100% { transform: rotate(0deg); }
+            90% { transform: rotate(-6deg); }
+            92% { transform: rotate(6deg); }
+            94% { transform: rotate(-4deg); }
+            96% { transform: rotate(4deg); }
+        }
+        @keyframes skull-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+        @media (max-width: 720px) {
+            body { padding: 12px; }
+            .container { border-width: 8px; }
+            header { padding: 24px 18px 20px; }
+            main { padding: 24px 18px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .skull { right: 18px; top: 18px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-
-        <!-- ============================================ -->
-        <!-- HEADER / CHARACTER SHEET -->
-        <!-- Edit name, subtitle, or tagline here -->
-        <!-- ============================================ -->
         <header>
             <h1 class="character-name">ANTHONY THE POLYMATH</h1>
             <p class="character-subtitle">Level 20 Renaissance Man • Chaotic Good</p>
-            <p class="tagline">"We all wear masks. Some are lab coats. Some are 20-sided dice."</p>
+            <p class="tagline">
+                “It is not enough to be busy, so are the ants. The question is: what are we busy about?” —
+                <a href="https://thoreausociety.org/life-legacy/" target="_blank" rel="noopener">Henry David Thoreau</a>
+            </p>
 
-            <!-- Interactive Dice -->
-            <div style="margin: 12px 0;">
-                <span class="dice" onclick="rollDice(this)">🎲</span>
+            <div class="portrait-crest" id="portraitCrest" title="Play secret character animation">
+                <div class="portrait-frame">
+                    <img src="hobby-tony.jpg" alt="Anthony R. Ball in secret character-sheet mode">
+                    <video id="hobbyVideo" src="hobby-tony-video.mp4" playsinline preload="metadata"></video>
+                </div>
+            </div>
+            <p class="crest-note">Click portrait crest for one animation loop.</p>
+
+            <div class="dice-panel" aria-label="Dice roller">
+                <span class="dice-icon" id="diceIcon" title="Roll dice">D20</span>
+                <select id="diceSides" aria-label="Dice type">
+                    <option value="4">D4</option>
+                    <option value="6">D6</option>
+                    <option value="8">D8</option>
+                    <option value="10">D10</option>
+                    <option value="12">D12</option>
+                    <option value="20" selected>D20</option>
+                    <option value="100">D100</option>
+                </select>
+                <input id="diceCount" type="number" min="1" max="20" value="1" aria-label="Number of dice or rolls">
+                <select id="diceMode" aria-label="Roll mode">
+                    <option value="sum">Sum, e.g. 5d6</option>
+                    <option value="serial">Serial, e.g. 3xD20</option>
+                </select>
+                <button type="button" onclick="rollDice()">Roll</button>
                 <span class="result" id="dice-result"></span>
             </div>
 
-            <a href="index.html" class="return-button">← RETURN TO CAREER PORTFOLIO</a>
-
-            <!-- Interactive Skull (top right) -->
-            <div class="skull" onclick="triggerSkull(this)">💀</div>
+            <a href="index.html" class="return-button">← Return to Career Portfolio</a>
+            <div class="skull" onclick="triggerSkull(this)" title="Click the skull">💀</div>
             <div class="rat">🐀</div>
         </header>
 
         <main>
+            <section>
+                <h2 class="section-title">Stats, Feats & Spells</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Stats</h3>
+                        <div class="stats-grid" id="statsGrid"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Feats</h3>
+                        <ul>
+                            <li><strong>First In, Last Out:</strong> Comfortable entering ambiguous situations and staying committed until the job has a working ending.</li>
+                            <li><strong>Caffeinated:</strong> +2 to skill checks after coffee, especially documentation, file triage, and improbable troubleshooting.</li>
+                            <li><strong>Visionary:</strong> Sees problems hiding behind the stated problem. +2 to knowledge checks, perception rolls, and assist attempts.</li>
+                            <li><strong>Systems Mapper:</strong> Can turn a chaotic folder tree, workflow, or business process into something navigable.</li>
+                            <li><strong>Translator of Arcana:</strong> Converts expert-speak, computer errors, and bureaucratic riddles into human instructions.</li>
+                            <li><strong>Guild Builder:</strong> Gains advantage when assembling research teams, collaborators, vendors, and advisors.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Spells Memorized</h3>
+                        <ul class="spell-list">
+                            <li><strong>Detect Requirements:</strong> Divines what the stakeholder actually needs.</li>
+                            <li><strong>Summon Working Draft:</strong> Conjures a useful first version from scattered notes.</li>
+                            <li><strong>Locate File:</strong> Finds the document everyone swears existed somewhere.</li>
+                            <li><strong>Comprehend Bureaucracy:</strong> Temporarily understands forms, portals, and compliance language.</li>
+                            <li><strong>Minor Automation:</strong> Turns repetitive tasks into scripts, checklists, or workflows.</li>
+                            <li><strong>Shield Against Scope Creep:</strong> Reduces chaos damage during projects.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Character Notes</h3>
+                        <p>This page is deliberately hidden from search and exists as an easter egg for curious humans. It is not the résumé. It is the lore tab.</p>
+                    </div>
+                </div>
+            </section>
 
-            <!-- ============================================ -->
-            <!-- INVENTORY -->
-            <!-- Edit hobbies and interests here -->
-            <!-- ============================================ -->
             <section>
                 <h2 class="section-title">Inventory</h2>
                 <div class="inventory-grid">
-
                     <div class="inventory-card">
-                        <h3>Tabletop &amp; Digital Gaming</h3>
+                        <h3>Tabletop & Digital Gaming</h3>
                         <ul>
-                            <li>World of Warcraft (WotLK) — full raiding addon suite</li>
-                            <li>Deadly Boss Mods, QuestHelper, HealBot, Gatherer</li>
-                            <li>Call of Cthulhu 7th Edition &amp; Star Wars Saga Edition</li>
-                            <li>Old-school D&amp;D love (1st–3rd edition)</li>
+                            <li><a href="https://raidshadowlegends.com/" target="_blank" rel="noopener">Raid: Shadow Legends</a>, <a href="https://www.toplitz-productions.com/medieval-dynasty.html" target="_blank" rel="noopener">Medieval Dynasty</a>, <a href="https://www.7piratesgames.com/" target="_blank" rel="noopener">Ark of War / 7 Pirates</a>, and <a href="https://www.pathofexile.com/" target="_blank" rel="noopener">Path of Exile</a>.</li>
+                            <li>Tabletop RPGs and collectible TCGs: <a href="https://www.chaosium.com/call-of-cthulhu-rpg/" target="_blank" rel="noopener">Call of Cthulhu</a>, <a href="https://www.worldofdarkness.com/vampire-the-masquerade" target="_blank" rel="noopener">Vampire: The Masquerade</a>, <a href="https://warhammer.com/" target="_blank" rel="noopener">Warhammer</a>, <a href="https://paizo.com/pathfinder" target="_blank" rel="noopener">Pathfinder</a>, <a href="https://www.starwars.com/games-apps" target="_blank" rel="noopener">Star Wars</a>, and <a href="https://magic.wizards.com/" target="_blank" rel="noopener">Magic: The Gathering</a>.</li>
+                            <li>Old-school monster manuals and creature art archives, including <a href="https://archive.org/search?query=TSR+Monster+Manual" target="_blank" rel="noopener">Internet Archive TSR Monster Manual searches</a>.</li>
                         </ul>
                     </div>
-
                     <div class="inventory-card">
-                        <h3>3D Printing, Bioprinting &amp; Hardware</h3>
+                        <h3>Engineering & Technology</h3>
                         <ul>
-                            <li>Active 3D printing &amp; bioprinting projects</li>
-                            <li>LED device &amp; UV light hardware experiments</li>
-                            <li>Custom terrain, miniatures &amp; game tables</li>
+                            <li>DIY home electronics and prototyping via maker references like <a href="https://www.adafruit.com/" target="_blank" rel="noopener">Adafruit</a> and <a href="https://www.sparkfun.com/" target="_blank" rel="noopener">SparkFun</a>.</li>
+                            <li>PCs, computers, repair forums, and troubleshooting rabbit holes such as <a href="https://www.tomshardware.com/" target="_blank" rel="noopener">Tom’s Hardware</a>.</li>
+                            <li>Antique consumer electronics, old Commodores, Nixie tubes, and beautiful obsolete machines: <a href="https://www.google.com/search?q=vintage+consumer+electronics+Commodore+computer+Nixie+tubes+for+sale" target="_blank" rel="noopener">search the relic market</a>.</li>
                         </ul>
                     </div>
-
                     <div class="inventory-card">
-                        <h3>Esoteric &amp; Nerd Culture</h3>
+                        <h3>Esoteric & Nerd Culture</h3>
                         <ul>
-                            <li>Photobiology, light, and pigment research</li>
-                            <li>Grant writing as creative practice</li>
-                            <li>Retro computing, modding &amp; tinkering</li>
+                            <li><a href="https://www.youtube.com/results?search_query=MC+Frontalot" target="_blank" rel="noopener">Nerdcore</a>, especially the strange joy of rhyming about deeply specific things.</li>
+                            <li><a href="https://www.google.com/maps/search/library+near+me" target="_blank" rel="noopener">Libraries and repositories</a>, because wandering stacks still counts as a legitimate research method.</li>
+                            <li><a href="https://www.cia.gov/readingroom/search/site" target="_blank" rel="noopener">Conspiracy theories</a>, viewed through the safer lens of archives, documents, and historical curiosity.</li>
                         </ul>
                     </div>
-
                 </div>
             </section>
 
-            <!-- ============================================ -->
-            <!-- QUEST LOG -->
-            <!-- Edit active and completed quests here -->
-            <!-- ============================================ -->
             <section>
                 <h2 class="section-title">Quest Log</h2>
                 <div class="quest-log">
-
                     <div class="quest-item">
                         <h4>Active Quests</h4>
                         <ul>
-                            <li>Expanding personal 3D printing / bioprinting workshop</li>
-                            <li>Classic World of Warcraft raiding &amp; addon mastery</li>
-                            <li>Exploring light-based technologies as personal passion</li>
-                            <li>Building grant proposals &amp; creative projects</li>
+                            <li>Acquiring new laboratory and engineering workspaces.</li>
+                            <li>Finding like-minded friends.</li>
+                            <li>Exploring opportunities to learn and develop skills as a personal passion.</li>
+                            <li>New business, proposal projects, and collaborations.</li>
                         </ul>
                     </div>
-
                     <div class="quest-item">
                         <h4>Completed / Archived Quests</h4>
                         <ul>
-                            <li>WotLK-era World of Warcraft progression &amp; customization</li>
-                            <li>Multiple 3D printing &amp; hardware device iterations</li>
-                            <li>Curated personal library of photobiology research</li>
+                            <li>Fundraising over $100K in under a year to build a new library in my hometown — see <a href="https://www.taftpubliclibrary.org/" target="_blank" rel="noopener">Taft Public Library</a>.</li>
+                            <li>Serial entrepreneur: multiple companies, proposals, teams, prototypes, and improbable project boards.</li>
+                            <li>Textbook co-author — <a href="https://www.cabidigitallibrary.org/doi/book/10.1079/9781845939434.0000" target="_blank" rel="noopener">CABI Digital Library reference</a>.</li>
                         </ul>
                     </div>
-
                 </div>
             </section>
 
-            <!-- ============================================ -->
-            <!-- ALLIES & ENEMIES -->
-            <!-- Edit allies and enemies lists here -->
-            <!-- ============================================ -->
             <section>
-                <h2 class="section-title">Allies &amp; Enemies</h2>
-                <div class="allies-enemies">
-
+                <h2 class="section-title">Allies & Enemies</h2>
+                <div class="grid-2">
                     <div class="faction-card">
                         <h3>Allies</h3>
                         <ul>
-                            <li>Fellow WotLK raiders and addon tinkerers</li>
-                            <li>Makers, 3D printers, and bioprinting enthusiasts</li>
+                            <li>Fellow gamers and technology hobbyists.</li>
+                            <li>Makers and prototyping enthusiasts.</li>
                             <li>Anyone who still gets excited about learning at 2 a.m.</li>
-                            <li>The 8-bit Dungeon Master maintaining this sheet</li>
+                            <li>The 8-bit Dungeon Master maintaining this sheet.</li>
                         </ul>
                     </div>
-
                     <div class="faction-card">
                         <h3>Enemies</h3>
                         <ul>
-                            <li>The myth that serious professionals can't also be passionate nerds</li>
-                            <li>Joyless optimization that kills exploration and play</li>
+                            <li>The myth that serious professionals cannot also be passionate nerds.</li>
+                            <li>Joyless optimization that kills exploration and play.</li>
+                            <li>Unlabeled folders named “final_final_revised_USE_THIS_ONE.”</li>
                         </ul>
                     </div>
-
                 </div>
             </section>
 
-            <!-- ============================================ -->
-            <!-- THE HIDDEN LIBRARY -->
-            <!-- Add or edit public domain / free book links here -->
-            <!-- ============================================ -->
             <section>
                 <h2 class="section-title">The Hidden Library</h2>
-                <p style="margin-bottom: 16px; font-size: 0.95rem;">Off-copyright books, classic literature, and esoteric texts. Take what you need.</p>
-
                 <div class="library-grid">
-
-                    <div class="library-card">
-                        <h4>Project Gutenberg</h4>
-                        <p><a href="https://www.gutenberg.org/" target="_blank" rel="noopener">gutenberg.org</a><br>
-                        70,000+ free public domain ebooks. Start here.</p>
-                    </div>
-
-                    <div class="library-card">
-                        <h4>Internet Archive</h4>
-                        <p><a href="https://archive.org/" target="_blank" rel="noopener">archive.org</a><br>
-                        Books, old magazines, pulp fiction, and more.</p>
-                    </div>
-
-                    <div class="library-card">
-                        <h4>Standard Ebooks</h4>
-                        <p><a href="https://standardebooks.org/" target="_blank" rel="noopener">standardebooks.org</a><br>
-                        Beautifully formatted public domain classics.</p>
-                    </div>
-
-                    <div class="library-card">
-                        <h4>Call of Cthulhu Resources</h4>
-                        <p><a href="https://www.chaosium.com/" target="_blank" rel="noopener">Chaosium.com</a> — Free quickstart rules &amp; scenarios</p>
-                    </div>
-
+                    <div class="library-card"><h4>Project Gutenberg</h4><p><a href="https://www.gutenberg.org/" target="_blank" rel="noopener">70,000+ free public-domain ebooks.</a></p></div>
+                    <div class="library-card"><h4>Internet Archive</h4><p><a href="https://archive.org/" target="_blank" rel="noopener">Books, old magazines, pulp, manuals, and digital archaeology.</a></p></div>
+                    <div class="library-card"><h4>Standard Ebooks</h4><p><a href="https://standardebooks.org/" target="_blank" rel="noopener">Beautifully formatted public-domain classics.</a></p></div>
                 </div>
             </section>
 
-            <!-- ============================================ -->
-            <!-- FREE TTRPG RESOURCES -->
-            <!-- Add more free RPG links and character sheets here -->
-            <!-- ============================================ -->
-            <section>
-                <h2 class="section-title">Free Tabletop RPG Resources</h2>
-                <div class="library-grid">
-
-                    <div class="library-card">
-                        <h4>Pathfinder SRD</h4>
-                        <p><a href="https://www.d20pfsrd.com/" target="_blank" rel="noopener">d20pfsrd.com</a><br>
-                        Complete Pathfinder rules reference (free).</p>
-                    </div>
-
-                    <div class="library-card">
-                        <h4>Call of Cthulhu Quickstart</h4>
-                        <p><a href="https://www.chaosium.com/call-of-cthulhu-quickstart/" target="_blank" rel="noopener">Chaosium Quickstart</a><br>
-                        Free rules + scenario to get started.</p>
-                    </div>
-
-                    <div class="library-card">
-                        <h4>Free Character Sheets</h4>
-                        <p><a href="https://www.drivethrurpg.com/" target="_blank" rel="noopener">DriveThruRPG</a> — Search “free character sheet” for many systems.</p>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- ============================================ -->
-            <!-- ARCANE MEDIA VAULT -->
-            <!-- Edit movie and music recommendations here -->
-            <!-- Interactive Mimic Chest example -->
-            <!-- ============================================ -->
             <section>
                 <h2 class="section-title">Arcane Media Vault</h2>
-
                 <div class="media-vault">
-
-                    <!-- Movies -->
                     <div class="media-section">
-                        <h4>🎬 Films Worth Finding</h4>
-                        <ul class="media-list">
-                            <li><strong>Wizards</strong> (1977) — Ralph Bakshi’s psychedelic post-apocalyptic fantasy</li>
-                            <li><strong>Heavy Metal</strong> (1981) — Adult animated anthology, pure 80s metal energy</li>
-                            <li><strong>Vampire Hunter D</strong> (1985) — Gothic anime horror at its finest</li>
-                            <li><strong>Akira</strong> (1988) — The gold standard of cyberpunk animation</li>
-                            <li><strong>The Hobbit</strong> (1977 Rankin/Bass) — The charming, weird, early animated version</li>
+                        <h4>Films Worth Finding</h4>
+                        <ul>
+                            <li><strong>Wizards</strong> (1977), <strong>Heavy Metal</strong> (1981), <strong>Vampire Hunter D</strong> (1985), <strong>Akira</strong> (1988), and <strong>The Hobbit</strong> (1977 Rankin/Bass).</li>
                         </ul>
                     </div>
-
-                    <!-- Music -->
                     <div class="media-section">
-                        <h4>🎵 Music for Late Nights &amp; Long Campaigns</h4>
-                        <ul class="media-list">
-                            <li>Pink Floyd — <em>The Dark Side of the Moon</em>, <em>Wish You Were Here</em></li>
-                            <li>The Police — <em>Synchronicity</em>, <em>Reggatta de Blanc</em></li>
-                            <li>Talking Heads — <em>Remain in Light</em>, <em>Fear of Music</em></li>
-                            <li>Two-Tone Ska &amp; Punk — The Specials, Madness, The Clash</li>
-                            <li>Goth / Industrial — Type O Negative, Nine Inch Nails, Bauhaus</li>
+                        <h4>Music for Late Nights & Long Campaigns</h4>
+                        <ul>
+                            <li>Pink Floyd, The Police, Talking Heads, Two-Tone Ska, punk, goth, industrial, and whatever the algorithm reluctantly admits is “for you.”</li>
                         </ul>
-                        <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
-                            <!-- EDIT HERE: Add your own Pandora / YouTube / Google Photos music links below -->
-                            <em>Your personal favorites go here. Replace this note with direct links to your favorite tracks or playlists.</em>
-                        </p>
                     </div>
-
-                    <!-- Interactive Mimic Chest -->
                     <div style="margin-top: 20px; text-align: center;">
-                        <span class="mimic-chest" onclick="triggerMimic(this)">🗡️</span>
+                        <span class="mimic-chest" onclick="triggerMimic(this)">🧰</span>
                         <span class="mimic-result" id="mimic-result"></span>
-                        <p style="margin-top: 8px; font-size: 0.85rem; color: #666;">
-                            Careful… some treasure chests bite back.
-                        </p>
+                        <p style="margin-top: 8px; font-size: 0.75rem; color: #666;">Careful… some toolboxes bite back.</p>
                     </div>
-
                 </div>
             </section>
 
@@ -666,56 +526,57 @@
                 Secret archive. Not indexed. Found by those who explore.<br>
                 Last updated with real drive evidence • 2026
             </p>
-
         </main>
 
         <div style="text-align: center; padding: 20px 40px 36px;">
-            <a href="index.html" class="return-button">← RETURN TO CAREER PORTFOLIO</a>
+            <a href="index.html" class="return-button">← Return to Career Portfolio</a>
         </div>
-
-        <div class="footer">
-            <p>Anthony R. Ball — Secret Character Sheet • Chaotic Good • Do Not Index</p>
-        </div>
-
+        <div class="footer"><p>Anthony R. Ball — Secret Character Sheet • Chaotic Good • Do Not Index</p></div>
     </div>
 
     <script>
-        // ============================================
-        // INTERACTIVE DICE
-        // Click the dice to roll. Edit animation or result text if desired.
-        // ============================================
-        function rollDice(element) {
-            const resultEl = document.getElementById('dice-result');
-            element.classList.add('rolling');
-
-            setTimeout(() => {
-                element.classList.remove('rolling');
-                const roll = Math.floor(Math.random() * 20) + 1;
-                resultEl.textContent = `Rolled: ${roll}`;
-
-                if (roll === 20) {
-                    resultEl.style.color = '#00aa00';
-                    resultEl.textContent = `NAT 20! 🎉`;
-                } else if (roll === 1) {
-                    resultEl.style.color = '#cc0000';
-                    resultEl.textContent = `NAT 1... 💀`;
-                } else {
-                    resultEl.style.color = '#8b0000';
-                }
-
-                setTimeout(() => {
-                    resultEl.style.color = '#8b0000';
-                }, 1800);
-            }, 650);
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
-        // ============================================
-        // INTERACTIVE SKULL + RAT
-        // Click skull to make eyes glow red and rat appear.
-        // ============================================
+        function renderStats() {
+            const stats = {
+                STR: randomInt(5, 13),
+                DEX: 6,
+                CON: randomInt(5, 13),
+                INT: 20,
+                WIS: randomInt(13, 22),
+                CHA: randomInt(13, 22)
+            };
+            const grid = document.getElementById('statsGrid');
+            grid.innerHTML = Object.entries(stats).map(([name, value]) => `<div class="stat"><strong>${name}</strong><span>${value}</span></div>`).join('');
+        }
+        function rollOne(sides) {
+            if (sides === 100) {
+                const tens = randomInt(0, 9) * 10;
+                const ones = randomInt(0, 9);
+                const total = tens + ones;
+                return total === 0 ? 100 : total;
+            }
+            return randomInt(1, sides);
+        }
+        function rollDice() {
+            const resultEl = document.getElementById('dice-result');
+            const diceIcon = document.getElementById('diceIcon');
+            const sides = parseInt(document.getElementById('diceSides').value, 10);
+            const count = Math.max(1, Math.min(20, parseInt(document.getElementById('diceCount').value || '1', 10)));
+            const mode = document.getElementById('diceMode').value;
+            diceIcon.classList.add('rolling');
+            setTimeout(() => diceIcon.classList.remove('rolling'), 650);
+            const rolls = Array.from({ length: count }, () => rollOne(sides));
+            if (mode === 'sum') {
+                const total = rolls.reduce((a, b) => a + b, 0);
+                resultEl.textContent = `${count}d${sides}: ${rolls.join(' + ')} = ${total}${sides === 20 && total === 20 ? ' — NAT 20!' : ''}`;
+            } else {
+                resultEl.textContent = `${count}×D${sides}: ${rolls.join(', ')}`;
+            }
+        }
         function triggerSkull(element) {
             element.classList.toggle('glow');
-
             const rat = element.nextElementSibling;
             if (element.classList.contains('glow')) {
                 rat.style.opacity = '1';
@@ -724,44 +585,42 @@
                 rat.style.opacity = '0';
                 rat.style.transform = 'translateY(0)';
             }
-
-            // Auto-reset after 4 seconds
             setTimeout(() => {
-                if (element.classList.contains('glow')) {
-                    element.classList.remove('glow');
-                    rat.style.opacity = '0';
-                    rat.style.transform = 'translateY(0)';
-                }
+                element.classList.remove('glow');
+                rat.style.opacity = '0';
+                rat.style.transform = 'translateY(0)';
             }, 4200);
         }
-
-        // ============================================
-        // INTERACTIVE MIMIC CHEST
-        // Click the chest — it "bites" and shows a message.
-        // ============================================
         function triggerMimic(element) {
             const resultEl = document.getElementById('mimic-result');
-
-            if (!element.classList.contains('open')) {
-                element.classList.add('open');
-                resultEl.textContent = 'It was a Mimic! You take 1d4 damage...';
+            element.classList.toggle('open');
+            if (element.classList.contains('open')) {
+                resultEl.textContent = 'It was a Mimic! You take 1d4 productivity damage...';
                 resultEl.style.color = '#cc0000';
-
                 setTimeout(() => {
                     element.classList.remove('open');
-                    resultEl.textContent = 'The chest is now suspiciously quiet...';
+                    resultEl.textContent = 'The toolbox is now suspiciously quiet...';
                     resultEl.style.color = '#666';
                 }, 2800);
             } else {
-                element.classList.remove('open');
                 resultEl.textContent = '';
             }
         }
-
-        // ============================================
-        // OPTIONAL: Future expansion hooks
-        // Add more interactive elements or media players here
-        // ============================================
+        const portrait = document.getElementById('portraitCrest');
+        const hobbyVideo = document.getElementById('hobbyVideo');
+        portrait.addEventListener('click', async () => {
+            portrait.classList.add('playing');
+            hobbyVideo.currentTime = 0;
+            hobbyVideo.muted = false;
+            hobbyVideo.volume = 1;
+            try { await hobbyVideo.play(); } catch { portrait.classList.remove('playing'); }
+        });
+        hobbyVideo.addEventListener('ended', () => {
+            portrait.classList.remove('playing');
+            hobbyVideo.pause();
+            hobbyVideo.currentTime = 0;
+        });
+        renderStats();
     </script>
 </body>
 </html>

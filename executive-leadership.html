@@ -632,6 +632,35 @@
                 margin-bottom: 16px;
             }
         }
+        /* Keep display-mode controls as a top banner, not a side rail on Safari/macOS. */
+        body {
+            flex-direction: column;
+            align-items: center;
+        }
+        .mode-switcher {
+            position: sticky !important;
+            top: 10px !important;
+            left: auto !important;
+            right: auto !important;
+            width: fit-content;
+            max-width: min(100%, 360px);
+            margin: 0 auto 22px auto;
+            align-self: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+        .mode-btn { flex: 0 0 auto; }
+        @media (max-width: 760px) {
+            .mode-switcher {
+                position: sticky !important;
+                top: 8px !important;
+                right: auto !important;
+                width: fit-content;
+                max-width: calc(100vw - 28px);
+                margin: 0 auto 16px auto;
+            }
+            .mode-btn { width: 40px; height: 40px; }
+        }
         @media print {
             .mode-switcher, .starfield { display: none !important; }
         }
