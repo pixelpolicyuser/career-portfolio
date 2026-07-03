@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anthony R. Ball Career Portfolio | Science, Regulatory Affairs, Leadership, Teaching & Computer Services</title>
-    <meta name="description" content="Interactive career portfolio hub for Anthony R. Ball: scientific research, grant writing, regulatory affairs, executive leadership, teaching and tutoring, computer services, Windows repair, and AI-assisted technical workflows in New England.">
+    <title>Anthony R. Ball Career Portfolio | Science, Executive Leadership & Regulatory Affairs</title>
+    <meta name="description" content="Interactive career portfolio hub for Anthony R. Ball, centered on scientific research, executive leadership, grant writing, regulatory affairs, medical devices, and adjacent teaching and technical service interests in New England.">
     <meta name="keywords" content="Anthony R Ball, Anthony Ball Massachusetts, NRCM microbiologist, regulatory affairs Massachusetts, medical device regulatory affairs, SBIR grant writer, scientific consultant New England, executive leadership biotech, middle school science tutor Massachusetts, computer services Mendon MA, Windows repair, PowerShell automation, AI workflows, New England specialized talent">
     <meta name="author" content="Anthony R. Ball">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://pixelpolicyuser.github.io/career-portfolio/">
     <meta property="og:title" content="Anthony R. Ball Career Portfolio">
-    <meta property="og:description" content="Five-profile professional portfolio hub spanning science, grants, regulatory affairs, executive leadership, education, and computer services.">
+    <meta property="og:description" content="Professional portfolio hub centered on science, executive leadership, and regulatory affairs, with adjacent teaching and technical service profiles.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pixelpolicyuser.github.io/career-portfolio/">
     <meta property="og:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Anthony R. Ball Career Portfolio">
-    <meta name="twitter:description" content="Science, regulatory affairs, executive leadership, teaching, and computer services portfolio for Anthony R. Ball.">
+    <meta name="twitter:description" content="Science, executive leadership, regulatory affairs, and adjacent service profiles for Anthony R. Ball.">
     <meta name="twitter:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
     <style>
         :root {
@@ -49,11 +49,48 @@
             --shadow: 0 4px 15px rgba(0,0,0,0.3);
             --bg-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300acc1' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+        body.cosmic-mode {
+            --bg-color: #07111f;
+            --text-main: #e8fbff;
+            --text-muted: #a7d9e5;
+            --card-bg: rgba(11, 27, 46, 0.76);
+            --btn-bg: rgba(8, 21, 38, 0.88);
+            --btn-text: #e8fbff;
+            --btn-hover: #00e5ff;
+            --btn-hover-text: #06101f;
+            --accent-color: #00e5ff;
+            --accent-soft: rgba(0, 229, 255, 0.16);
+            --border-color: rgba(0, 229, 255, 0.34);
+            --shadow: 0 0 24px rgba(0, 229, 255, 0.12), 0 16px 42px rgba(0,0,0,0.35);
+            --bg-pattern:
+                radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.16), transparent 32%),
+                radial-gradient(circle at 80% 10%, rgba(120, 89, 255, 0.16), transparent 28%),
+                linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+        }
+        body.cyberpunk-mode {
+            --bg-color: #050805;
+            --text-main: #d8ffd2;
+            --text-muted: #89d982;
+            --card-bg: rgba(9, 18, 9, 0.92);
+            --btn-bg: #0c160c;
+            --btn-text: #39ff14;
+            --btn-hover: #39ff14;
+            --btn-hover-text: #050805;
+            --accent-color: #39ff14;
+            --accent-soft: rgba(57, 255, 20, 0.12);
+            --border-color: rgba(57, 255, 20, 0.35);
+            --shadow: 0 0 16px rgba(57, 255, 20, 0.12), 0 12px 34px rgba(0,0,0,0.45);
+            --bg-pattern:
+                linear-gradient(rgba(57, 255, 20, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background-color: var(--bg-color);
             background-image: var(--bg-pattern);
+            background-size: auto, auto, 42px 42px, 42px 42px;
             color: var(--text-main);
             line-height: 1.65;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -61,13 +98,31 @@
             justify-content: center;
             padding: 40px 20px;
         }
-        .container { width: 100%; max-width: 1040px; }
-        .theme-toggle {
+        .container {
+            width: 100%;
+            max-width: 1040px;
+            position: relative;
+            z-index: 2;
+        }
+        .mode-switcher {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            padding: 6px;
+            border-radius: 999px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .mode-btn {
+            appearance: none;
+            border: 1px solid transparent;
+            background: transparent;
             color: var(--text-main);
             width: 44px;
             height: 44px;
@@ -76,20 +131,145 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: var(--shadow);
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .mode-btn:hover,
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: var(--btn-hover-text);
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+        .mode-btn:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+        .mode-btn svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .starfield {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            display: none;
+        }
+        body.cosmic-mode .starfield { display: block; }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #ffffff;
+            opacity: 0.6;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.25; transform: translateY(0); }
+            50% { opacity: 0.95; transform: translateY(5px); }
+        }
+        .easter-egg-icon {
+            position: fixed;
+            right: 24px;
+            bottom: 22px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.45rem;
             z-index: 1000;
+            color: var(--text-main);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            opacity: 0.55;
+            transition: all 0.2s ease;
+        }
+        body.cosmic-mode .easter-egg-icon { display: flex; }
+        .easter-egg-icon:hover {
+            opacity: 1;
+            transform: translateY(-3px) scale(1.05);
         }
         .hero { text-align: center; margin-bottom: 32px; }
+        .hero-media-button {
+            position: relative;
+            display: block;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 18px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            cursor: default;
+        }
+        .hero-media-button.has-video {
+            cursor: pointer;
+        }
+        .hero-media-button.has-video::after {
+            content: "▶";
+            position: absolute;
+            right: 2px;
+            bottom: 4px;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--btn-hover-text);
+            background: var(--accent-color);
+            border: 2px solid var(--card-bg);
+            box-shadow: var(--shadow);
+            font-size: 0.72rem;
+            transform: scale(0.92);
+            opacity: 0.92;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .hero-media-button.has-video:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .hero-media-button.playing::after {
+            display: none;
+        }
         .hero-photo {
             width: 148px;
             height: 148px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            margin: 0 auto 18px;
             border: 4px solid var(--card-bg);
             box-shadow: 0 0 0 3px var(--accent-color), var(--shadow);
             background: var(--border-color);
+        }
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 0 0 3px var(--accent-color), var(--shadow);
+            background: var(--border-color);
+        }
+        .hero-media-button.playing .hero-photo {
+            visibility: hidden;
+        }
+        .hero-media-button.playing .hero-video {
+            display: block;
         }
         .hero h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 850; letter-spacing: -0.055em; margin-bottom: 8px; }
         .hero p { max-width: 790px; margin: 0 auto 16px; color: var(--text-muted); font-size: 1.08rem; }
@@ -158,6 +338,44 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 18px;
+            margin-bottom: 22px;
+        }
+        .profile-section-heading {
+            margin: 26px 0 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: var(--shadow);
+        }
+        .profile-section-heading h2 {
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+        }
+        .profile-section-heading p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .profile-card.adjacent {
+            min-height: 300px;
+            border-style: dashed;
+            background: linear-gradient(180deg, var(--card-bg), var(--btn-bg));
+        }
+        .profile-card .lane-label {
+            display: inline-flex;
+            width: fit-content;
+            margin-bottom: 10px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
         .profile-card {
             background: var(--card-bg);
@@ -208,25 +426,143 @@
         .summary-strip p { color: var(--text-muted); }
         .footer { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 22px; }
         .hidden { display: none !important; }
+        body.cosmic-mode .hero,
+        body.cosmic-mode .control-panel,
+        body.cosmic-mode .profile-section-heading,
+        body.cosmic-mode .profile-card,
+        body.cosmic-mode .summary-strip {
+            border-color: rgba(0, 229, 255, 0.34);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)),
+                var(--card-bg);
+            backdrop-filter: blur(14px) saturate(1.15);
+            -webkit-backdrop-filter: blur(14px) saturate(1.15);
+        }
+        body.cosmic-mode .hero {
+            border: 1px solid var(--border-color);
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+            padding: 32px 24px;
+        }
+        body.cosmic-mode .profile-card {
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+        }
+        body.cosmic-mode .profile-card::before {
+            content: "MISSION PANEL";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            color: rgba(0, 229, 255, 0.58);
+            font-weight: 900;
+        }
+        body.cosmic-mode .profile-icon {
+            box-shadow: inset 0 0 18px rgba(0, 229, 255, 0.18), 0 0 20px rgba(0, 229, 255, 0.12);
+        }
+        body.cosmic-mode .hero-media-button.has-video::after {
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.5), var(--shadow);
+        }
+        body.cosmic-mode .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 34px rgba(0, 229, 255, 0.18), 0 20px 44px rgba(0,0,0,0.38);
+        }
+        body.cyberpunk-mode {
+            font-family: Consolas, "Courier New", monospace;
+            background-size: 18px 18px, 18px 18px;
+        }
+        body.cyberpunk-mode .hero,
+        body.cyberpunk-mode .control-panel,
+        body.cyberpunk-mode .profile-section-heading,
+        body.cyberpunk-mode .profile-card,
+        body.cyberpunk-mode .summary-strip {
+            border-style: dashed;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.14);
+        }
+        body.cyberpunk-mode .profile-card {
+            border-radius: 4px;
+        }
+        body.cyberpunk-mode .profile-link,
+        body.cyberpunk-mode .contact-link,
+        body.cyberpunk-mode .filter-btn.active,
+        body.cyberpunk-mode .filter-btn:hover {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        body.cyberpunk-mode .hero h1::before {
+            content: "> ";
+            color: var(--accent-color);
+        }
+        body.cyberpunk-mode .hero h1::after {
+            content: " _";
+            color: var(--accent-color);
+            animation: cursorBlink 1s steps(2, start) infinite;
+        }
+        body.cyberpunk-mode .hero-media-button.has-video::after {
+            content: "RUN";
+            width: 40px;
+            height: 28px;
+            border-radius: 4px;
+            font-size: 0.62rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            box-shadow: 0 0 16px rgba(57, 255, 20, 0.42), var(--shadow);
+        }
+        @keyframes cursorBlink {
+            50% { opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+            }
+            .starfield { display: none !important; }
+        }
         @media (max-width: 760px) {
             body { padding: 28px 14px; }
-            .theme-toggle { position: absolute; }
+            .mode-switcher {
+                position: sticky;
+                top: 8px;
+                width: fit-content;
+                margin-left: auto;
+                margin-bottom: 16px;
+            }
             .profile-card { min-height: auto; }
         }
         @media print {
             body { display: block; padding: 0; background: #fff; color: #000; }
-            .theme-toggle, .control-panel { display: none; }
+            .mode-switcher, .easter-egg-icon, .starfield, .control-panel { display: none; }
             .profile-card, .summary-strip { box-shadow: none; break-inside: avoid; }
         }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+    <nav class="mode-switcher" aria-label="Display mode">
+        <button class="mode-btn" type="button" data-theme="light" aria-label="Light mode" title="Light mode">☀</button>
+        <button class="mode-btn" type="button" data-theme="dark" aria-label="Dark mode" title="Dark mode">◐</button>
+        <button class="mode-btn" type="button" data-theme="cosmic" aria-label="Cosmic mode" title="Cosmic mode">🚀</button>
+        <button class="mode-btn" type="button" data-theme="cyberpunk" aria-label="Cyberpunk mode" title="Cyberpunk mode">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+                <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3"></path>
+                <path d="M10 10h4v4h-4z"></path>
+            </svg>
+        </button>
+    </nav>
+    <a class="easter-egg-icon" href="hobbies.html" title="Secret archive" aria-label="Open secret character sheet">👽</a>
     <main class="container">
         <header class="hero">
-            <img src="me.png" alt="Anthony R. Ball" class="hero-photo">
+            <button class="hero-media-button" id="heroMediaButton" type="button" aria-label="Play themed portrait animation">
+                <img src="me.png" alt="Anthony R. Ball" class="hero-photo" id="heroPhoto">
+                <video class="hero-video" id="heroVideo" playsinline preload="metadata"></video>
+            </button>
             <h1>Anthony R. Ball</h1>
-            <p>A modular professional portfolio for recruiters, founders, schools, life-science companies, and local clients looking for <strong>specialized New England talent</strong> across science, regulatory affairs, leadership, teaching, and technical services.</p>
+            <p>A modular professional portfolio for recruiters, founders, investors, and life-science companies looking for <strong>specialized New England talent</strong> across scientific research, executive leadership, regulatory affairs, grant strategy, and medical-device translation.</p>
             <div class="identity-row">
                 <span>NRCM #5108</span>
                 <span>MSHS Regulatory Affairs</span>
@@ -254,8 +590,14 @@
             </div>
         </section>
 
-        <section class="profile-grid" aria-label="Career profile cards">
+        <section class="profile-section-heading" aria-label="Core professional profiles introduction">
+            <h2>Core Professional Profiles</h2>
+            <p>These are the strongest career lanes: 20+ years in science and translational research, 15+ years in executive/startup leadership, and 8+ years of regulatory affairs training and practice.</p>
+        </section>
+
+        <section class="profile-grid" aria-label="Core career profile cards">
             <article class="profile-card" data-category="science" data-keywords="science research grant writing SBIR NIH DOD microbiology antimicrobial photomedicine biofilm publications patents">
+                <span class="lane-label">Core lane · 20+ years</span>
                 <div class="profile-icon">🔬</div>
                 <h2>Science, Research & Grant Writing</h2>
                 <p>Scientific portfolio covering microbiology, antimicrobial discovery, photomedicine, biofilms, patents, publications, SBIR/STTR and federal grant strategy.</p>
@@ -264,6 +606,7 @@
             </article>
 
             <article class="profile-card" data-category="regulatory" data-keywords="regulatory affairs FDA medical devices 510k PMA IDE CDRH CMC clinical research compliance international regulatory affairs Project Orbis ISO 13485 ISO 10993 ISO 14971 drug-device combination products">
+                <span class="lane-label">Core lane · 8+ years</span>
                 <div class="profile-icon">📋</div>
                 <h2>Regulatory Affairs, CMC & Medical Devices</h2>
                 <p>FDA-facing portfolio for device submissions, CMC, clinical research, compliance, international regulatory strategy, quality systems, and combination products.</p>
@@ -272,25 +615,35 @@
             </article>
 
             <article class="profile-card" data-category="leadership" data-keywords="executive leadership CEO CSO startup capital raising biotech commercialization partnerships business development">
+                <span class="lane-label">Core lane · 15+ years</span>
                 <div class="profile-icon">🏛️</div>
                 <h2>Entrepreneurship & Executive Leadership</h2>
                 <p>Executive track record across startup formation, scientific leadership, business development, investor materials, partnerships, and commercialization strategy.</p>
                 <div class="tag-row"><span>CEO/CSO</span><span>Startups</span><span>BD</span><span>Capital</span></div>
                 <a class="profile-link" href="executive-leadership.html">View Executive Profile</a>
             </article>
+        </section>
 
-            <article class="profile-card" data-category="education" data-keywords="middle school science teacher tutor MTEL science education biology chemistry classroom tutoring Massachusetts">
+        <section class="profile-section-heading" aria-label="Adjacent profiles introduction">
+            <h2>Adjacent / Developing Service Profiles</h2>
+            <p>These pages are intentionally separated from the core career lanes. Teaching is a serious passion and possible career-change path; computer services is a practical side-service lane built around hands-on AI-assisted workflow and Windows support.</p>
+        </section>
+
+        <section class="profile-grid" aria-label="Adjacent service profile cards">
+            <article class="profile-card adjacent" data-category="education" data-keywords="middle school science teacher tutor MTEL science education biology chemistry classroom tutoring Massachusetts">
+                <span class="lane-label">Passion / transition lane</span>
                 <div class="profile-icon">🧪</div>
                 <h2>Middle School Science Teacher & Tutor</h2>
-                <p>Teaching and tutoring profile for middle-school science, MTEL-aligned preparation, curriculum design, student support, and applied science instruction.</p>
+                <p>Teaching and tutoring profile for middle-school science, MTEL-aligned preparation, curriculum design, student support, and applied science instruction. A developing path, not the primary career target.</p>
                 <div class="tag-row"><span>Science Tutor</span><span>MTEL</span><span>Curriculum</span><span>MA</span></div>
                 <a class="profile-link" href="middle-school-science-teacher-and-tutor.html">View Teaching Profile</a>
             </article>
 
-            <article class="profile-card" data-category="technical" data-keywords="computer services Windows repair Mendon MA PowerShell automation file organization AI workflows website support GitHub Pages">
+            <article class="profile-card adjacent" data-category="technical" data-keywords="computer services Windows repair Mendon MA PowerShell automation file organization AI workflows website support GitHub Pages">
+                <span class="lane-label">Side-service lane</span>
                 <div class="profile-icon">🖥️</div>
                 <h2>Computer Services & Windows Repair</h2>
-                <p>Local and remote technical advocacy for Windows cleanup, PowerShell automation, file organization, AI-assisted workflows, and small website deployment.</p>
+                <p>Local and remote technical advocacy for Windows cleanup, PowerShell automation, file organization, AI-assisted workflows, and small website deployment. A practical side-income service, not a core executive identity.</p>
                 <div class="tag-row"><span>Windows</span><span>PowerShell</span><span>AI Workflows</span><span>Web</span></div>
                 <a class="profile-link" href="computer-services-and-windows-repair.html">View Computer Services</a>
             </article>
@@ -298,7 +651,7 @@
 
         <section class="summary-strip">
             <h2>Why this portfolio is modular</h2>
-            <p>Different audiences need different signals. A biotech recruiter may need regulatory affairs and FDA device evidence; a founder may need grant-writing and CSO experience; a school may need teaching and tutoring credentials; a local client may need practical computer help. Each profile is a standalone page with its own search metadata, while this hub lets AI recruiters, search engines, and human visitors route themselves quickly.</p>
+            <p>Different audiences need different signals, but they should not all carry the same market weight. The primary professional story is science, regulatory affairs, executive leadership, medical devices, and grant-funded commercialization. Teaching and computer services remain available as separate, honest adjacent lanes for schools, tutoring families, and local clients without diluting the core life-science/executive signal.</p>
         </section>
 
         <footer class="footer">&copy; 2026 Anthony R. Ball. Modular career portfolio hub for specialized professional services.</footer>
@@ -329,20 +682,109 @@
         });
         searchInput.addEventListener('input', applyFilters);
 
-        document.getElementById('themeBtn').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('aball-hub-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        });
-        if (localStorage.getItem('aball-hub-theme') === 'dark') {
-            document.body.classList.add('dark-mode');
+        const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+        const starfield = document.getElementById('starfield');
+        const heroMediaButton = document.getElementById('heroMediaButton');
+        const heroPhoto = document.getElementById('heroPhoto');
+        const heroVideo = document.getElementById('heroVideo');
+        const themeClasses = ['dark-mode', 'cosmic-mode', 'cyberpunk-mode'];
+        const themeMedia = {
+            light: { image: 'me.png' },
+            dark: { image: 'me.png' },
+            cosmic: { image: 'cosmic-view-me.jpg', video: 'cosmic-view-me-in-the-pipe.mp4' },
+            cyberpunk: { image: 'cyber-punk-me.jpg', video: 'cyber-punk-me-online.mp4' }
+        };
+
+        let activeTheme = 'light';
+
+        function stopHeroAnimation() {
+            if (!heroVideo || !heroMediaButton) return;
+            heroVideo.pause();
+            heroVideo.removeAttribute('src');
+            heroVideo.load();
+            heroMediaButton.classList.remove('playing');
         }
+
+        function updateHeroMedia(theme) {
+            if (!heroPhoto || !heroMediaButton) return;
+            const media = themeMedia[theme] || themeMedia.light;
+            stopHeroAnimation();
+            heroPhoto.src = media.image;
+            heroMediaButton.classList.toggle('has-video', Boolean(media.video));
+            heroMediaButton.setAttribute(
+                'aria-label',
+                media.video ? `Play ${theme} portrait animation` : 'Anthony R. Ball portrait'
+            );
+        }
+
+        function generateStarfield() {
+            if (!starfield) return;
+            starfield.innerHTML = '';
+            for (let i = 0; i < 120; i += 1) {
+                const star = document.createElement('span');
+                const size = Math.random() * 2.4 + 0.8;
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                star.style.animationDuration = `${Math.random() * 4 + 3}s`;
+                starfield.appendChild(star);
+            }
+        }
+
+        function setTheme(theme) {
+            const safeTheme = ['light', 'dark', 'cosmic', 'cyberpunk'].includes(theme) ? theme : 'light';
+            activeTheme = safeTheme;
+            document.body.classList.remove(...themeClasses);
+            if (safeTheme !== 'light') {
+                document.body.classList.add(`${safeTheme}-mode`);
+            }
+            modeButtons.forEach(button => {
+                button.classList.toggle('active', button.dataset.theme === safeTheme);
+                button.setAttribute('aria-pressed', String(button.dataset.theme === safeTheme));
+            });
+            localStorage.setItem('aball-site-theme', safeTheme);
+            localStorage.setItem('aball-hub-theme', safeTheme);
+            if (safeTheme === 'cosmic') {
+                generateStarfield();
+            } else if (starfield) {
+                starfield.innerHTML = '';
+            }
+            updateHeroMedia(safeTheme);
+        }
+
+        modeButtons.forEach(button => {
+            button.addEventListener('click', () => setTheme(button.dataset.theme));
+        });
+        if (heroMediaButton && heroVideo) {
+            heroMediaButton.addEventListener('click', async () => {
+                const media = themeMedia[activeTheme];
+                if (!media || !media.video) return;
+                stopHeroAnimation();
+                heroVideo.src = media.video;
+                heroVideo.muted = false;
+                heroVideo.volume = 1;
+                heroVideo.currentTime = 0;
+                heroMediaButton.classList.add('playing');
+                try {
+                    await heroVideo.play();
+                } catch (error) {
+                    heroMediaButton.classList.remove('playing');
+                }
+            });
+            heroVideo.addEventListener('ended', stopHeroAnimation);
+            heroVideo.addEventListener('error', stopHeroAnimation);
+        }
+        setTheme(localStorage.getItem('aball-site-theme') || localStorage.getItem('aball-hub-theme') || 'light');
     </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
       "name": "Anthony R. Ball Career Portfolio",
-      "description": "Career portfolio hub for Anthony R. Ball across scientific research, grant writing, regulatory affairs, executive leadership, education, and computer services.",
+      "description": "Career portfolio hub for Anthony R. Ball centered on scientific research, grant writing, executive leadership, regulatory affairs, and medical-device translation, with adjacent teaching and technical service profiles.",
         "mainEntity": {
         "@type": "Person",
         "name": "Anthony R. Ball",
@@ -353,6 +795,9 @@
           "Regulatory affairs",
           "Medical devices",
           "Executive leadership",
+          "Medical device commercialization",
+          "SBIR grant strategy",
+          "Biotech entrepreneurship",
           "Science education",
           "Windows repair",
           "PowerShell automation"

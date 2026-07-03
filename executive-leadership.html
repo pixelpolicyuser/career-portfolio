@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Leadership | Anthony R. Ball</title>
-    <meta name="description" content="Executive portfolio, business impact, and multi-industry commercialization by Anthony R. Ball.">
-    <meta name="keywords" content="Anthony R Ball executive leadership, biotech founder New England, life science commercialization, medtech executive, venture development, non-dilutive funding, technology commercialization, startup leadership Massachusetts, regulatory strategy executive, scientific business development">
+    <meta name="description" content="Executive portfolio, founder operating record, venture development, proposal generation, research-team assembly, facility launch, and multi-industry commercialization by Anthony R. Ball.">
+    <meta name="keywords" content="Anthony R Ball executive leadership, biotech founder New England, life science commercialization, medtech executive, venture development, non-dilutive funding, technology commercialization, startup leadership Massachusetts, regulatory strategy executive, scientific business development, GROW-RI, Gliese 623B, GAMA Therapeutics, UV Light Care, BioCellR8, proposal generation, research team assembly, BSL-2 facility launch, investor materials, board reporting">
     <meta name="author" content="Anthony R. Ball">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://pixelpolicyuser.github.io/career-portfolio/executive-leadership.html">
@@ -31,7 +31,7 @@
         "url": "https://pixelpolicyuser.github.io/career-portfolio/executive-leadership.html",
         "image": "https://pixelpolicyuser.github.io/career-portfolio/me.png",
         "jobTitle": "Life Science Executive, Founder, Scientific Business Development Leader",
-        "knowsAbout": ["Biotech entrepreneurship", "Medical technology commercialization", "Non-dilutive funding", "Technology transfer", "Strategic partnerships", "Regulatory strategy", "Scientific leadership"]
+        "knowsAbout": ["Biotech entrepreneurship", "Medical technology commercialization", "Non-dilutive funding", "Technology transfer", "Strategic partnerships", "Regulatory strategy", "Scientific leadership", "Proposal generation", "Research team assembly", "BSL-2 facility launch", "Investor materials", "Board reporting", "Scientific business development", "Startup operating models"]
       }
     }
     </script>
@@ -222,6 +222,46 @@
             color: var(--text-muted);
             font-weight: 600;
         }
+        .venture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+        }
+        .venture-card {
+            text-align: left;
+            padding: 1.1rem;
+            background: var(--bg-color);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            min-width: 0;
+        }
+        .venture-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .venture-card h3 {
+            font-size: 1.08rem;
+            line-height: 1.18;
+            color: var(--accent-color);
+            margin-bottom: 0.55rem;
+            overflow-wrap: anywhere;
+        }
+        .venture-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            font-weight: 520;
+            line-height: 1.55;
+        }
+        .lane-note {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
 
         /* --- HOVER VISUALIZER COMPONENTS --- */
         .hover-grid {
@@ -384,12 +424,189 @@
         @media (max-width: 768px) {
             .grid-3 { grid-template-columns: 1fr; }
             .hover-grid { grid-template-columns: 1fr; }
+            .venture-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.2rem; }
             section { padding: 1.5rem; }
+        }
+        /* --- SITE-WIDE DISPLAY MODES: LIGHT / DARK / COSMIC / CYBERPUNK --- */
+        body.cosmic-mode {
+            --bg-color: #07111f;
+            --text-main: #e8fbff;
+            --text-muted: #a7d9e5;
+            --card-bg: rgba(11, 27, 46, 0.78);
+            --accent-color: #00e5ff;
+            --accent-soft: rgba(0, 229, 255, 0.16);
+            --border-color: rgba(0, 229, 255, 0.34);
+            --shadow: 0 0 24px rgba(0, 229, 255, 0.12), 0 16px 42px rgba(0,0,0,0.35);
+            --bg-pattern:
+                radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.16), transparent 32%),
+                radial-gradient(circle at 80% 10%, rgba(120, 89, 255, 0.16), transparent 28%),
+                linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+        }
+        body.cyberpunk-mode {
+            --bg-color: #050805;
+            --text-main: #d8ffd2;
+            --text-muted: #89d982;
+            --card-bg: rgba(9, 18, 9, 0.92);
+            --accent-color: #39ff14;
+            --accent-soft: rgba(57, 255, 20, 0.12);
+            --border-color: rgba(57, 255, 20, 0.35);
+            --shadow: 0 0 16px rgba(57, 255, 20, 0.12), 0 12px 34px rgba(0,0,0,0.45);
+            --bg-pattern:
+                linear-gradient(rgba(57, 255, 20, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
+        }
+        body.cosmic-mode,
+        body.cyberpunk-mode {
+            background-color: var(--bg-color);
+            background-image: var(--bg-pattern);
+            background-size: auto, auto, 42px 42px, 42px 42px;
+        }
+        body.cyberpunk-mode {
+            font-family: Consolas, "Courier New", monospace;
+            background-size: 18px 18px, 18px 18px;
+        }
+        .theme-toggle { display: none !important; }
+        .mode-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            padding: 6px;
+            border-radius: 999px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .mode-btn {
+            appearance: none;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .mode-btn:hover,
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: #06101f;
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+        .mode-btn svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .starfield {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            display: none;
+        }
+        body.cosmic-mode .starfield { display: block; }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #ffffff;
+            opacity: 0.6;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.25; transform: translateY(0); }
+            50% { opacity: 0.95; transform: translateY(5px); }
+        }
+        body.cosmic-mode .hero,
+        body.cosmic-mode .section-card,
+        body.cosmic-mode .suite-nav,
+        body.cosmic-mode .page-nav,
+        body.cosmic-mode .card,
+        body.cosmic-mode .metric-card,
+        body.cosmic-mode .venture-card,
+        body.cosmic-mode .hover-card,
+        body.cosmic-mode .timeline-card {
+            border-color: rgba(0, 229, 255, 0.34) !important;
+            background: linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)), var(--card-bg) !important;
+            backdrop-filter: blur(14px) saturate(1.15);
+            -webkit-backdrop-filter: blur(14px) saturate(1.15);
+            box-shadow: var(--shadow);
+        }
+        body.cyberpunk-mode .hero,
+        body.cyberpunk-mode .section-card,
+        body.cyberpunk-mode .suite-nav,
+        body.cyberpunk-mode .page-nav,
+        body.cyberpunk-mode .card,
+        body.cyberpunk-mode .metric-card,
+        body.cyberpunk-mode .venture-card,
+        body.cyberpunk-mode .hover-card,
+        body.cyberpunk-mode .timeline-card {
+            border-style: dashed !important;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.14);
+        }
+        body.cyberpunk-mode .hero h1::before { content: "> "; color: var(--accent-color); }
+        body.cyberpunk-mode .hero h1::after {
+            content: " _";
+            color: var(--accent-color);
+            animation: cursorBlink 1s steps(2, start) infinite;
+        }
+        @keyframes cursorBlink { 50% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+            }
+            .starfield { display: none !important; }
+        }
+        @media (max-width: 760px) {
+            .mode-switcher {
+                position: sticky;
+                top: 8px;
+                width: fit-content;
+                margin-left: auto;
+                margin-bottom: 16px;
+            }
+        }
+        @media print {
+            .mode-switcher, .starfield { display: none !important; }
         }
     </style>
 </head>
 <body>
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+    <nav class="mode-switcher" aria-label="Display mode">
+        <button class="mode-btn" type="button" data-theme="light" aria-label="Light mode" title="Light mode">☀</button>
+        <button class="mode-btn" type="button" data-theme="dark" aria-label="Dark mode" title="Dark mode">◐</button>
+        <button class="mode-btn" type="button" data-theme="cosmic" aria-label="Cosmic mode" title="Cosmic mode">🚀</button>
+        <button class="mode-btn" type="button" data-theme="cyberpunk" aria-label="Cyberpunk mode" title="Cyberpunk mode">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+                <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3"></path>
+                <path d="M10 10h4v4h-4z"></path>
+            </svg>
+        </button>
+    </nav>
 
     <button class="theme-toggle" id="theme-btn" aria-label="Toggle Dark Mode">
         <i class="fas fa-moon" id="theme-icon"></i>
@@ -454,24 +671,88 @@
         <section>
             <h2>Executive Roles & Multi-Industry Impact</h2>
             <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
-                Hover over the ventures below to interrogate specific operational milestones, strategic impacts, and commercial outcomes.
+                Hover over each venture to see the operating thesis, concrete accomplishments, and executive capabilities demonstrated.
             </p>
             
             <div class="hover-grid">
                 <div class="hover-item" onmouseover="showDetails(
-                    '<strong>UV Light Care Inc. & GAMA Therapeutics</strong><br><br>Led strategic advancement in infection control and sterilization technologies. Successfully navigated complex regulatory pipelines to bring proprietary commercial health and safety solutions to market.', '#00838f'
+                    '<strong>GAMA Therapeutics LLC</strong><br><br>Co-founded and served as CSO / Board voting member for an Army-funded antimicrobial-device venture. Wrote and submitted NIH, DOD, EU, and private-fund proposals; secured approximately $1.6M in funding over 24 months; led contract W81XWH-16-C-0207 work toward field-care and hospital prototype systems; supported a patent family around light-based eradication of catheter biofilms; and built the publication strategy for the SBIR II data package.', '#00838f'
                 )" onmouseout="clearDetails()">
-                    <i class="fas fa-shield-virus"></i> UV Light Care & GAMA
+                    <i class="fas fa-shield-virus"></i> GAMA Therapeutics
                 </div>
                 <div class="hover-item" onmouseover="showDetails(
-                    '<strong>GROW-RI & Gliese 623B</strong><br><br>Spearheaded advanced agritech automation via the GENESIS platform. Focused on translating highly complex biological and engineering frameworks into commercially viable, scalable agricultural technologies.', '#00838f'
+                    '<strong>UV Light Care Inc.</strong><br><br>Advanced a healthcare safety / disinfection venture focused on unmet needs in infection control. Built investor and partner-facing materials, presented to M2D2, framed the M2D2 partnering design approach, and coordinated photobiology, biofilm, prototype, and optical-test-bed concepts toward catheter-related disinfection applications.', '#00838f'
                 )" onmouseout="clearDetails()">
-                    <i class="fas fa-seedling"></i> GROW-RI & Gliese 623B
+                    <i class="fas fa-lightbulb"></i> UV Light Care
+                </div>
+                <div class="hover-item" onmouseover="showDetails(
+                    '<strong>Gliese 623B Consulting LLC</strong><br><br>Built a research and venture consultancy that grew to more than $300K in annual revenue by year three; raised or organized significant sponsored research and capital; prepared laboratory and contract-research proposals; created a UMass Lowell-approved research plan; served as principal investigator / scientific liaison to sponsors, board members, and capital partners; and supported biofilm, optics, and medical-device research programs.', '#00838f'
+                )" onmouseout="clearDetails()">
+                    <i class="fas fa-microscope"></i> Gliese 623B
+                </div>
+                <div class="hover-item" onmouseover="showDetails(
+                    '<strong>GROW-RI</strong><br><br>Co-founded and operated an agritech / controlled-environment venture with product concepts spanning SCADA systems, data terminals, barrier coatings, and biological production infrastructure. Recognition included Women in Leadership Entrepreneurship Award (2021), and the venture experience demonstrates operations, automation, product-line thinking, and Rhode Island economic-development orientation.', '#00838f'
+                )" onmouseout="clearDetails()">
+                    <i class="fas fa-seedling"></i> GROW-RI
+                </div>
+                <div class="hover-item" onmouseover="showDetails(
+                    '<strong>BioCellR8</strong><br><br>Created a scientific, regulatory, and commercialization consulting platform for emerging life-science clients. Work included nutraceutical commercialization planning, CBD/cannabis claims-risk analysis, export regulatory frameworks, BSL-2 lab compliance planning, joint-venture agreement support, strategic development plans, and investor/partner-facing technical documentation.', '#00838f'
+                )" onmouseout="clearDetails()">
+                    <i class="fas fa-briefcase"></i> BioCellR8
                 </div>
             </div>
             
             <div class="details-box" id="venture-details">
-                Hover over the sectors above to interrogate specific operational milestones, strategic impacts, and commercial outcomes.
+                Hover over an individual company to see the accomplishments and executive capabilities demonstrated there.
+            </div>
+        </section>
+
+        <section>
+            <h2>Founder / Venture Operating Portfolio</h2>
+            <div class="lane-note">
+                This portfolio is not a generic “entrepreneurship” claim. It is a record of founder-level execution across grant-funded medical-device R&D, regulatory-scientific consulting, laboratory and engineering infrastructure, investor/partner materials, and early-stage venture operations.
+            </div>
+            <div class="venture-grid">
+                <div class="venture-card">
+                    <h3>GAMA Therapeutics</h3>
+                    <p>Army-funded antimicrobial-device venture. CSO / co-founder / board voting member. Led proposal generation, SBIR II execution, prototype strategy, contractor coordination, patent support, and publication planning for light-based catheter-connection disinfection technology.</p>
+                </div>
+                <div class="venture-card">
+                    <h3>UV Light Care</h3>
+                    <p>Healthcare safety venture focused on UV/light-based infection control. Built investor and M2D2-facing materials, framed partner-development needs, and translated photobiology, biofilm science, and optical-test-bed concepts into a device-development pathway.</p>
+                </div>
+                <div class="venture-card">
+                    <h3>Gliese 623B</h3>
+                    <p>Research consultancy and venture vehicle that supported sponsored research, biofilm methods, optics, contract-research proposals, UMass Lowell M2D2 collaboration, and stakeholder communication to sponsors, board members, students, and capital partners.</p>
+                </div>
+                <div class="venture-card">
+                    <h3>GROW-RI</h3>
+                    <p>Agritech / controlled-environment venture tied to SCADA systems, data terminals, barrier coatings, biological production infrastructure, and Rhode Island economic-development concepts. Recognition included a 2021 Women in Leadership Entrepreneurship Award.</p>
+                </div>
+                <div class="venture-card">
+                    <h3>BioCellR8</h3>
+                    <p>Scientific and regulatory consulting platform spanning nutraceuticals, cannabis/CBD claims risk, export frameworks, commercialization plans, joint-venture documentation, BSL-2 compliance frameworks, and emerging-client technical strategy.</p>
+                </div>
+                <div class="venture-card">
+                    <h3>Venture Infrastructure</h3>
+                    <p>Built and operated research infrastructure including BSL-2 and engineering-lab environments; generated scopes of work, budgets, proposals, critical-path plans, vendor/CRO coordination, IP narratives, and investor / board-facing executive materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Available Executive Support</h2>
+            <div class="competency-tags">
+                <span class="tag">Founder / fractional executive support</span>
+                <span class="tag">Technology commercialization strategy</span>
+                <span class="tag">Proposal, protocol, and scope-of-work generation</span>
+                <span class="tag">Research-team assembly and advisory-board planning</span>
+                <span class="tag">Investor and board-facing materials</span>
+                <span class="tag">Scientific business development and partner mapping</span>
+                <span class="tag">Patent / IP landscape support</span>
+                <span class="tag">Startup operating models and gated milestones</span>
+                <span class="tag">BSL-2 / regulated research facility planning</span>
+                <span class="tag">CRO, vendor, and academic interface management</span>
             </div>
         </section>
 
@@ -590,6 +871,47 @@
                 content.classList.toggle('open');
             });
         });
+    </script>
+    <script>
+        (() => {
+            const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+            const starfield = document.getElementById('starfield');
+            const themeClasses = ['dark-mode', 'cosmic-mode', 'cyberpunk-mode'];
+
+            function generateStarfield() {
+                if (!starfield) return;
+                starfield.innerHTML = '';
+                for (let i = 0; i < 120; i += 1) {
+                    const star = document.createElement('span');
+                    const size = Math.random() * 2.4 + 0.8;
+                    star.className = 'star';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.animationDelay = `${Math.random() * 4}s`;
+                    star.style.animationDuration = `${Math.random() * 4 + 3}s`;
+                    starfield.appendChild(star);
+                }
+            }
+
+            function setTheme(theme) {
+                const safeTheme = ['light', 'dark', 'cosmic', 'cyberpunk'].includes(theme) ? theme : 'light';
+                document.body.classList.remove(...themeClasses);
+                if (safeTheme !== 'light') document.body.classList.add(`${safeTheme}-mode`);
+                modeButtons.forEach(button => {
+                    const active = button.dataset.theme === safeTheme;
+                    button.classList.toggle('active', active);
+                    button.setAttribute('aria-pressed', String(active));
+                });
+                localStorage.setItem('aball-site-theme', safeTheme);
+                if (safeTheme === 'cosmic') generateStarfield();
+                else if (starfield) starfield.innerHTML = '';
+            }
+
+            modeButtons.forEach(button => button.addEventListener('click', () => setTheme(button.dataset.theme)));
+            setTheme(localStorage.getItem('aball-site-theme') || 'light');
+        })();
     </script>
 </body>
 </html>

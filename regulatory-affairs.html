@@ -194,9 +194,183 @@
             .theme-toggle, .page-nav, .suite-nav { display: none; }
             .section-card { box-shadow: none; break-inside: avoid; }
         }
+        /* --- SITE-WIDE DISPLAY MODES: LIGHT / DARK / COSMIC / CYBERPUNK --- */
+        body.cosmic-mode {
+            --bg-color: #07111f;
+            --text-main: #e8fbff;
+            --text-muted: #a7d9e5;
+            --card-bg: rgba(11, 27, 46, 0.78);
+            --accent-color: #00e5ff;
+            --accent-soft: rgba(0, 229, 255, 0.16);
+            --border-color: rgba(0, 229, 255, 0.34);
+            --shadow: 0 0 24px rgba(0, 229, 255, 0.12), 0 16px 42px rgba(0,0,0,0.35);
+            --bg-pattern:
+                radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.16), transparent 32%),
+                radial-gradient(circle at 80% 10%, rgba(120, 89, 255, 0.16), transparent 28%),
+                linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
+        }
+        body.cyberpunk-mode {
+            --bg-color: #050805;
+            --text-main: #d8ffd2;
+            --text-muted: #89d982;
+            --card-bg: rgba(9, 18, 9, 0.92);
+            --accent-color: #39ff14;
+            --accent-soft: rgba(57, 255, 20, 0.12);
+            --border-color: rgba(57, 255, 20, 0.35);
+            --shadow: 0 0 16px rgba(57, 255, 20, 0.12), 0 12px 34px rgba(0,0,0,0.45);
+            --bg-pattern:
+                linear-gradient(rgba(57, 255, 20, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
+        }
+        body.cosmic-mode,
+        body.cyberpunk-mode {
+            background-color: var(--bg-color);
+            background-image: var(--bg-pattern);
+            background-size: auto, auto, 42px 42px, 42px 42px;
+        }
+        body.cyberpunk-mode {
+            font-family: Consolas, "Courier New", monospace;
+            background-size: 18px 18px, 18px 18px;
+        }
+        .theme-toggle { display: none !important; }
+        .mode-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            padding: 6px;
+            border-radius: 999px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .mode-btn {
+            appearance: none;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .mode-btn:hover,
+        .mode-btn.active {
+            background: var(--accent-color);
+            color: #06101f;
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+        .mode-btn svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .starfield {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+            display: none;
+        }
+        body.cosmic-mode .starfield { display: block; }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #ffffff;
+            opacity: 0.6;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.25; transform: translateY(0); }
+            50% { opacity: 0.95; transform: translateY(5px); }
+        }
+        body.cosmic-mode .hero,
+        body.cosmic-mode .section-card,
+        body.cosmic-mode .suite-nav,
+        body.cosmic-mode .page-nav,
+        body.cosmic-mode .card,
+        body.cosmic-mode .timeline-card,
+        body.cosmic-mode .skill-card,
+        body.cosmic-mode .metric-card {
+            border-color: rgba(0, 229, 255, 0.34) !important;
+            background: linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)), var(--card-bg) !important;
+            backdrop-filter: blur(14px) saturate(1.15);
+            -webkit-backdrop-filter: blur(14px) saturate(1.15);
+            box-shadow: var(--shadow);
+        }
+        body.cyberpunk-mode .hero,
+        body.cyberpunk-mode .section-card,
+        body.cyberpunk-mode .suite-nav,
+        body.cyberpunk-mode .page-nav,
+        body.cyberpunk-mode .card,
+        body.cyberpunk-mode .timeline-card,
+        body.cyberpunk-mode .skill-card,
+        body.cyberpunk-mode .metric-card {
+            border-style: dashed !important;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.14);
+        }
+        body.cyberpunk-mode .hero h1::before { content: "> "; color: var(--accent-color); }
+        body.cyberpunk-mode .hero h1::after {
+            content: " _";
+            color: var(--accent-color);
+            animation: cursorBlink 1s steps(2, start) infinite;
+        }
+        @keyframes cursorBlink { 50% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+            }
+            .starfield { display: none !important; }
+        }
+        @media (max-width: 760px) {
+            .mode-switcher {
+                position: sticky;
+                top: 8px;
+                width: fit-content;
+                margin-left: auto;
+                margin-bottom: 16px;
+            }
+        }
+        @media print {
+            .mode-switcher, .starfield { display: none !important; }
+        }
     </style>
 </head>
 <body>
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+    <nav class="mode-switcher" aria-label="Display mode">
+        <button class="mode-btn" type="button" data-theme="light" aria-label="Light mode" title="Light mode">☀</button>
+        <button class="mode-btn" type="button" data-theme="dark" aria-label="Dark mode" title="Dark mode">◐</button>
+        <button class="mode-btn" type="button" data-theme="cosmic" aria-label="Cosmic mode" title="Cosmic mode">🚀</button>
+        <button class="mode-btn" type="button" data-theme="cyberpunk" aria-label="Cyberpunk mode" title="Cyberpunk mode">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+                <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3"></path>
+                <path d="M10 10h4v4h-4z"></path>
+            </svg>
+        </button>
+    </nav>
     <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">◐</button>
     <main class="container">
         <header class="hero">
@@ -209,6 +383,7 @@
             <a href="#summary">Profile</a>
             <a href="#metrics">Metrics</a>
             <a href="#portfolio">Portfolio Evidence</a>
+            <a href="#coursework">GWU Coursework</a>
             <a href="#practice">Practice Areas</a>
             <a href="#sources">Source Map</a>
             <a href="#standards">Search Signals</a>
@@ -367,6 +542,69 @@
                         <li>GLP/GMP and medical-device testing</li>
                         <li>Quality systems and SOP architecture</li>
                         <li>Scientific credibility behind regulatory argumentation</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="coursework" class="section-card">
+            <div class="section-title">GWU Regulatory Coursework Matrix</div>
+            <p class="lead">The MSHS Regulatory Affairs curriculum is directly relevant to the roles this page targets: FDA device strategy, drug/biologics pathways, clinical evidence planning, compliance, global submissions, and regulatory leadership.</p>
+            <div class="competency-grid">
+                <article class="mini-card">
+                    <h3>RAFF 6201 &mdash; Intro to Global Regulatory Affairs</h3>
+                    <ul class="clean-list">
+                        <li>Global regulatory frameworks, dossier structure, product lifecycle strategy.</li>
+                        <li>Regulatory strategy work spanning CMC, nonclinical, PMDA, and clinical-readiness components.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6202 &mdash; Regulatory Drug Biologics</h3>
+                    <ul class="clean-list">
+                        <li>IND, NDA, BLA, drug-development lifecycle, and biologics-adjacent regulatory concepts.</li>
+                        <li>CMC, clinical pipeline documentation gates, and quality submission reasoning.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6203 &mdash; Regulatory Device Diagnostics</h3>
+                    <ul class="clean-list">
+                        <li>Device classification, 510(k), PMA, predicate analysis, substantial equivalence, and diagnostic/device submission logic.</li>
+                        <li>Complements professional experience with FDA 510(k), PMA, and medical-device registration support.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6204 &mdash; Clinical Research for Regulatory Affairs</h3>
+                    <ul class="clean-list">
+                        <li>Clinical trial design, informed consent, patient-focused development, data monitoring, and evidence sufficiency.</li>
+                        <li>Clinical research literacy for regulatory strategy, protocol review, and claims-support planning.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6205 &mdash; Regulatory Affairs Compliance</h3>
+                    <ul class="clean-list">
+                        <li>GCP, GMP, quality systems, audit expectations, enforcement structures, and warning-letter resolution.</li>
+                        <li>Supports compliance analysis, CAPA/QMS conversations, and FDA-facing remediation planning.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6206 &mdash; International Regulatory Affairs</h3>
+                    <ul class="clean-list">
+                        <li>Comparative global approval strategy across FDA, EMA, PMDA, Swissmedic, Health Canada, India, and related systems.</li>
+                        <li>International submission sequencing, market-entry risk, and global regulatory intelligence.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>RAFF 6275 &mdash; Leadership in Regulatory Affairs</h3>
+                    <ul class="clean-list">
+                        <li>Regulatory leadership, risk-benefit alignment, cross-functional consensus, and launch-path decision-making.</li>
+                        <li>Useful for VP/Director-level regulatory roles where strategy, communication, and governance matter.</li>
+                    </ul>
+                </article>
+                <article class="mini-card">
+                    <h3>Translational Methods Support</h3>
+                    <ul class="clean-list">
+                        <li>HSCI 6263 biostatistics, HSCI 6264 epidemiology, healthcare quality measurement, and health-system leadership coursework.</li>
+                        <li>Strengthens clinical evidence interpretation, diagnostic-test thinking, validation design, and regulatory evidence review.</li>
                     </ul>
                 </article>
             </div>
@@ -550,13 +788,57 @@
         "hasCredential": ["NRCM #5108", "MSHS Regulatory Affairs"]
       },
       "about": [
-        {"@type":"CreativeWork","name":"RAFF 6203 Final 510(k) Summary"},
         {"@type":"CreativeWork","name":"RAFF 6201 BEST-1 Global Regulatory Strategy"},
+        {"@type":"CreativeWork","name":"RAFF 6202 Regulatory Drug Biologics Coursework"},
+        {"@type":"CreativeWork","name":"RAFF 6203 Final 510(k) Summary"},
+        {"@type":"CreativeWork","name":"RAFF 6204 Clinical Research for Regulatory Affairs Coursework"},
         {"@type":"CreativeWork","name":"RAFF 6205 FDA Meeting / NARMS Compliance Report"},
         {"@type":"CreativeWork","name":"RAFF 6206 International Regulatory Affairs Global Approval Strategy"},
+        {"@type":"CreativeWork","name":"RAFF 6275 Leadership in Regulatory Affairs Coursework"},
         {"@type":"CreativeWork","name":"BioCellR8 Client Regulatory Packages"}
       ]
     }
+    </script>
+    <script>
+        (() => {
+            const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+            const starfield = document.getElementById('starfield');
+            const themeClasses = ['dark-mode', 'cosmic-mode', 'cyberpunk-mode'];
+
+            function generateStarfield() {
+                if (!starfield) return;
+                starfield.innerHTML = '';
+                for (let i = 0; i < 120; i += 1) {
+                    const star = document.createElement('span');
+                    const size = Math.random() * 2.4 + 0.8;
+                    star.className = 'star';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.animationDelay = `${Math.random() * 4}s`;
+                    star.style.animationDuration = `${Math.random() * 4 + 3}s`;
+                    starfield.appendChild(star);
+                }
+            }
+
+            function setTheme(theme) {
+                const safeTheme = ['light', 'dark', 'cosmic', 'cyberpunk'].includes(theme) ? theme : 'light';
+                document.body.classList.remove(...themeClasses);
+                if (safeTheme !== 'light') document.body.classList.add(`${safeTheme}-mode`);
+                modeButtons.forEach(button => {
+                    const active = button.dataset.theme === safeTheme;
+                    button.classList.toggle('active', active);
+                    button.setAttribute('aria-pressed', String(active));
+                });
+                localStorage.setItem('aball-site-theme', safeTheme);
+                if (safeTheme === 'cosmic') generateStarfield();
+                else if (starfield) starfield.innerHTML = '';
+            }
+
+            modeButtons.forEach(button => button.addEventListener('click', () => setTheme(button.dataset.theme)));
+            setTheme(localStorage.getItem('aball-site-theme') || 'light');
+        })();
     </script>
 </body>
 </html>
