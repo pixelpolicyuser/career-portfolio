@@ -492,6 +492,10 @@
             --text-main: #e8fbff;
             --text-muted: #a7d9e5;
             --card-bg: rgba(11, 27, 46, 0.78);
+            --btn-bg: rgba(8, 21, 38, 0.88);
+            --btn-text: #e8fbff;
+            --btn-hover: #00e5ff;
+            --btn-hover-text: #06101f;
             --accent-color: #00e5ff;
             --accent-soft: rgba(0, 229, 255, 0.16);
             --border-color: rgba(0, 229, 255, 0.34);
@@ -507,6 +511,10 @@
             --text-main: #d8ffd2;
             --text-muted: #89d982;
             --card-bg: rgba(9, 18, 9, 0.92);
+            --btn-bg: #0c160c;
+            --btn-text: #39ff14;
+            --btn-hover: #39ff14;
+            --btn-hover-text: #050805;
             --accent-color: #39ff14;
             --accent-soft: rgba(57, 255, 20, 0.12);
             --border-color: rgba(57, 255, 20, 0.35);
@@ -626,6 +634,42 @@
             content: " _";
             color: var(--accent-color);
             animation: cursorBlink 1s steps(2, start) infinite;
+        }
+        body.cosmic-mode .credentials-badge,
+        body.cosmic-mode .location-badge,
+        body.cosmic-mode .standard-strip,
+        body.cosmic-mode .suite-link,
+        body.cosmic-mode .page-nav a,
+        body.cosmic-mode .link-btn,
+        body.cosmic-mode .tag,
+        body.cosmic-mode .metric,
+        body.cosmic-mode .score-badge,
+        body.cosmic-mode .status-pill,
+        body.cosmic-mode div[style*="--btn-bg"],
+        body.cyberpunk-mode .credentials-badge,
+        body.cyberpunk-mode .location-badge,
+        body.cyberpunk-mode .standard-strip,
+        body.cyberpunk-mode .suite-link,
+        body.cyberpunk-mode .page-nav a,
+        body.cyberpunk-mode .link-btn,
+        body.cyberpunk-mode .tag,
+        body.cyberpunk-mode .metric,
+        body.cyberpunk-mode .score-badge,
+        body.cyberpunk-mode .status-pill,
+        body.cyberpunk-mode div[style*="--btn-bg"] {
+            background: var(--btn-bg) !important;
+            color: var(--text-main) !important;
+            border-color: var(--border-color) !important;
+        }
+        body.cosmic-mode .suite-link:hover,
+        body.cosmic-mode .page-nav a:hover,
+        body.cosmic-mode .link-btn:hover,
+        body.cyberpunk-mode .suite-link:hover,
+        body.cyberpunk-mode .page-nav a:hover,
+        body.cyberpunk-mode .link-btn:hover {
+            background: var(--accent-color) !important;
+            color: var(--btn-hover-text) !important;
+            border-color: var(--accent-color) !important;
         }
         @keyframes cursorBlink { 50% { opacity: 0; } }
         @media (prefers-reduced-motion: reduce) {
