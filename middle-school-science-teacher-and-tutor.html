@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching & Education | Anthony R. Ball</title>
-    <meta name="description" content="Teaching portfolio, MTEL/DESE licensure pathway evidence, science instruction, tutoring, curriculum design, and classroom practice of Anthony R. Ball.">
-    <meta name="keywords" content="Anthony R Ball science teacher, Massachusetts science tutor, middle school science tutor, biology tutor, chemistry tutor, MTEL Communication and Literacy Reading, DESE General Science 5-8, Massachusetts educator waiver, STEM tutor Massachusetts, inquiry-based science education, curriculum development, New England tutor">
+    <meta name="description" content="Teaching portfolio, MTEL/DESE licensure pathway evidence, science instruction, tutoring, classroom practice, STE grants, and 21st-century hands-on science demonstrations by Anthony R. Ball.">
+    <meta name="keywords" content="Anthony R Ball science teacher, Massachusetts science tutor, middle school science tutor, biology tutor, chemistry tutor, MTEL Communication and Literacy Reading Writing passed, DESE General Science 5-8, Massachusetts educator waiver, STEM tutor Massachusetts, inquiry-based science education, classroom management, SEL, RTI MTSS, scaffolding, de-escalation, STE grants, Lawrence Massachusetts science education, New England tutor">
     <meta name="author" content="Anthony R. Ball">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://pixelpolicyuser.github.io/career-portfolio/middle-school-science-teacher-and-tutor.html">
@@ -31,7 +31,30 @@
         "url": "https://pixelpolicyuser.github.io/career-portfolio/middle-school-science-teacher-and-tutor.html",
         "image": "https://pixelpolicyuser.github.io/career-portfolio/me.png",
         "jobTitle": "Science Teacher and Tutor",
-        "knowsAbout": ["Middle school science", "Biology tutoring", "Chemistry tutoring", "STEM education", "Curriculum development", "Inquiry-based learning", "MTEL Communication and Literacy", "DESE General Science 5-8 licensure pathway"]
+        "knowsAbout": ["Middle school science", "Biology tutoring", "Chemistry tutoring", "STEM education", "Curriculum development", "Inquiry-based learning", "MTEL Communication and Literacy Reading and Writing", "DESE General Science 5-8 licensure pathway", "RTI and MTSS academic support", "Social-emotional learning", "Classroom management", "Science grant writing", "Hands-on STE demonstrations"],
+        "subjectOf": [
+          {
+            "@type": "VideoObject",
+            "name": "Computer-Controlled Factory Processing Demonstration",
+            "description": "Professional system-integration demonstration used as evidence for translating automation, data literacy, quality control, and engineering design thinking into middle-school STE practice.",
+            "thumbnailUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-factory-processing-demo-poster.jpg",
+            "contentUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-factory-processing-demo.mp4"
+          },
+          {
+            "@type": "VideoObject",
+            "name": "Optical Test Bed Demonstration 1",
+            "description": "Professional optics and ultraviolet test-bed demonstration used as evidence for translating photobiology, optical engineering, measurement, and experimental design into standards-aligned STE learning.",
+            "thumbnailUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-optical-test-bed-demo-1-poster.jpg",
+            "contentUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-optical-test-bed-demo-1.mp4"
+          },
+          {
+            "@type": "VideoObject",
+            "name": "Optical Test Bed Demonstration 2",
+            "description": "Professional optical test-bed demonstration used as evidence for hands-on STE learning, systems thinking, and science-to-engineering classroom translation.",
+            "thumbnailUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-optical-test-bed-demo-2-poster.jpg",
+            "contentUrl": "https://pixelpolicyuser.github.io/career-portfolio/teaching-optical-test-bed-demo-2.mp4"
+          }
+        ]
       }
     }
     </script>
@@ -378,6 +401,81 @@
         .matrix-list li:last-child { border-bottom: none; }
         .matrix-list strong { color: var(--accent-color); }
 
+        /* --- EVIDENCE / PRACTICE FEATURE CARDS --- */
+        .feature-grid,
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .feature-card,
+        .video-card {
+            background: linear-gradient(145deg, var(--btn-bg), var(--card-bg));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+        }
+
+        .feature-card h3,
+        .video-card h3 {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .feature-card p,
+        .video-card p {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .practice-bridge {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 18px;
+            align-items: stretch;
+            margin-top: 18px;
+        }
+
+        .practice-callout {
+            border-left: 4px solid var(--accent-color);
+            background: var(--btn-bg);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .practice-callout strong {
+            color: var(--accent-color);
+        }
+
+        .video-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .video-card video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            object-fit: cover;
+        }
+
+        .video-card-body {
+            padding: 16px;
+        }
+
+        .media-note {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            margin-top: 12px;
+        }
+
         /* --- LINK BUTTONS --- */
         .link-btn {
             display: flex;
@@ -482,6 +580,7 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
             .study-grid { grid-template-columns: 1fr; }
+            .feature-grid, .media-grid, .practice-bridge { grid-template-columns: 1fr; }
             .exp-header { flex-direction: column; }
             .exp-date { margin-top: 5px; }
             .hero h1 { font-size: 1.8rem; }
@@ -754,13 +853,13 @@
         <div class="section-card animate-in delay-2">
             <div class="section-title">Teaching Philosophy & Profile</div>
             <p class="bio-text">
-                As a GS-13 biologist with deployments across the NIH, CDC, DOD, and EPA, I bring demonstrable, 21st-century Science, Technology, and Engineering (STE) practices directly into the classroom. My instruction is anchored by over 168 university credits in the natural and health sciences, translating complex translational research into highly accessible, standards-aligned pedagogy.
+                As a GS-13 biologist with deployments across the NIH, CDC, DOD, and EPA, I bring demonstrable, 21st-century Science, Technology, and Engineering (STE) practices directly into the classroom. My instruction is anchored by over 168 university credits in the natural and health sciences and by practical work in optical systems, automation, microbiology, medical-device development, grant writing, and research-team leadership.
             </p>
             <div class="highlight-text">
                 "Not everyone comes equipped with every skill for the classroom. As a young learner who utilized an IEP, I understand that learning can be daunting. I am a steadfast, patient, and sympathetic coach dedicated to equitable outcomes."
             </div>
             <p class="bio-text">
-                My mission is to close the achievement gap through rigorous, inquiry-based learning, meticulous data tracking, and English Language Development (ELD) integration, ensuring students from all backgrounds master DESE/NGSS frameworks and develop lasting self-determination.
+                My mission is to close the achievement gap through rigorous, inquiry-based learning, careful formative assessment, English Language Development (ELD) integration, and calm classroom systems. I want students to experience science as something they can touch, test, build, measure, argue from evidence, and eventually imagine themselves doing.
             </p>
         </div>
 
@@ -899,6 +998,104 @@
         </div>
 
         <div class="section-card animate-in delay-5">
+            <div class="section-title">Professional Practice Framework</div>
+            <p class="bio-text">
+                My teacher-preparation materials emphasize a practical classroom model: predictable routines, restorative language, de-escalation before escalation, scaffolded academic discourse, and differentiated access for students with IEPs, 504 plans, multilingual needs, and varied confidence levels. The goal is not to dilute science; it is to build enough structure that every student can participate in rigorous science.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Classroom Management</h3>
+                    <p>Clear entry routines, visible expectations, calm redirection, restorative follow-up, and consistent consequences aligned with district policy and school culture.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>SEL & Belonging</h3>
+                    <p>Warm accountability, student dignity, responsible decision-making, relationship skills, and psychologically safe ways for hesitant learners to join the scientific conversation.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Scaffolding & MTSS</h3>
+                    <p>Vocabulary previews, sentence frames, visual models, gradual release, formative checks, reteaching loops, and extension tasks for students ready for deeper transfer.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card animate-in delay-5">
+            <div class="section-title">Community-Connected STE & Grant Development</div>
+            <p class="bio-text">
+                A major strength I can offer a school district is the ability to connect classroom science with local needs, external partners, and fundable STE opportunities. I am willing to help generate grant concepts, draft proposals, assemble supporting documentation, and work with a town or district's procurement, grant-writing, and budget offices so the district—not an individual classroom—can submit compliant proposals that increase access to equipment, field learning, and hands-on science.
+            </p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Merrimack River Inquiry</h3>
+                    <p>Students investigate water quality, ecosystems, data collection, evidence-based communication, and civic stewardship through a local environmental science lens.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Urban Green Spaces</h3>
+                    <p>Students study biodiversity, habitat, heat, design, and community health while learning to present findings to authentic audiences.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Waste & Recycling Systems</h3>
+                    <p>Students connect matter, engineering design, public communication, and measurable community improvement through local waste-management challenges.</p>
+                </div>
+            </div>
+
+            <div class="practice-bridge">
+                <div class="practice-callout">
+                    <strong>Grant-ready posture:</strong> translate classroom needs into district-submittable STE proposals with objectives, budgets, partners, procurement logic, measurable outcomes, and equity/access rationale.
+                </div>
+                <div class="practice-callout">
+                    <strong>Partnership-ready posture:</strong> develop guest-speaker, mentorship, university-lab, field-demonstration, and joint-project concepts that expose students to real scientific careers without requiring a school to invent the network from scratch.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card animate-in delay-5">
+            <div class="section-title">21st-Century STE Demonstrations</div>
+            <p class="bio-text">
+                These professional demonstrations come from my own business and research work, not from student footage. They serve as evidence of the kinds of hands-on systems thinking I can translate into age-appropriate STE learning: automation, optics, measurement, quality control, scientific instrumentation, data literacy, engineering design, and iterative problem solving.
+            </p>
+
+            <div class="media-grid">
+                <article class="video-card">
+                    <video controls playsinline preload="metadata" poster="teaching-factory-processing-demo-poster.jpg" aria-label="Computer-controlled factory processing demonstration">
+                        <source src="teaching-factory-processing-demo.mp4" type="video/mp4">
+                        Your browser does not support embedded video.
+                    </video>
+                    <div class="video-card-body">
+                        <h3>System Integration: Factory Processing</h3>
+                        <p>Automation, process control, robotics concepts, quality control, data-driven decision-making, and engineering design thinking using a visually accessible manufacturing system.</p>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <video controls playsinline preload="metadata" poster="teaching-optical-test-bed-demo-1-poster.jpg" aria-label="Optical and ultraviolet test bed demonstration one">
+                        <source src="teaching-optical-test-bed-demo-1.mp4" type="video/mp4">
+                        Your browser does not support embedded video.
+                    </video>
+                    <div class="video-card-body">
+                        <h3>Optics & UV Test Bed I</h3>
+                        <p>Photobiology, light paths, optical alignment, UVGI concepts, measurement, instrumentation, and experimental controls translated into student-facing STE questions.</p>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <video controls playsinline preload="metadata" poster="teaching-optical-test-bed-demo-2-poster.jpg" aria-label="Optical and ultraviolet test bed demonstration two">
+                        <source src="teaching-optical-test-bed-demo-2.mp4" type="video/mp4">
+                        Your browser does not support embedded video.
+                    </video>
+                    <div class="video-card-body">
+                        <h3>Optics & UV Test Bed II</h3>
+                        <p>Applied physics and engineering evidence for lessons on wavelength, energy transfer, design constraints, validation, and how scientific prototypes become testable systems.</p>
+                    </div>
+                </article>
+            </div>
+            <p class="media-note">
+                Videos are user-initiated and do not autoplay. Web-optimized deployment copies are used here so the page remains practical on desktop, tablet, and mobile.
+            </p>
+        </div>
+
+        <div class="section-card animate-in delay-5">
             <div class="section-title">Academic Credentials</div>
             <ul class="exp-bullets" style="margin-bottom: 20px;">
                 <li><strong>M.S. in Health Science</strong> &mdash; Regulatory Affairs, George Washington University</li>
@@ -911,9 +1108,9 @@
                 <li><strong>Massachusetts General Science 5-8 Initial License pathway</strong> &mdash; DESE/ELAR Academic Teacher application pending; full licensure process underway so future teaching roles do not depend on waiver status.</li>
                 <li><strong>Prior district waiver approved</strong> &mdash; DESE/Lawrence district waiver approved and issued September 16, 2025; effective July 1, 2025 through March 13, 2026; now expired.</li>
                 <li><strong>MEPID</strong> &mdash; 58194263, as shown in ELAR/MTEL records.</li>
-                <li><strong>MTEL Communication & Literacy Skills - Reading / MA101</strong> &mdash; met the qualifying score on May 29, 2026. This is the reading half of the Communication & Literacy requirement; the companion Writing / MA201 subtest remains in grading / completion status.</li>
-                <li><strong>Reading subarea performance</strong> &mdash; "Most or all items" correct in 5 of 6 reported subareas; "Many of the items" correct in Writer's Purpose and Point of View.</li>
-                <li><strong>MTEL Communication & Literacy Skills - Writing / MA201</strong> &mdash; still being graded / in progress in the July 2026 MTEL account records.</li>
+                <li><strong>MTEL Communication & Literacy Skills - Reading / MA101</strong> &mdash; met the qualifying score; test date May 29, 2026; reported as qualifying as of June 23, 2026.</li>
+                <li><strong>MTEL Communication & Literacy Skills - Writing / MA201</strong> &mdash; met the qualifying score; test date June 9, 2026; reported as qualifying as of July 8, 2026.</li>
+                <li><strong>Score-report performance profile</strong> &mdash; Reading and Writing reports show performance in the strongest displayed bands across the listed multiple-choice subareas and open-response exercises.</li>
                 <li><strong>MTEL General Science (064)</strong> &mdash; registered for October 3, 2026 at Pearson Professional Centers, Worcester, MA.</li>
             </ul>
 
