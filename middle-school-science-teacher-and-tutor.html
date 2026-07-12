@@ -540,6 +540,86 @@
             transform: translateY(-1px);
         }
 
+        /* --- TUTORING SERVICES CTA --- */
+        .tutor-service-card {
+            border: 1px solid color-mix(in srgb, var(--accent-color) 38%, var(--border-color));
+            background:
+                linear-gradient(145deg, color-mix(in srgb, var(--accent-color) 9%, transparent), transparent 55%),
+                var(--card-bg);
+        }
+
+        .tutor-accordion {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--btn-bg);
+        }
+
+        .tutor-accordion summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tutor-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .tutor-accordion summary span {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutor-accordion summary i {
+            color: var(--accent-color);
+            transition: transform 0.25s ease;
+        }
+
+        .tutor-accordion[open] summary i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .tutor-panel {
+            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+            padding: 20px;
+        }
+
+        .tutor-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .tutor-highlight {
+            background: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+
+        .tutor-highlight strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tutor-action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
         /* --- FOOTER & SUITE NAVIGATION --- */
         .suite-nav {
             display: flex;
@@ -606,6 +686,7 @@
         @media (max-width: 600px) {
             .study-grid { grid-template-columns: 1fr; }
             .feature-grid, .media-grid, .practice-bridge { grid-template-columns: 1fr; }
+            .tutor-highlights { grid-template-columns: 1fr; }
             .exp-header { flex-direction: column; }
             .exp-date { margin-top: 5px; }
             .hero h1 { font-size: 1.8rem; }
@@ -875,6 +956,56 @@
             <div class="mepid">Massachusetts General Science 5-8 Licensure Pathway</div>
         </div>
 
+        <div class="section-card tutor-service-card animate-in delay-2">
+            <div class="section-title">Private Science Tutoring & Mentoring</div>
+            <details class="tutor-accordion">
+                <summary>
+                    <span><i class="fa-solid fa-user-graduate"></i> Need middle school science tutoring support?</span>
+                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </summary>
+                <div class="tutor-panel">
+                    <p class="bio-text">
+                        I offer one-on-one middle school science tutoring and academic mentoring for students who need stronger science understanding, more confidence, better study habits, or more tailored support than a busy classroom can always provide.
+                    </p>
+                    <div class="tutor-highlights">
+                        <div class="tutor-highlight">
+                            <strong>Grades 5-8 Science</strong>
+                            Life science, ecosystems, Earth and space science, physical science, engineering design, vocabulary, homework, and MCAS-style reasoning.
+                        </div>
+                        <div class="tutor-highlight">
+                            <strong>Scientist-Led Mentoring</strong>
+                            Real-world examples from microbiology, optics, automation, medical devices, UV light, experimentation, and evidence-based problem solving.
+                        </div>
+                        <div class="tutor-highlight">
+                            <strong>Student-Centered Support</strong>
+                            Calm coaching for confidence, executive function, organization, communication, frustration recovery, IEP/504 awareness, and study habits.
+                        </div>
+                    </div>
+                    <p class="bio-text">
+                        When enough preparation time is available, I can design interactive explanations, visual models, practice materials, vocabulary supports, and structured checks for understanding around the student's current classwork and goals.
+                    </p>
+                    <div class="tutor-action-row">
+                        <a href="middle-school-science-tutor-services.html" class="link-btn">
+                            <i class="fa-solid fa-chalkboard-user"></i> View Tutoring Services Brief
+                        </a>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+        <div class="section-card animate-in delay-2">
+            <div class="section-title">Contact & Documents</div>
+            <a href="mailto:Nora.mdr@gmail.com" class="link-btn">
+                <i class="fa-solid fa-envelope"></i> Contact Anthony R. Ball
+            </a>
+            <a href="mailto:Nora.mdr@gmail.com?subject=Tutoring%20Inquiry%20-%20Anthony%20R.%20Ball" class="link-btn">
+                <i class="fa-solid fa-user-graduate"></i> Ask About Science Tutoring
+            </a>
+            <a href="mailto:Nora.mdr@gmail.com?subject=Resume%20Request%20-%20Anthony%20R.%20Ball" class="link-btn">
+                <i class="fa-solid fa-file-pdf"></i> Request Complete CV / Resume
+            </a>
+        </div>
+
         <div class="section-card animate-in delay-2">
             <div class="section-title">Teaching Philosophy & Profile</div>
             <p class="bio-text">
@@ -1141,14 +1272,6 @@
                 <li><strong>Score-report performance profile</strong> &mdash; Reading and Writing reports show performance in the strongest displayed bands across the listed multiple-choice subareas and open-response exercises.</li>
                 <li><strong>MTEL General Science (064)</strong> &mdash; registered for October 3, 2026 at Pearson Professional Centers, Worcester, MA.</li>
             </ul>
-
-            <div class="section-title" style="margin-top: 30px;">Contact & Documents</div>
-            <a href="mailto:Nora.mdr@gmail.com" class="link-btn">
-                <i class="fa-solid fa-envelope"></i> Contact Anthony R. Ball
-            </a>
-            <a href="mailto:Nora.mdr@gmail.com?subject=Resume%20Request%20-%20Anthony%20R.%20Ball" class="link-btn">
-                <i class="fa-solid fa-file-pdf"></i> Request Complete CV / Resume
-            </a>
         </div>
 
         <div class="suite-nav animate-in delay-5">
