@@ -68,7 +68,50 @@
             background: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 28px 18px 48px;
+            padding: 84px 18px 48px;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        body.dark-mode {
+            --bg-color: #121a20;
+            --text-main: #e7f0f3;
+            --text-muted: #a8bac2;
+            --card-bg: #1c2730;
+            --btn-bg: #253440;
+            --accent-color: #29c7d6;
+            --accent-dark: #e7f0f3;
+            --border-color: #38505d;
+            --shadow: 0 14px 34px rgba(0,0,0,0.30);
+        }
+        body.cosmic-mode {
+            --bg-color: #07111f;
+            --text-main: #e8fbff;
+            --text-muted: #a7d9e5;
+            --card-bg: rgba(11, 27, 46, 0.86);
+            --btn-bg: rgba(8, 21, 38, 0.92);
+            --accent-color: #00e5ff;
+            --accent-dark: #e8fbff;
+            --border-color: rgba(0, 229, 255, 0.34);
+            --shadow: 0 0 24px rgba(0, 229, 255, 0.12), 0 16px 42px rgba(0,0,0,0.35);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.16), transparent 32%),
+                radial-gradient(circle at 80% 10%, rgba(120, 89, 255, 0.16), transparent 28%),
+                linear-gradient(135deg, #07111f, #0b1630 52%, #150d2e);
+        }
+        body.cyberpunk-mode {
+            --bg-color: #100914;
+            --text-main: #fff4fb;
+            --text-muted: #f5b8d9;
+            --card-bg: rgba(28, 13, 33, 0.88);
+            --btn-bg: rgba(45, 18, 52, 0.92);
+            --accent-color: #ff3df2;
+            --accent-dark: #fff4fb;
+            --border-color: rgba(255, 61, 242, 0.34);
+            --shadow: 0 0 24px rgba(255, 61, 242, 0.14), 0 16px 42px rgba(0,0,0,0.38);
+            background:
+                linear-gradient(rgba(255, 61, 242, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 248, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(135deg, #100914, #1c0d2b 54%, #061b2b);
+            background-size: 28px 28px, 28px 28px, auto;
         }
         .container { max-width: 980px; margin: 0 auto; }
         .draft-banner {
@@ -79,6 +122,13 @@
             padding: 12px 16px;
             margin-bottom: 22px;
             font-weight: 700;
+        }
+        body.dark-mode .draft-banner,
+        body.cosmic-mode .draft-banner,
+        body.cyberpunk-mode .draft-banner {
+            background: var(--btn-bg);
+            color: var(--text-main);
+            border-color: var(--border-color);
         }
         .hero, .card {
             background: var(--card-bg);
@@ -138,6 +188,11 @@
             border: 1px solid var(--border-color);
             background: linear-gradient(145deg, #ffffff, #f7fbfb);
         }
+        body.dark-mode .phase,
+        body.cosmic-mode .phase,
+        body.cyberpunk-mode .phase {
+            background: var(--btn-bg);
+        }
         .phase strong { color: var(--accent-color); display: block; margin-bottom: 4px; }
         .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border-color); }
         table { width: 100%; border-collapse: collapse; min-width: 720px; }
@@ -149,6 +204,11 @@
             padding: 16px;
             border-radius: 12px;
             font-weight: 700;
+        }
+        body.dark-mode .sentence-frame,
+        body.cosmic-mode .sentence-frame,
+        body.cyberpunk-mode .sentence-frame {
+            background: var(--btn-bg);
         }
         .svg-panel {
             background: #0d1b2a;
@@ -175,13 +235,79 @@
         }
         .back-link:hover { border-color: var(--accent-color); transform: translateY(-1px); }
         .nav-row { display: flex; justify-content: flex-start; margin-bottom: 18px; }
+        .mode-switcher {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+        }
+        .mode-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--btn-bg);
+            color: var(--text-main);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .mode-btn:hover,
+        .mode-btn.active {
+            transform: translateY(-1px);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        .starfield {
+            display: none;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        body.cosmic-mode .starfield { display: block; }
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            from { opacity: 0.25; transform: scale(0.8); }
+            to { opacity: 0.95; transform: scale(1.15); }
+        }
         @media (max-width: 820px) {
             .grid, .grid.two, .grid.three, .sequence { grid-template-columns: 1fr; }
             .hero, .card { padding: 20px; }
+            body { padding-top: 76px; }
+            .mode-switcher { width: calc(100% - 24px); justify-content: center; }
+        }
+        @media print {
+            .mode-switcher, .starfield { display: none !important; }
+            body { padding: 0; background: #fff; color: #000; }
         }
     </style>
 </head>
 <body>
+    <div class="starfield" id="starfield" aria-hidden="true"></div>
+    <nav class="mode-switcher" aria-label="Display mode">
+        <button class="mode-btn" type="button" data-theme="light" aria-label="Light mode" title="Light mode">☀</button>
+        <button class="mode-btn" type="button" data-theme="dark" aria-label="Dark mode" title="Dark mode">◐</button>
+        <button class="mode-btn" type="button" data-theme="cosmic" aria-label="Cosmic mode" title="Cosmic mode">🚀</button>
+        <button class="mode-btn" type="button" data-theme="cyberpunk" aria-label="Cyberpunk mode" title="Cyberpunk mode">▣</button>
+    </nav>
     <main class="container">
         <div class="draft-banner">Demo Material for Evaluator Review</div>
         <div class="nav-row">
@@ -356,5 +482,47 @@
 
         <p class="footer"><a class="back-link" href="https://pixelpolicyuser.github.io/career-portfolio/middle-school-science-teacher-and-tutor.html">← Return to Teaching &amp; Tutoring Profile</a></p>
     </main>
+    <script>
+        (() => {
+            const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+            const starfield = document.getElementById('starfield');
+            const themeClasses = ['dark-mode', 'cosmic-mode', 'cyberpunk-mode'];
+            const allowedThemes = ['light', 'dark', 'cosmic', 'cyberpunk'];
+
+            function generateStarfield() {
+                if (!starfield) return;
+                starfield.innerHTML = '';
+                for (let i = 0; i < 110; i += 1) {
+                    const star = document.createElement('span');
+                    const size = Math.random() * 2.2 + 0.8;
+                    star.className = 'star';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.animationDelay = `${Math.random() * 4}s`;
+                    star.style.animationDuration = `${Math.random() * 4 + 3}s`;
+                    starfield.appendChild(star);
+                }
+            }
+
+            function setTheme(theme) {
+                const safeTheme = allowedThemes.includes(theme) ? theme : 'light';
+                document.body.classList.remove(...themeClasses);
+                if (safeTheme !== 'light') document.body.classList.add(`${safeTheme}-mode`);
+                modeButtons.forEach((button) => {
+                    const active = button.dataset.theme === safeTheme;
+                    button.classList.toggle('active', active);
+                    button.setAttribute('aria-pressed', String(active));
+                });
+                localStorage.setItem('aball-site-theme', safeTheme);
+                if (safeTheme === 'cosmic') generateStarfield();
+                else if (starfield) starfield.innerHTML = '';
+            }
+
+            modeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.theme)));
+            setTheme(localStorage.getItem('aball-site-theme') || 'light');
+        })();
+    </script>
 </body>
 </html>

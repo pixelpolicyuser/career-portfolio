@@ -1295,8 +1295,16 @@
         const icon = themeBtn.querySelector('i');
 
         themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
+            const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+            document.body.classList.remove('cosmic-mode', 'cyberpunk-mode');
+            document.body.classList.toggle('dark-mode', nextTheme === 'dark');
+            localStorage.setItem('aball-site-theme', nextTheme);
+            document.querySelectorAll('.mode-btn').forEach((button) => {
+                const active = button.dataset.theme === nextTheme;
+                button.classList.toggle('active', active);
+                button.setAttribute('aria-pressed', String(active));
+            });
+            if (nextTheme === 'dark') {
                 icon.classList.replace('fa-moon', 'fa-sun');
             } else {
                 icon.classList.replace('fa-sun', 'fa-moon');
@@ -1358,6 +1366,10 @@
                     button.classList.toggle('active', active);
                     button.setAttribute('aria-pressed', String(active));
                 });
+                if (icon) {
+                    icon.classList.toggle('fa-sun', safeTheme === 'dark');
+                    icon.classList.toggle('fa-moon', safeTheme !== 'dark');
+                }
                 localStorage.setItem('aball-site-theme', safeTheme);
                 if (safeTheme === 'cosmic') generateStarfield();
                 else if (starfield) starfield.innerHTML = '';

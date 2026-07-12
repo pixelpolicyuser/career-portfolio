@@ -58,24 +58,83 @@
   }
   </script>
   <style>
+    :root {
+      --site-bg: #eef2f1;
+      --sheet-bg: #ffffff;
+      --text-main: #17211f;
+      --text-muted: #4c5755;
+      --accent-color: #1d4d4f;
+      --accent-warm: #7c451a;
+      --card-bg: #fbfdfd;
+      --soft-bg: #f5fbfb;
+      --border-color: #cbd8d6;
+      --shadow: 0 2px 18px rgba(0, 0, 0, .13);
+    }
     @page {
       size: A4 portrait;
       margin: 12mm 13mm 13mm 13mm;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: #eef2f1; color: #17211f; }
+    html, body { margin: 0; padding: 0; background: var(--site-bg); color: var(--text-main); }
     body {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 10.1pt;
       line-height: 1.35;
+      padding-top: 66px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    body.dark-mode {
+      --site-bg: #121a20;
+      --sheet-bg: #1c2730;
+      --text-main: #e7f0f3;
+      --text-muted: #a8bac2;
+      --accent-color: #29c7d6;
+      --accent-warm: #e4aa4c;
+      --card-bg: #253440;
+      --soft-bg: #20303a;
+      --border-color: #38505d;
+      --shadow: 0 14px 34px rgba(0,0,0,0.30);
+    }
+    body.cosmic-mode {
+      --site-bg: #07111f;
+      --sheet-bg: rgba(11, 27, 46, 0.90);
+      --text-main: #e8fbff;
+      --text-muted: #a7d9e5;
+      --accent-color: #00e5ff;
+      --accent-warm: #ffd166;
+      --card-bg: rgba(8, 21, 38, 0.92);
+      --soft-bg: rgba(8, 21, 38, 0.78);
+      --border-color: rgba(0, 229, 255, 0.34);
+      --shadow: 0 0 24px rgba(0, 229, 255, 0.12), 0 16px 42px rgba(0,0,0,0.35);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.16), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(120, 89, 255, 0.16), transparent 28%),
+        linear-gradient(135deg, #07111f, #0b1630 52%, #150d2e);
+    }
+    body.cyberpunk-mode {
+      --site-bg: #100914;
+      --sheet-bg: rgba(28, 13, 33, 0.91);
+      --text-main: #fff4fb;
+      --text-muted: #f5b8d9;
+      --accent-color: #ff3df2;
+      --accent-warm: #ffe66d;
+      --card-bg: rgba(45, 18, 52, 0.92);
+      --soft-bg: rgba(45, 18, 52, 0.76);
+      --border-color: rgba(255, 61, 242, 0.34);
+      --shadow: 0 0 24px rgba(255, 61, 242, 0.14), 0 16px 42px rgba(0,0,0,0.38);
+      background:
+        linear-gradient(rgba(255, 61, 242, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 248, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(135deg, #100914, #1c0d2b 54%, #061b2b);
+      background-size: 28px 28px, 28px 28px, auto;
     }
     .sheet {
       width: min(210mm, calc(100% - 24px));
       min-height: 297mm;
       margin: 16px auto;
-      background: #fff;
+      background: var(--sheet-bg);
       padding: 12mm 13mm 13mm 13mm;
-      box-shadow: 0 2px 18px rgba(0, 0, 0, .13);
+      box-shadow: var(--shadow);
     }
     .page-break { break-before: page; page-break-before: always; }
     header {
@@ -83,26 +142,26 @@
       grid-template-columns: 1fr 34mm;
       gap: 12px;
       align-items: center;
-      border-bottom: 3px solid #1d4d4f;
+      border-bottom: 3px solid var(--accent-color);
       padding-bottom: 9px;
       margin-bottom: 10px;
     }
     h1 {
       margin: 0;
-      color: #173f42;
+      color: var(--accent-color);
       font-size: 21.5pt;
       line-height: 1.05;
       letter-spacing: 0;
     }
     .subtitle {
       margin-top: 5px;
-      color: #7c451a;
+      color: var(--accent-warm);
       font-weight: 700;
       font-size: 10.9pt;
     }
     .contact {
       margin-top: 5px;
-      color: #3a4644;
+      color: var(--text-muted);
       font-size: 8.7pt;
       line-height: 1.36;
     }
@@ -111,22 +170,22 @@
       height: 31mm;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #d88d36;
+      border: 3px solid var(--accent-warm);
       display: block;
       margin-left: auto;
     }
     h2 {
       margin: 11px 0 5px;
       padding-bottom: 2px;
-      border-bottom: 1px solid #bfd0cf;
-      color: #173f42;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--accent-color);
       font-size: 10.8pt;
       text-transform: uppercase;
       letter-spacing: .35px;
     }
     h3 {
       margin: 8px 0 3px;
-      color: #1d3230;
+      color: var(--text-main);
       font-size: 10.2pt;
     }
     p { margin: 0 0 7px; }
@@ -134,10 +193,10 @@
     li { margin-bottom: 3px; }
     .compact li { margin-bottom: 2px; }
     .pillbox {
-      border-left: 3px solid #2f6f73;
+      border-left: 3px solid var(--accent-color);
       padding: 6px 0 6px 9px;
       margin: 7px 0;
-      background: #f5fbfb;
+      background: var(--soft-bg);
     }
     .grid {
       display: grid;
@@ -145,18 +204,18 @@
       gap: 7px 12px;
     }
     .card {
-      border: 1px solid #cbd8d6;
-      border-top: 4px solid #2f6f73;
-      background: #fbfdfd;
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--accent-color);
+      background: var(--card-bg);
       padding: 7px;
       min-height: 58px;
     }
     .card strong {
       display: block;
-      color: #173f42;
+      color: var(--accent-color);
       margin-bottom: 3px;
     }
-    .small { font-size: 8.75pt; color: #4c5755; }
+    .small { font-size: 8.75pt; color: var(--text-muted); }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -166,25 +225,80 @@
     th {
       text-align: left;
       color: #fff;
-      background: #173f42;
+      background: var(--accent-color);
       padding: 5px 6px;
       vertical-align: top;
     }
     td {
-      border: 1px solid #cbd8d6;
+      border: 1px solid var(--border-color);
       padding: 5px 6px;
       vertical-align: top;
     }
-    tr:nth-child(even) td { background: #f8fbfa; }
+    tr:nth-child(even) td { background: var(--soft-bg); }
     .signature { margin-top: 11px; }
-    a { color: #1d4d4f; }
+    a { color: var(--accent-color); }
+    .mode-switcher {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      background: var(--sheet-bg);
+      box-shadow: var(--shadow);
+    }
+    .mode-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    .mode-btn:hover,
+    .mode-btn.active {
+      transform: translateY(-1px);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    .starfield {
+      display: none;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    body.cosmic-mode .starfield { display: block; }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.25; transform: scale(0.8); }
+      to { opacity: 0.95; transform: scale(1.15); }
+    }
     @media print {
-      html, body { background: #fff; }
+      html, body { background: #fff; padding: 0; }
       .sheet { margin: 0; box-shadow: none; width: auto; min-height: auto; padding: 0; }
       a { color: inherit; text-decoration: none; }
+      .mode-switcher, .starfield { display: none !important; }
     }
     @media screen and (max-width: 720px) {
       body { font-size: 10.8pt; }
+      .mode-switcher { width: calc(100% - 24px); justify-content: center; }
       .sheet { width: calc(100% - 18px); padding: 18px; margin: 9px auto; }
       header { grid-template-columns: 1fr; text-align: center; }
       .portrait { margin: 0 auto; }
@@ -196,6 +310,13 @@
   </style>
 </head>
 <body>
+  <div class="starfield" id="starfield" aria-hidden="true"></div>
+  <nav class="mode-switcher" aria-label="Display mode">
+    <button class="mode-btn" type="button" data-theme="light" aria-label="Light mode" title="Light mode">☀</button>
+    <button class="mode-btn" type="button" data-theme="dark" aria-label="Dark mode" title="Dark mode">◐</button>
+    <button class="mode-btn" type="button" data-theme="cosmic" aria-label="Cosmic mode" title="Cosmic mode">🚀</button>
+    <button class="mode-btn" type="button" data-theme="cyberpunk" aria-label="Cyberpunk mode" title="Cyberpunk mode">▣</button>
+  </nav>
   <main class="sheet">
     <header>
       <div>
@@ -301,5 +422,47 @@
       <p>I would be happy to speak with parents or guardians about whether I may be a good fit for your student.</p>
     </section>
   </main>
+  <script>
+    (() => {
+      const modeButtons = Array.from(document.querySelectorAll('.mode-btn'));
+      const starfield = document.getElementById('starfield');
+      const themeClasses = ['dark-mode', 'cosmic-mode', 'cyberpunk-mode'];
+      const allowedThemes = ['light', 'dark', 'cosmic', 'cyberpunk'];
+
+      function generateStarfield() {
+        if (!starfield) return;
+        starfield.innerHTML = '';
+        for (let i = 0; i < 110; i += 1) {
+          const star = document.createElement('span');
+          const size = Math.random() * 2.2 + 0.8;
+          star.className = 'star';
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.animationDelay = `${Math.random() * 4}s`;
+          star.style.animationDuration = `${Math.random() * 4 + 3}s`;
+          starfield.appendChild(star);
+        }
+      }
+
+      function setTheme(theme) {
+        const safeTheme = allowedThemes.includes(theme) ? theme : 'light';
+        document.body.classList.remove(...themeClasses);
+        if (safeTheme !== 'light') document.body.classList.add(`${safeTheme}-mode`);
+        modeButtons.forEach((button) => {
+          const active = button.dataset.theme === safeTheme;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        localStorage.setItem('aball-site-theme', safeTheme);
+        if (safeTheme === 'cosmic') generateStarfield();
+        else if (starfield) starfield.innerHTML = '';
+      }
+
+      modeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.theme)));
+      setTheme(localStorage.getItem('aball-site-theme') || 'light');
+    })();
+  </script>
 </body>
 </html>
