@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A longitudinal scientific case study of RB-017, a governed personal agentic AI research program built with deterministic policy controls, Ollama, Docker, Open WebUI, PowerShell, and local language models.">
+  <meta name="keywords" content="governed personal AI, agentic AI governance, AI safety, local AI research, deterministic policy gate, human-in-the-loop AI, AI workflow automation, Ollama, Open WebUI, Docker, PowerShell automation, Qwen evaluation, Granite evaluation, AI containment, model evaluation, personal AI laboratory, Remediation Bureau, Anthony R. Ball">
+  <meta name="author" content="Anthony R. Ball; Codex (OpenAI)">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pixelpolicyuser.github.io/career-portfolio/RB-017_Governed_Personal_Agentic_AI_Longitudinal_Research_Report_2026-07-18.html">
+  <meta property="og:title" content="Engineering a Governed Personal Agentic AI on Commodity Hardware — RB-017 Longitudinal Research Report">
+  <meta property="og:description" content="A longitudinal AI governance and safety case study documenting deterministic policy controls, local model evaluation, evidence preservation, containment, and controlled-release gates for personal agentic AI.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://pixelpolicyuser.github.io/career-portfolio/RB-017_Governed_Personal_Agentic_AI_Longitudinal_Research_Report_2026-07-18.html">
+  <meta property="og:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
+  <meta property="article:published_time" content="2026-07-18T15:14:33-04:00">
+  <meta property="article:author" content="Anthony R. Ball">
+  <meta property="article:tag" content="Agentic AI Governance">
+  <meta property="article:tag" content="AI Safety">
+  <meta property="article:tag" content="Local AI Research">
+  <meta property="article:tag" content="Deterministic Policy Gate">
+  <meta property="article:tag" content="Human-in-the-loop AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Governed Personal Agentic AI — RB-017 Research Report">
+  <meta name="twitter:description" content="Longitudinal research report on personal agentic AI governance, local model evaluation, deterministic controls, containment, and evidence-led QA/QC.">
+  <meta name="twitter:image" content="https://pixelpolicyuser.github.io/career-portfolio/me.png">
+  <title>Engineering a Governed Personal Agentic AI on Commodity Hardware — RB-017 Longitudinal Research Report</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Engineering a Governed Personal Agentic AI on Commodity Hardware — RB-017 Longitudinal Research Report",
+    "name": "Engineering a Governed Personal Agentic AI on Commodity Hardware",
+    "alternativeHeadline": "RB-017 Longitudinal Research Report",
+    "description": "A longitudinal AI governance and safety case study documenting deterministic policy controls, local language-model evaluation, evidence preservation, containment, and controlled-release gates for personal agentic AI.",
+    "url": "https://pixelpolicyuser.github.io/career-portfolio/RB-017_Governed_Personal_Agentic_AI_Longitudinal_Research_Report_2026-07-18.html",
+    "datePublished": "2026-07-18T15:14:33-04:00",
+    "dateModified": "2026-07-18T15:14:33-04:00",
+    "inLanguage": "en-US",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Anthony R. Ball",
+        "url": "https://pixelpolicyuser.github.io/career-portfolio/"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Codex (OpenAI)"
+      }
+    ],
+    "publisher": {
+      "@type": "Person",
+      "name": "Anthony R. Ball",
+      "url": "https://pixelpolicyuser.github.io/career-portfolio/"
+    },
+    "about": [
+      "agentic AI governance",
+      "AI safety",
+      "local AI research",
+      "deterministic policy gates",
+      "human-in-the-loop AI",
+      "Ollama",
+      "Open WebUI",
+      "PowerShell automation",
+      "model evaluation",
+      "evidence preservation"
+    ],
+    "keywords": [
+      "governed personal AI",
+      "agentic AI governance",
+      "AI safety",
+      "local language models",
+      "deterministic policy gate",
+      "human authority",
+      "containment",
+      "controlled release",
+      "Qwen evaluation",
+      "Granite evaluation",
+      "Remediation Bureau"
+    ],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Anthony R. Ball Career Portfolio",
+      "url": "https://pixelpolicyuser.github.io/career-portfolio/"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #07100f;
+      --paper: #0c1816;
+      --paper-2: #10211d;
+      --ink: #e7f1eb;
+      --muted: #9eb4a9;
+      --line: #294139;
+      --accent: #5be39f;
+      --accent-2: #7ac7ff;
+      --warn: #ffd166;
+      --danger: #ff7b7b;
+      --good: #79e6a7;
+      --shadow: 0 20px 50px rgba(0,0,0,.24);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+      --mono: "Cascadia Mono", Consolas, monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #edf3ef;
+        --paper: #ffffff;
+        --paper-2: #f2f7f4;
+        --ink: #17221d;
+        --muted: #4d6258;
+        --line: #cad8d0;
+        --accent: #087a48;
+        --accent-2: #176a9a;
+        --warn: #8a5b00;
+        --danger: #a52b2b;
+        --good: #087a48;
+        --shadow: 0 20px 50px rgba(29,58,44,.10);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.68 var(--sans);
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--accent-2); text-underline-offset: .18em; }
+    a:hover { color: var(--accent); }
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 100;
+      padding: .75rem 1rem; background: var(--paper); color: var(--ink);
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 28px auto 80px; }
+    .cover {
+      position: relative; overflow: hidden; min-height: 640px;
+      display: grid; align-content: space-between; gap: 3rem;
+      padding: clamp(30px, 6vw, 76px);
+      background: linear-gradient(145deg, var(--paper) 0%, var(--paper-2) 100%);
+      border: 1px solid var(--line); box-shadow: var(--shadow);
+    }
+    .cover::before {
+      content: "RB-017"; position: absolute; right: -1rem; bottom: -5rem;
+      color: color-mix(in srgb, var(--accent) 7%, transparent);
+      font: 700 clamp(7rem, 22vw, 18rem)/1 var(--sans); letter-spacing: -.08em;
+      pointer-events: none;
+    }
+    .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: .78rem; }
+    h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.18; text-wrap: balance; }
+    h1 { max-width: 900px; margin: .7rem 0 1.25rem; font-size: clamp(2.6rem, 6vw, 5.6rem); letter-spacing: -.035em; }
+    h2 { margin: 0 0 1rem; font-size: clamp(2rem, 3.5vw, 3rem); }
+    h3 { margin: 2.2rem 0 .75rem; font-size: 1.55rem; }
+    h4 { margin: 1.7rem 0 .5rem; font-size: 1.12rem; }
+    p { margin: .75rem 0 1rem; }
+    .deck { max-width: 790px; color: var(--muted); font: 1.12rem/1.6 var(--serif); }
+    .authors { position: relative; z-index: 1; display: grid; gap: .4rem; max-width: 800px; }
+    .authors strong { font-size: 1.15rem; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: .65rem 1.4rem; color: var(--muted); font-size: .9rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .45rem; width: fit-content;
+      padding: .26rem .65rem; border: 1px solid var(--line); border-radius: 999px;
+      background: color-mix(in srgb, var(--paper-2) 85%, transparent); font-size: .8rem;
+    }
+    .pill::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--warn); }
+    .toc, section, .front-box, .appendix {
+      margin-top: 24px; padding: clamp(24px, 5vw, 56px);
+      background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow);
+    }
+    .toc ol { columns: 2; column-gap: 3rem; padding-left: 1.3rem; }
+    .toc li { break-inside: avoid; margin: .35rem 0; }
+    .section-number { display: block; margin-bottom: .55rem; color: var(--accent); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .75rem; }
+    .lead { color: var(--muted); font: 1.14rem/1.65 var(--serif); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .metric {
+      padding: 1rem 1.1rem; background: var(--paper-2); border-left: 3px solid var(--accent);
+    }
+    .metric .value { display: block; font: 700 1.8rem/1.1 var(--serif); color: var(--ink); }
+    .metric .label { display: block; margin-top: .35rem; color: var(--muted); font-size: .86rem; }
+    .callout { margin: 1.4rem 0; padding: 1rem 1.2rem; border-left: 4px solid var(--accent-2); background: var(--paper-2); }
+    .callout.warning { border-left-color: var(--warn); }
+    .callout.danger { border-left-color: var(--danger); }
+    .callout strong { color: var(--ink); }
+    .table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .91rem; }
+    caption { padding: 0 0 .65rem; color: var(--muted); text-align: left; font-style: italic; }
+    th, td { padding: .7rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { color: var(--accent); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
+    tbody tr:hover { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+    code, .hash { font-family: var(--mono); font-size: .86em; overflow-wrap: anywhere; }
+    .hash { color: var(--muted); }
+    .figure { margin: 2rem 0 2.4rem; padding: 1rem; background: var(--paper-2); border: 1px solid var(--line); }
+    .figure svg { display: block; width: 100%; height: auto; }
+    figcaption { margin-top: .9rem; color: var(--muted); font-size: .88rem; }
+    figcaption strong { color: var(--ink); }
+    .legend { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin: .5rem 0; color: var(--muted); font-size: .83rem; }
+    .swatch { display: inline-block; width: .8rem; height: .8rem; margin-right: .35rem; vertical-align: -.08rem; border-radius: 2px; }
+    .status-pass { color: var(--good); font-weight: 700; }
+    .status-fail { color: var(--danger); font-weight: 700; }
+    .status-hold { color: var(--warn); font-weight: 700; }
+    .timeline { list-style: none; padding: 0; margin: 1.5rem 0; }
+    .timeline li { position: relative; margin-left: .5rem; padding: 0 0 1.5rem 2rem; border-left: 2px solid var(--line); }
+    .timeline li::before { content: ""; position: absolute; left: -.48rem; top: .25rem; width: .8rem; height: .8rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--paper); }
+    .timeline time { color: var(--accent); font-weight: 700; font-size: .84rem; }
+    .timeline strong { display: block; margin-top: .15rem; }
+    .timeline p { margin: .3rem 0 0; color: var(--muted); }
+    .footnotes { font-size: .88rem; color: var(--muted); }
+    .reference-list li { margin-bottom: .65rem; }
+    footer { margin-top: 24px; padding: 1.5rem; text-align: center; color: var(--muted); font-size: .82rem; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 18px, 1120px); margin-top: 9px; }
+      .cover { min-height: 560px; }
+      .toc ol { columns: 1; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      section, .toc, .front-box, .appendix { padding: 24px 20px; }
+      th, td { padding: .6rem; }
+    }
+    @media print {
+      :root { color-scheme: light; --bg:#fff; --paper:#fff; --paper-2:#f5f7f5; --ink:#111; --muted:#444; --line:#bbb; --accent:#075d39; --accent-2:#174f70; --warn:#765000; --danger:#8a1f1f; --good:#075d39; --shadow:none; }
+      body { font-size: 10.5pt; }
+      .shell { width: 100%; margin: 0; }
+      .cover, section, .toc, .front-box, .appendix { box-shadow: none; border: 0; margin: 0; padding: .55in .65in; }
+      .cover { min-height: 9in; break-after: page; }
+      .toc { break-after: page; }
+      section { break-before: page; }
+      .figure, table, .callout { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      .cover::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to report</a>
+  <div class="shell">
+    <header class="cover" aria-labelledby="report-title">
+      <div>
+        <div class="eyebrow">RB-017 · Longitudinal research report</div>
+        <h1 id="report-title">Engineering a Governed Personal Agentic AI on Commodity Hardware</h1>
+        <p class="deck">A longitudinal case study of deterministic authority, evidence-complete model evaluation, fail-closed validation, and bounded language-model collaboration in the Remediation Bureau research program.</p>
+        <span class="pill">Research system — not released for production</span>
+      </div>
+      <div class="authors">
+        <strong>Anthony R. Ball<sup>1</sup> and Codex (OpenAI)<sup>2</sup></strong>
+        <span><sup>1</sup> Principal investigator, system owner, conceptual architect, and corresponding author</span>
+        <span><sup>2</sup> AI research collaborator, software and evidence analyst, and manuscript co-author</span>
+        <div class="meta-row">
+          <span>Report version 1.0</span>
+          <span>Evidence cutoff: 18 July 2026</span>
+          <span>Project: RB-017</span>
+          <span>Independent research program</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-labelledby="toc-title">
+      <span class="section-number">Navigation</span>
+      <h2 id="toc-title">Contents</h2>
+      <ol>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#plain-summary">Plain-language summary</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#objectives">Research objectives</a></li>
+        <li><a href="#methods">Materials and methods</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#conclusions">Conclusions</a></li>
+        <li><a href="#future">Future research</a></li>
+        <li><a href="#contributions">Author contributions</a></li>
+        <li><a href="#acknowledgments">Acknowledgments</a></li>
+        <li><a href="#disclosures">Disclosures and data availability</a></li>
+        <li><a href="#appendix-a">Appendix A: development chronology</a></li>
+        <li><a href="#appendix-b">Appendix B: integrity ledger</a></li>
+        <li><a href="#appendix-c">Appendix C: glossary</a></li>
+      </ol>
+    </nav>
+
+    <main id="main-content">
+      <section id="abstract" aria-labelledby="abstract-title">
+        <span class="section-number">Abstract</span>
+        <h2 id="abstract-title">Abstract</h2>
+        <p><strong>Background:</strong> Personal agentic artificial intelligence promises broad productivity gains, but a conversational model cannot safely be treated as an authority system, an executor, or proof of its own completion. This case study documents RB-017, a local-first personal AI research program designed for a resource-constrained Windows laptop and governed by the Remediation Bureau operational model.</p>
+        <p><strong>Methods:</strong> The project combined a deterministic supervisor and Policy Gate, append-only evidence, exact authorization objects, schema-bound model interfaces, synthetic held-out tests, metamorphic comparisons, adverse-instruction challenges, raw-response preservation, independent verification, and staged release gates. Local inference used Ollama; Docker and Open WebUI were retained as future isolation and interface components but were not connected to tools or production work during the reported experiments. Candidate models included Granite and Qwen3:4b, with independent AI review panels used only as advisory evidence. The source corpus was reconciled across the Remediation Bureau Command Center and <code>D:\AI_Stack</code>.</p>
+        <p><strong>Results:</strong> The Phase 1.2 deterministic kernel passed 54 staged and 54 deployed tests. Qwen structured-output validity improved from 20/50 (40.0%) in the initial interface to 11/15 (73.3%) in v2, 7/8 (87.5%) in v2.1, and 24/24 parsed responses in the v3.7.1 lane experiment. However, semantic usefulness remained below release thresholds: Occasion 2 achieved 16/32 (50.0%) first-pass semantic/usefulness success, and v3.7.1 achieved 14/24 (58.3%) useful transformations against a preregistered 22/24 threshold. The v3.7.1 capsule accepted zero unsafe or out-of-span candidates and quarantined all ten unchanged failures. A deterministic repair transaction recovered 5/5 eligible v3.4.1 failures and 4/4 eligible Occasion 2 failures without observed regressions, but recovery did not convert first-pass failures into qualification success.</p>
+        <p><strong>Conclusions:</strong> The principal advance was architectural rather than model-centric: authority, action selection, target resolution, risk, completion, and known exact transformations must be deterministic and evidence-bound. The small local model showed useful drafting and containment behavior, but not sufficient reliability for production agency. RB-017 therefore remains a governed research platform, not a deployed autonomous agent. The immediate research direction is deterministic materialization of known edits, reserving model inference for genuinely ambiguous, schema-bound judgments.</p>
+        <p><strong>Keywords:</strong> agentic AI; local language model; deterministic governance; human-in-the-loop; fail-closed validation; evidence provenance; Ollama; Open WebUI; PowerShell; prompt injection; semantic fidelity.</p>
+      </section>
+
+      <section id="plain-summary" aria-labelledby="plain-summary-title">
+        <span class="section-number">Plain-language summary</span>
+        <h2 id="plain-summary-title">What this project has established</h2>
+        <p class="lead">RB-017 is an attempt to build a capable personal AI that can help Anthony Ball begin and complete professional, scientific, technical, creative, and income-producing work—without pretending that fluent text is the same thing as safe authority or verified action.</p>
+        <div class="grid-3" aria-label="Current project status metrics">
+          <div class="metric"><span class="value">54 / 54</span><span class="label">Phase 1.2 deterministic kernel tests passed in both staged and deployed states</span></div>
+          <div class="metric"><span class="value">0</span><span class="label">production tools, personal-data connections, or autonomous execution capabilities released</span></div>
+          <div class="metric"><span class="value">14 / 24</span><span class="label">useful v3.7.1 transformations; containment passed, capability threshold failed</span></div>
+        </div>
+        <p>The system has become better at recording evidence, enforcing authority, rejecting unsafe outputs, and exposing its own failures. It has <em>not</em> yet become reliable enough to act on Anthony's computer through a model. This distinction is a success of the research method: failures were captured as data, not concealed by a polished interface.</p>
+        <div class="callout warning"><strong>Current status:</strong> the deterministic governance kernel is deployed in simulation-only form. Qwen is research-qualified only for tightly bounded synthetic experiments. Granite is not qualified as a worker, critic, or release authority. Open WebUI, Docker-hosted interface services, tools, communications, memory, and production data remain disconnected from model control.</div>
+      </section>
+
+      <section id="introduction" aria-labelledby="introduction-title">
+        <span class="section-number">1 · Introduction</span>
+        <h2 id="introduction-title">Introduction</h2>
+        <p>Commercial AI systems can accelerate writing, analysis, coding, project initiation, and document production. For a user with strong domain expertise but limited programming background—and with executive-function friction that makes project initiation disproportionately difficult—this assistance can materially expand productive capacity. Anthony R. Ball conceived RB-017 as a personal production laboratory that could eventually support employment materials, BioCellR8, professional writing, research, websites, applications, PowerShell and Python automation, data analysis, electronics, computer-aided design, fabrication, and other lawful income-generating work.</p>
+        <p>The project also began with a failure mode familiar in long-running human–AI collaborations: instructions that were initially understood could lose fidelity over time, and a fluent response could be mistaken for a verified result. The Remediation Bureau was created to counter this drift. It is simultaneously a project-control system, evidence archive, constitutional framework, quality-assurance method, and controlled-release discipline. Its central premise is that a model may propose language or candidate meaning, but it cannot create its own authority, define the final target of consequential action, assess its own risk, or certify its own completion.</p>
+        <p>RB-017 further faced a practical constraint: the research host is a well-used ASUS laptop with 8 GB of RAM and a 4 GB NVIDIA GTX 1050. The architecture therefore had to favor sequential model use, disk placement on the D: drive, strict resource gates, explicit shutdown, and compact evidence. The objective was not to imitate a large cloud cluster. It was to discover how much useful, verifiable capability could be assembled from free or already-available components while preserving human authority.</p>
+
+        <figure class="figure" id="figure-1">
+          <svg viewBox="0 0 1040 520" role="img" aria-labelledby="fig1-title fig1-desc">
+            <title id="fig1-title">Approved RB-017 system architecture</title>
+            <desc id="fig1-desc">Anthony communicates through Open WebUI. A Remediation Bureau supervisor sends proposals through a deterministic Policy Gate to isolated capabilities limited to approved project territory. Receipts and independent verification flow back to the evidence store. Language models remain advisory and cannot create authority.</desc>
+            <defs>
+              <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+            </defs>
+            <g fill="none" stroke="currentColor" stroke-width="2" marker-end="url(#arrow1)" opacity=".72">
+              <path d="M210 105 H330"/><path d="M500 105 H620"/><path d="M790 105 H910"/>
+              <path d="M700 155 V245"/><path d="M700 335 V405"/>
+              <path d="M610 450 H270 V155" stroke-dasharray="7 6"/>
+              <path d="M420 325 H565"/><path d="M420 265 H565"/>
+            </g>
+            <g font-family="Segoe UI, Arial, sans-serif">
+              <g><rect x="30" y="58" width="180" height="94" rx="12" fill="color-mix(in srgb, var(--accent) 13%, var(--paper))" stroke="var(--accent)"/><text x="120" y="93" text-anchor="middle" fill="var(--ink)" font-size="18" font-weight="700">Anthony R. Ball</text><text x="120" y="119" text-anchor="middle" fill="var(--muted)" font-size="13">final authority</text></g>
+              <g><rect x="330" y="58" width="170" height="94" rx="12" fill="var(--paper)" stroke="var(--line)"/><text x="415" y="92" text-anchor="middle" fill="var(--ink)" font-size="18" font-weight="700">Open WebUI</text><text x="415" y="118" text-anchor="middle" fill="var(--muted)" font-size="13">future interface only</text></g>
+              <g><rect x="620" y="58" width="170" height="94" rx="12" fill="var(--paper)" stroke="var(--line)"/><text x="705" y="88" text-anchor="middle" fill="var(--ink)" font-size="17" font-weight="700">RB Supervisor</text><text x="705" y="114" text-anchor="middle" fill="var(--muted)" font-size="13">orchestrates; cannot</text><text x="705" y="133" text-anchor="middle" fill="var(--muted)" font-size="13">self-authorize</text></g>
+              <g><rect x="910" y="58" width="100" height="94" rx="12" fill="color-mix(in srgb, var(--accent-2) 10%, var(--paper))" stroke="var(--accent-2)"/><text x="960" y="91" text-anchor="middle" fill="var(--ink)" font-size="16" font-weight="700">Models</text><text x="960" y="116" text-anchor="middle" fill="var(--muted)" font-size="12">draft and</text><text x="960" y="134" text-anchor="middle" fill="var(--muted)" font-size="12">propose only</text></g>
+              <g><rect x="565" y="245" width="270" height="90" rx="12" fill="color-mix(in srgb, var(--warn) 9%, var(--paper))" stroke="var(--warn)"/><text x="700" y="280" text-anchor="middle" fill="var(--ink)" font-size="18" font-weight="700">Deterministic Policy Gate</text><text x="700" y="307" text-anchor="middle" fill="var(--muted)" font-size="13">authority · target · risk · replay · scope</text></g>
+              <g><rect x="565" y="405" width="270" height="90" rx="12" fill="var(--paper)" stroke="var(--line)"/><text x="700" y="438" text-anchor="middle" fill="var(--ink)" font-size="17" font-weight="700">Isolated capability gateway</text><text x="700" y="465" text-anchor="middle" fill="var(--muted)" font-size="13">approved territory only · currently blocked</text></g>
+              <g><rect x="170" y="235" width="250" height="110" rx="12" fill="var(--paper)" stroke="var(--line)"/><text x="295" y="270" text-anchor="middle" fill="var(--ink)" font-size="17" font-weight="700">Evidence &amp; truth store</text><text x="295" y="296" text-anchor="middle" fill="var(--muted)" font-size="13">append-only events · hashes</text><text x="295" y="317" text-anchor="middle" fill="var(--muted)" font-size="13">receipts · independent verifier</text></g>
+              <text x="437" y="253" text-anchor="middle" fill="var(--muted)" font-size="12">decision record</text>
+              <text x="455" y="315" text-anchor="middle" fill="var(--muted)" font-size="12">receipts</text>
+              <text x="425" y="440" text-anchor="middle" fill="var(--muted)" font-size="12">verified state returns to user</text>
+            </g>
+          </svg>
+          <figcaption><strong>Figure 1.</strong> Approved Candidate B architecture. Open WebUI is a presentation surface, not the authority system. Models are untrusted drafters/proposers. The deterministic Policy Gate controls durable authority, capabilities, targets, risk, replay, and scope. Completion requires receipts plus independent verification.</figcaption>
+        </figure>
+      </section>
+
+      <section id="objectives" aria-labelledby="objectives-title">
+        <span class="section-number">2 · Research objectives</span>
+        <h2 id="objectives-title">Research objectives and hypotheses</h2>
+        <p>The overarching objective was to create a personal AI system that could grow in capability while remaining honest, evidence-grounded, resource-aware, and subordinate to explicit human authority. This objective was divided into six operational questions:</p>
+        <ol>
+          <li>Can authority, scope, paths, resource envelopes, and completion be enforced outside the language model?</li>
+          <li>Can a small local model produce useful structured drafts without inventing actions, authority, or completed work?</li>
+          <li>Can raw model evidence be preserved completely enough that an independent verifier can reconstruct the result?</li>
+          <li>Can hostile instructions be preserved as source data without being obeyed?</li>
+          <li>Can narrow semantic failures be repaired through one bounded, certificate-controlled revision without creating an endless or manipulable loop?</li>
+          <li>Which operations should be removed from the model entirely and performed mechanically by the supervisor?</li>
+        </ol>
+        <div class="callout"><strong>Primary safety hypothesis:</strong> model output can be useful without being authoritative if every consequential transition is deterministic, schema-bound, provenance-preserving, and fail-closed.</div>
+        <div class="callout"><strong>Primary capability hypothesis:</strong> a small local model may be adequate for bounded drafting and semantic judgments, but known exact transformations should be materialized deterministically rather than delegated to probabilistic generation.</div>
+      </section>
+
+      <section id="methods" aria-labelledby="methods-title">
+        <span class="section-number">3 · Materials and methods</span>
+        <h2 id="methods-title">Materials and methods</h2>
+
+        <h3>3.1 Research design</h3>
+        <p>This was a longitudinal, single-system engineering case study. Development proceeded through separately manifested packages, preregistered synthetic experiments, immutable evidence directories, and explicit human approval gates. Offline implementation was separated from model-bearing execution. A successful static test did not count as behavioral validation; a successful process exit did not count as task completion; and model agreement did not count as proof.</p>
+
+        <h3>3.2 Host and software environment</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Table 1. Interim research host and core software.</caption>
+            <thead><tr><th>Component</th><th>Verified configuration</th><th>Design implication</th></tr></thead>
+            <tbody>
+              <tr><td>Computer</td><td>ASUS FX503VD “GAMA”</td><td>Portable, resource-constrained research host</td></tr>
+              <tr><td>Operating system</td><td>Windows 10 Home 22H2; initial build 19045.6466, later ESU-updated to 19045.7548</td><td>Windows path hardening and ESU security gate required</td></tr>
+              <tr><td>Processor</td><td>Intel Core i7-7700HQ; 4 cores / 8 threads</td><td>Sequential model operation preferred</td></tr>
+              <tr><td>Memory</td><td>8 GB DDR4</td><td>Strict memory floors, bounded contexts, no resident multi-model swarm</td></tr>
+              <tr><td>Graphics</td><td>NVIDIA GTX 1050 4 GB plus Intel HD 630</td><td>Small quantized models only on the interim host</td></tr>
+              <tr><td>Storage</td><td>C: 118.19 GB SSD; D: 931.51 GB HDD</td><td>Models, Docker data, evidence, and persistent project data placed on D:</td></tr>
+              <tr><td>Runtime</td><td>WSL2; Docker Desktop 29.6.1; Ollama 0.31.1</td><td>Local inference and future container isolation</td></tr>
+              <tr><td>Future interface</td><td>Open WebUI</td><td>Conversation/presentation only; direct tool authority prohibited</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.3 Evidence corpus and reconciliation</h3>
+        <p>The authoritative control record was the Remediation Bureau Command Center at <code>D:\01 ABALL Personal\00 Remediation Bureau Command Center</code>. The implementation and experimental corpus at <code>D:\AI_Stack</code> was independently inventoried rather than treated as a mere derivative of the Command Center summaries.</p>
+        <div class="grid-3">
+          <div class="metric"><span class="value">1,152</span><span class="label">files inventoried under D:\AI_Stack</span></div>
+          <div class="metric"><span class="value">9.91 GB</span><span class="label">total corpus size (9,905,913,149 bytes; predominantly VHDX/model storage)</span></div>
+          <div class="metric"><span class="value">353 / 353</span><span class="label">files rehashed across 16 package manifests; zero missing and zero mismatched</span></div>
+        </div>
+        <p>Complete inventory included binary containers, model storage, caches, runtime databases, raw responses, source code, documentation, and evaluation artifacts. Semantic review focused on authored Markdown, JSON, Python, PowerShell, CSV, text, and DOCX records; package-level READMEs, manifests, analysis plans, audits, and terminal results were read directly. Large VHDX files, model weights, bytecode caches, and other binary payloads were inventoried by type, path, size, and manifest/hash relationships rather than interpreted as prose. Per-exchange raw records were reconciled through their independent verifiers and chained hashes; this declared fragmentation prevented silent sampling while avoiding false claims that binary weights had human-readable content.</p>
+
+        <h3>3.4 Remediation Bureau lifecycle</h3>
+        <p>Every material phase followed a proportional lifecycle: complete intake; preservation of originals; diagnosis; a confirmation summary; creation of a parallel successor; deterministic and negative-control testing; exact manifest generation; controlled model-bearing approval when applicable; independent verification; and documented handoff. Frozen packages and raw evidence were never overwritten to improve a later narrative.</p>
+
+        <h3>3.5 Deterministic governance kernel</h3>
+        <p>The kernel externalized durable authority from conversation. It stored typed authorization and event records; applied strict schemas; made decisions atomically; rejected semantic replay; compiled only registered capabilities; hardened Windows path handling; bound resource observations and leases to workers; and required a machine receipt plus independent verifier before a completion state could be recorded. The deployed capability registry remained simulation-only.</p>
+
+        <h3>3.6 Model roles and experimental conditions</h3>
+        <p>Models were treated as untrusted research subjects. Granite was tested as an initial proposer and critic. Qwen3:4b, bound to exact Ollama manifest digest <span class="hash">359D7DD4BCDAB3D86B87D73AC27966F4DBB9F5EFDFCC75D34A8764A09474FAE7</span>, became the primary worker candidate. The model blob was 2,497,280,480 bytes and stored on D:. Experiments used synthetic data, loopback-only Ollama, no tools, no production files, no memory, no Open WebUI, and no Docker unless a phase explicitly stated otherwise. Each authorized run had fixed exchange limits, wall-clock/resource stops, raw-response size caps, and verified shutdown.</p>
+
+        <h3>3.7 Evaluation dimensions</h3>
+        <p>Later interfaces evaluated structure, intent fidelity, truthfulness, containment, source fidelity, usefulness, and evidence completeness. Metamorphic families compared meaning-preserving variations and hostile suffixes. Hard failures could not be averaged away by fluent text. The sealed oracle was excluded from first-pass prompts, and independent verification recomputed verdicts from preserved raw evidence.</p>
+
+        <h3>3.8 Repair transaction</h3>
+        <p>The frozen repair mechanism was deliberately narrow:</p>
+        <figure class="figure" id="figure-2">
+          <svg viewBox="0 0 1040 300" role="img" aria-labelledby="fig2-title fig2-desc">
+            <title id="fig2-title">Frozen deterministic repair transaction</title>
+            <desc id="fig2-desc">A signed evaluator certificate selects a deterministic template. The resulting plan is validated, one revision is allowed, and the complete candidate is reevaluated. Ineligible failures stop without revision.</desc>
+            <defs><marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+            <g fill="none" stroke="currentColor" stroke-width="2" marker-end="url(#arrow2)" opacity=".7"><path d="M200 105 H260"/><path d="M430 105 H490"/><path d="M660 105 H720"/><path d="M890 105 H950"/><path d="M575 150 V225 H330"/></g>
+            <g font-family="Segoe UI, Arial, sans-serif">
+              <g><rect x="30" y="60" width="170" height="90" rx="10" fill="var(--paper)" stroke="var(--line)"/><text x="115" y="92" text-anchor="middle" fill="var(--ink)" font-size="16" font-weight="700">Signed certificate</text><text x="115" y="118" text-anchor="middle" fill="var(--muted)" font-size="12">exact eligible defect</text></g>
+              <g><rect x="260" y="60" width="170" height="90" rx="10" fill="var(--paper)" stroke="var(--line)"/><text x="345" y="92" text-anchor="middle" fill="var(--ink)" font-size="16" font-weight="700">Known template</text><text x="345" y="118" text-anchor="middle" fill="var(--muted)" font-size="12">deterministic guidance</text></g>
+              <g><rect x="490" y="60" width="170" height="90" rx="10" fill="var(--paper)" stroke="var(--line)"/><text x="575" y="92" text-anchor="middle" fill="var(--ink)" font-size="16" font-weight="700">Validated plan</text><text x="575" y="118" text-anchor="middle" fill="var(--muted)" font-size="12">source and scope bound</text></g>
+              <g><rect x="720" y="60" width="170" height="90" rx="10" fill="color-mix(in srgb, var(--accent) 10%, var(--paper))" stroke="var(--accent)"/><text x="805" y="92" text-anchor="middle" fill="var(--ink)" font-size="16" font-weight="700">One revision</text><text x="805" y="118" text-anchor="middle" fill="var(--muted)" font-size="12">Candidate 2 only</text></g>
+              <g><rect x="920" y="60" width="90" height="90" rx="10" fill="var(--paper)" stroke="var(--line)"/><text x="965" y="92" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Full</text><text x="965" y="114" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">reevaluation</text></g>
+              <g><rect x="115" y="215" width="215" height="58" rx="10" fill="color-mix(in srgb, var(--danger) 8%, var(--paper))" stroke="var(--danger)"/><text x="222" y="250" text-anchor="middle" fill="var(--ink)" font-size="14">Ineligible failure → stop closed</text></g>
+              <text x="475" y="245" fill="var(--muted)" font-size="12">No endless loop · no critic authority · no partial-field-only pass</text>
+            </g>
+          </svg>
+          <figcaption><strong>Figure 2.</strong> Frozen core repair transaction. Only registered, repair-eligible failures enter this path. Critical authority, action, target, truthfulness, containment, and source-fidelity failures do not receive a retry.</figcaption>
+        </figure>
+
+        <h3>3.9 Independent AI review</h3>
+        <p>Independent AI systems were used as blinded semantic or governance reviewers. Their reports were transferred as Markdown, DOCX, CSV, or text, preserved unchanged, and adjudicated against a common rubric. These reviewers could identify disagreements and propose bounded rules, but could not execute, authorize, alter the oracle, or release the system. Participation included review assistance from Gemini, DeepSeek, Grok, and Anthropic Claude. Exact provider/model/version information was not available for every artifact; where available, it was treated as self-reported metadata.</p>
+
+        <h3>3.10 Analysis</h3>
+        <p>Analysis was descriptive. Counts and proportions were computed within each preregistered suite. Because prompts, schemas, interfaces, and task families changed between phases, cross-version graphs show engineering trajectory rather than a statistically controlled learning curve. No inferential test or claim of population-level generalization was made.</p>
+      </section>
+
+      <section id="results" aria-labelledby="results-title">
+        <span class="section-number">4 · Results</span>
+        <h2 id="results-title">Results</h2>
+
+        <h3>4.1 Host-security and resource gate</h3>
+        <p>The Windows host was enrolled in the Consumer Extended Security Updates program and updated to build 19045.7548. Update evidence included successful installation of KB5099539 and KB5102203, followed by verification that reboot flags were clear. This removed the host-security block without changing the rule that the laptop remains an interim, constrained research system.</p>
+
+        <h3>4.2 Deterministic kernel development</h3>
+        <p>The initial governance kernel passed 12 tests. Version 1.1.1 expanded source and deployed verification to 22 tests. An enhanced review then identified four fail-open counterexamples involving authority, replay, paths, and completion. Phase 1.2 remediated these defects with durable authorization, strict schemas, atomic decisions, semantic replay protection, typed capability compilation, Windows path hardening, resource observations, and receipt-plus-verifier completion. All 54 staged tests and all 54 deployed tests passed. The package manifest was frozen under SHA256 <span class="hash">D3149E14635FF0BEE1D43123E4C6DCEA2F3407E67A37D1C199D2A90CD059850A</span>.</p>
+        <p>This result established a deterministic control foundation, but not an executor. The deployed runtime at <code>D:\AI_Stack\RB-017_Runtime_State</code> remained simulation-only.</p>
+
+        <h3>4.3 Initial proposer evaluations</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Table 2. Early model-interface results.</caption>
+            <thead><tr><th>Model/interface</th><th>Suite</th><th>Structured or acceptable output</th><th>Key finding</th><th>Disposition</th></tr></thead>
+            <tbody>
+              <tr><td>Granite initial proposer</td><td>50 prompts</td><td>38/50 schema-valid; 36/50 acceptable after quarantine</td><td>Two false completion claims; 12 failures; mean latency 14.268 s</td><td class="status-fail">Rejected for user-facing/proposal role</td></tr>
+              <tr><td>Qwen3:4b initial</td><td>50 prompts</td><td>20/50 strict-valid (40.0%)</td><td>Thirty failures; one benign proposal allowed and two denied; mean latency 25.301 s</td><td class="status-fail">Rejected for user-facing/proposal role</td></tr>
+              <tr><td>Qwen v2 adapter</td><td>15 prompts</td><td>11/15 valid (73.3%)</td><td>Improved structure but missed the 14/15 gate</td><td class="status-hold">Research only</td></tr>
+              <tr><td>Qwen v2.1 few-shot</td><td>8 prompts</td><td>7/8 structural (87.5%)</td><td>Mapped a truth-state request to <code>record_plan</code>; form improved while action meaning failed</td><td class="status-hold">Research only</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>4.4 Critic and trainer-monitor studies</h3>
+        <p>Granite's first critic protocol produced 5/8 valid critic outputs, missed the known action mismatch and false-completion containment, and issued three false mismatch judgments. A hardened v1.1 critic produced 8/8 structurally valid outputs and caught the known mismatch, but still missed false-completion containment and produced five false mismatch judgments. Granite was therefore rejected for proposer, critic, and release roles.</p>
+        <p>Three blinded external trainer-monitor reports correctly classified all eight held-out records. Two recommended continued blocking; one recommended conditional advancement despite the same action-type mismatch. The disagreement demonstrated why a review panel is useful for analysis but cannot substitute for deterministic release criteria. One preserved report was later identified by Anthony as Grok and barred from future operational roles because its release recommendation was too permissive. Its historical contribution remains part of the evidence record.</p>
+
+        <h3>4.5 Evidence-complete v3 interface series</h3>
+        <p>Version 3 separated drafts, candidate intents, and clarification requests; preserved every size-capped raw model response and hash; bound the exact model digest, schema hash, generation settings, timestamps, and parse result; prohibited model-generated action, target, risk, authority, and completion fields; and scored seven dimensions. The first attempted v3 run stopped after one exchange with a critical raw-evidence failure. The defect was preserved and remediated rather than counted as a calibration.</p>
+        <p>Version 3.0.1 achieved 24/24 structural validity but only 9/12 metamorphic families. Subsequent versions refined semantic and evaluator behavior. The official v3.2 Occasion 1 result achieved 24/24 structure, 13/24 intent fidelity, 24/24 truthfulness, 24/24 containment, 24/24 source fidelity, 13/24 usefulness, 24/24 evidence completeness, and 7/12 metamorphic families. It failed. A bias-aware diagnostic later identified eight evaluator-literalism cases and raised conservative diagnostic intent/usefulness to 21/24 and metamorphic performance to 10/12; the immutable official result did not change.</p>
+
+        <h3>4.6 Semantic review panel and v3.3 baseline</h3>
+        <p>A 24-record independent semantic panel examined 11 disputes, six positive controls, and seven negative or contract-boundary controls. Two eligible reviewers reached consensus on 9/11 live disputes. Eight bounded variations were accepted; H14 remained a genuine model failure; and H07/H19 were classified as contract/canonicalization boundaries. Reviewer findings consistently emphasized exact preservation of polarity, authorization language, temporal modifiers, named entities, and final corrections.</p>
+        <p>Version 3.3 encoded the bounded equivalence and canonical-readiness rules. It passed 55/55 new tests, the frozen v3.2 suite passed 46/46, the Phase 1.2 kernel passed 54/54, and 60/60 manifest checks passed. Immutable replay of Occasion 1 evidence produced diagnostic scores of 23/24 semantic fidelity, 21/24 canonical readiness, 24/24 truth/containment/source fidelity, 23/24 usefulness, and 10/12 metamorphic families. The official Occasion 1 failure remained unchanged. Anthony accepted v3.3 as the frozen offline evaluator baseline under SHA256 <span class="hash">43715EC26FD6B14C2B001AF7376234BE8DD1A5F69CFEF6FDFEE2B2388B3BA173</span>.</p>
+
+        <h3>4.7 H14, H07, and H19</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Table 3. Persistent semantic cases and their final treatment.</caption>
+            <thead><tr><th>Case</th><th>Observed problem</th><th>Interpretation</th><th>Control treatment</th></tr></thead>
+            <tbody>
+              <tr><td><strong>H14</strong></td><td>Failed a required subject–verb grammatical transformation in the presence of lexical ambiguity/hostile text</td><td>Genuine model task failure, not merely evaluator literalism</td><td>Eligible only for exact registered certificate → deterministic template → one revision → full reevaluation</td></tr>
+              <tr><td><strong>H07</strong></td><td>Meaning distributed across <code>requested_outcome</code> and resolved-referent fields</td><td>Contract/canonicalization boundary rather than failed comprehension</td><td>Deterministic canonicalization or clarification; excluded from critic repair</td></tr>
+              <tr><td><strong>H19</strong></td><td>Undefined pronouns left unresolved or inconsistently represented</td><td>Missing-binding boundary</td><td>Fail-closed clarification or explicit unresolved-referent representation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The project considered dictionaries, online lexical lookup, and model self-review. These were not adopted as primary remedies because H14 did not reflect simple absence of a dictionary definition, and unrestricted lookup would add attack surface and evidence complexity. Better source/instruction separation, a compact task checklist, deterministic templates for known errors, and one global bounded revision were more testable and safer.</p>
+
+        <h3>4.8 Deterministic repair mechanics</h3>
+        <p>The initial v3.4 run failed before generation because service-listener readiness outpaced API readiness; no behavioral result was claimed. Version 3.4.1 added API readiness and completed 26 model exchanges: 16 Candidate 1 outputs, five repair plans, and five Candidate 2 revisions. First-pass success was 11/16 (68.75%). All five eligible failures produced valid repair plans and all five revisions recovered without observed regressions.</p>
+        <p>The behavioral result supported freezing the core transaction, but not the complete v3.4.1 runner. Five repair-plan and five Candidate 2 resource observations were absent from the complete evidence envelope, the freeze predicate was too narrow, and Ollama reported <code>OLLAMA_NO_CLOUD:false</code>. Version 3.4.2 preserved every resource observation, strengthened the freeze predicate and independent verifier, and forced/verifiably checked cloud disablement. It passed 22/22 tests; the older v3.4.1 evidence correctly failed the stronger negative-control standard.</p>
+
+        <h3>4.9 Fresh Occasion 2</h3>
+        <p>A separate v3.5 package preregistered 32 fresh first-pass cases in 16 metamorphic families, plus at most 16 repair-plan and 16 Candidate 2 exchanges. The exactly authorized run completed 40 exchanges: 32 first-pass candidates, four repair plans, and four revisions. First-pass semantic and usefulness success was 16/32 (50.0%); metamorphic-family success was 4/16; referent-lane success was 6/8. Six responses fabricated repair or operational claims, and all eight hostile transformation cases failed first pass. All four eligible repairs recovered with no observed regression, but the occasion failed every main first-pass threshold. A generous bias-aware diagnostic estimate of 21/32 and approximately 7/16 families still failed.</p>
+        <div class="callout danger"><strong>Interpretation:</strong> repair success did not erase poor first-pass behavior. Occasion 2 showed that an evidence-complete harness can preserve and contain unsafe output while the model itself remains unqualified.</div>
+
+        <h3>4.10 Trust lanes and transformation capsule</h3>
+        <p>Landscape review and internal analysis motivated v3.6, which separated five lanes: L0 deterministic control; L1 trusted drafting; L2 quarantined untrusted reading/transformation; L3 candidate intent compilation; and L4 execution. Only L0 was operational. The Safe Useful Core had an empty released-capability list. The L2 transformation capsule bound the complete source hash, exact target offsets and text, a closed replacement allowlist, maximum lengths, and unchanged prefix/suffix. Version 3.6 passed 40 tests and was accepted as the frozen offline baseline under manifest SHA256 <span class="hash">7FB80C8936157D9BF68DA75B8A9FADEB6E48DD21717DCF0FF9BCE357F87230D9</span>.</p>
+
+        <h3>4.11 v3.7 pre-generation failure</h3>
+        <p>Version 3.7 proposed 24 clean/hostile L2 transformation cases. Its first live request returned HTTP 400 before token generation because the response schema's <code>candidate_text.maxLength = 12000</code> compiled into a grammar repetition rejected by Ollama/llama.cpp. Zero model responses were generated, so this was classified as an interface failure—not evidence for or against Qwen. The audit also found that the exact request was written only after transport returned, leaving a pre-dispatch evidence gap.</p>
+        <p>Version 3.7.1 replaced the global bound with per-case closed schemas capped at 512 characters, preserved and hashed requests before dispatch, captured bounded HTTP error bodies, required a terminal result for both completion and abort, and added schema-budget negative controls. Thirty-six offline tests passed before a new exact authorization was requested.</p>
+
+        <h3>4.12 v3.7.1 Lane-2 experiment</h3>
+        <p>The exactly authorized v3.7.1 experiment completed 24/24 exchanges in approximately 40 minutes 23 seconds. All responses parsed, the 50-event chain verified, exact pre-dispatch evidence existed for every request, cloud disablement was verified, and Ollama shut down cleanly. Fourteen candidates were useful, below the preregistered 22/24 threshold. Clean usefulness was 6/12, hostile usefulness was 8/12, and fully successful pairs were 6/12.</p>
+        <p>Hard containment passed. Zero unsafe or out-of-span candidates were accepted. Each of the ten failed cases contained correct schema-bound metadata describing the required change but returned the original sentence in <code>candidate_text</code>. The capsule quarantined all ten as <code>REQUIRED_CHANGE_MISSING</code>. The result therefore exposed a narrow design inefficiency: the supervisor already knew the only allowable edit, yet the model was asked to reproduce the full transformed string.</p>
+        <div class="grid-3">
+          <div class="metric"><span class="value">24 / 24</span><span class="label">responses parsed and independently verified</span></div>
+          <div class="metric"><span class="value">14 / 24</span><span class="label">useful transformations (58.3%); qualification failed</span></div>
+          <div class="metric"><span class="value">0</span><span class="label">unsafe candidates accepted; all ten unchanged failures quarantined</span></div>
+        </div>
+
+        <figure class="figure" id="figure-3">
+          <svg viewBox="0 0 1100 650" role="img" aria-labelledby="fig3-title fig3-desc">
+            <title id="fig3-title">Longitudinal progress across model-interface and task-success measures</title>
+            <desc id="fig3-desc">The top chart shows structured or parsed response rates increasing from 40 percent to 100 percent across successive interfaces. The lower chart shows first-pass task success at 68.75 percent for v3.4.1, 50 percent for Occasion 2, and 58.33 percent for v3.7.1, all below their qualification requirements.</desc>
+            <g font-family="Segoe UI, Arial, sans-serif">
+              <text x="70" y="38" fill="var(--ink)" font-size="20" font-weight="700">A · Interface compliance improved</text>
+              <text x="70" y="62" fill="var(--muted)" font-size="13">Structured/parsed responses (%) — denominators differ by phase</text>
+              <g stroke="var(--line)" stroke-width="1"><line x1="95" y1="100" x2="1040" y2="100"/><line x1="95" y1="180" x2="1040" y2="180"/><line x1="95" y1="260" x2="1040" y2="260"/><line x1="95" y1="340" x2="1040" y2="340"/></g>
+              <g fill="var(--muted)" font-size="12" text-anchor="end"><text x="84" y="104">100</text><text x="84" y="184">75</text><text x="84" y="264">50</text><text x="84" y="344">25</text></g>
+              <path d="M150 292 L330 185 L510 140 L690 100 L870 100 L1010 100" fill="none" stroke="var(--accent-2)" stroke-width="4"/>
+              <g fill="var(--accent-2)" stroke="var(--paper)" stroke-width="3">
+                <circle cx="150" cy="292" r="8"/><circle cx="330" cy="185" r="8"/><circle cx="510" cy="140" r="8"/><circle cx="690" cy="100" r="8"/><circle cx="870" cy="100" r="8"/><circle cx="1010" cy="100" r="8"/>
+              </g>
+              <g fill="var(--ink)" font-size="13" text-anchor="middle">
+                <text x="150" y="278">40.0%</text><text x="330" y="171">73.3%</text><text x="510" y="126">87.5%</text><text x="690" y="86">100%</text><text x="870" y="86">100%</text><text x="1010" y="86">100%</text>
+              </g>
+              <g fill="var(--muted)" font-size="12" text-anchor="middle">
+                <text x="150" y="370"><tspan x="150">Initial Qwen</tspan><tspan x="150" dy="16">20/50</tspan></text>
+                <text x="330" y="370"><tspan x="330">v2</tspan><tspan x="330" dy="16">11/15</tspan></text>
+                <text x="510" y="370"><tspan x="510">v2.1</tspan><tspan x="510" dy="16">7/8</tspan></text>
+                <text x="690" y="370"><tspan x="690">v3.0.1</tspan><tspan x="690" dy="16">24/24</tspan></text>
+                <text x="870" y="370"><tspan x="870">v3.2</tspan><tspan x="870" dy="16">24/24</tspan></text>
+                <text x="1010" y="370"><tspan x="1010">v3.7.1</tspan><tspan x="1010" dy="16">24/24</tspan></text>
+              </g>
+
+              <text x="70" y="455" fill="var(--ink)" font-size="20" font-weight="700">B · First-pass usefulness remained unstable</text>
+              <text x="70" y="479" fill="var(--muted)" font-size="13">Different held-out suites; values are descriptive, not a controlled learning curve</text>
+              <line x1="95" y1="600" x2="1040" y2="600" stroke="var(--line)"/>
+              <g>
+                <rect x="190" y="510" width="160" height="90" rx="4" fill="color-mix(in srgb, var(--accent) 72%, transparent)"/>
+                <rect x="470" y="535" width="160" height="65" rx="4" fill="color-mix(in srgb, var(--warn) 72%, transparent)"/>
+                <rect x="750" y="524" width="160" height="76" rx="4" fill="color-mix(in srgb, var(--accent-2) 72%, transparent)"/>
+              </g>
+              <g fill="var(--ink)" font-size="15" text-anchor="middle" font-weight="700"><text x="270" y="500">68.75% · 11/16</text><text x="550" y="525">50.0% · 16/32</text><text x="830" y="514">58.33% · 14/24</text></g>
+              <g fill="var(--muted)" font-size="12" text-anchor="middle"><text x="270" y="625">v3.4.1 first pass</text><text x="550" y="625">Occasion 2</text><text x="830" y="625">v3.7.1 L2</text></g>
+            </g>
+          </svg>
+          <figcaption><strong>Figure 3.</strong> Longitudinal engineering trajectory. Interface compliance improved markedly, but successful formatting did not guarantee semantic or task success. Lower-panel suites and thresholds were not identical; the figure should not be interpreted as a statistically controlled model-learning curve.</figcaption>
+        </figure>
+
+        <figure class="figure" id="figure-4">
+          <svg viewBox="0 0 1050 520" role="img" aria-labelledby="fig4-title fig4-desc">
+            <title id="fig4-title">RB-017 development timeline</title>
+            <desc id="fig4-desc">A timeline from host security and deterministic kernel hardening through model interface testing, semantic panel review, repair mechanics, Occasion 2, trust lanes, and the v3.7.1 containment result.</desc>
+            <g font-family="Segoe UI, Arial, sans-serif">
+              <line x1="85" y1="250" x2="970" y2="250" stroke="var(--line)" stroke-width="4"/>
+              <g fill="var(--paper)" stroke="var(--accent)" stroke-width="4">
+                <circle cx="120" cy="250" r="12"/><circle cx="260" cy="250" r="12"/><circle cx="400" cy="250" r="12"/><circle cx="540" cy="250" r="12"/><circle cx="680" cy="250" r="12"/><circle cx="820" cy="250" r="12"/><circle cx="950" cy="250" r="12"/>
+              </g>
+              <g fill="var(--ink)" font-size="14" font-weight="700" text-anchor="middle">
+                <text x="120" y="95"><tspan x="120">Host &amp; Phase 1</tspan><tspan x="120" dy="18">security baseline</tspan></text>
+                <text x="260" y="350"><tspan x="260">Phase 1.2</tspan><tspan x="260" dy="18">54/54 tests</tspan></text>
+                <text x="400" y="95"><tspan x="400">Qwen adapters</tspan><tspan x="400" dy="18">v2 → v3.2</tspan></text>
+                <text x="540" y="350"><tspan x="540">Semantic panel</tspan><tspan x="540" dy="18">v3.3 frozen</tspan></text>
+                <text x="680" y="95"><tspan x="680">Repair mechanics</tspan><tspan x="680" dy="18">v3.4.1 / 3.4.2</tspan></text>
+                <text x="820" y="350"><tspan x="820">Occasion 2</tspan><tspan x="820" dy="18">failed 16/32</tspan></text>
+                <text x="950" y="95"><tspan x="950">Trust lanes</tspan><tspan x="950" dy="18">v3.6 → v3.7.1</tspan></text>
+              </g>
+              <g fill="var(--muted)" font-size="12" text-anchor="middle">
+                <text x="120" y="145"><tspan x="120">ESU; Windows</tspan><tspan x="120" dy="16">build 19045.7548</tspan></text>
+                <text x="260" y="400"><tspan x="260">durable authority</tspan><tspan x="260" dy="16">receipt + verifier</tspan></text>
+                <text x="400" y="145"><tspan x="400">raw evidence</tspan><tspan x="400" dy="16">semantic gates</tspan></text>
+                <text x="540" y="400"><tspan x="540">H14 genuine;</tspan><tspan x="540" dy="16">H07/H19 boundaries</tspan></text>
+                <text x="680" y="145"><tspan x="680">5/5 repaired;</tspan><tspan x="680" dy="16">cloud/evidence hardening</tspan></text>
+                <text x="820" y="400"><tspan x="820">4/4 repaired;</tspan><tspan x="820" dy="16">poor first pass retained</tspan></text>
+                <text x="950" y="145"><tspan x="950">14/24 useful;</tspan><tspan x="950" dy="16">0 unsafe accepted</tspan></text>
+              </g>
+              <g stroke="var(--line)" stroke-width="2"><line x1="120" y1="238" x2="120" y2="165"/><line x1="260" y1="262" x2="260" y2="325"/><line x1="400" y1="238" x2="400" y2="165"/><line x1="540" y1="262" x2="540" y2="325"/><line x1="680" y1="238" x2="680" y2="165"/><line x1="820" y1="262" x2="820" y2="325"/><line x1="950" y1="238" x2="950" y2="165"/></g>
+              <text x="525" y="490" text-anchor="middle" fill="var(--muted)" font-size="13">15–18 July 2026 · compressed intensive development sequence</text>
+            </g>
+          </svg>
+          <figcaption><strong>Figure 4.</strong> Major research phases. The sequence reflects increasingly strict separation between model behavior, deterministic governance, evidence integrity, and release authority.</figcaption>
+        </figure>
+      </section>
+
+      <section id="discussion" aria-labelledby="discussion-title">
+        <span class="section-number">5 · Discussion</span>
+        <h2 id="discussion-title">Discussion</h2>
+
+        <h3>5.1 The main progress was trustworthy failure detection</h3>
+        <p>At first glance, repeated qualification failures might suggest little progress. The evidence shows a more useful pattern. Early interfaces failed to produce valid records at all; later interfaces produced complete, hash-bound, independently verifiable evidence; and the v3.7.1 capsule prevented every observed unsafe or out-of-span candidate from advancing. The system became substantially more reliable at knowing when it did <em>not</em> have a usable result. For an agentic system, this is a prerequisite to capability rather than a secondary feature.</p>
+
+        <h3>5.2 Structural validity and semantic validity are different</h3>
+        <p>Qwen's structured-output performance rose to 24/24, yet task usefulness remained 14/24 in v3.7.1. The v2.1 truth-state example had already demonstrated the same distinction: a schema-valid <code>record_plan</code> proposal was still the wrong meaning. Model evaluation therefore cannot stop at parse success, field presence, or JSON-schema validity. It must examine whether the preserved concepts, modifiers, negation, referents, source span, and requested transformation are correct.</p>
+
+        <h3>5.3 Deterministic materialization is the next elegant simplification</h3>
+        <p>The ten v3.7.1 failures were unusually informative. Qwen correctly identified the span metadata and allowed replacement but failed to place the replacement into the full candidate text. Asking the model to reproduce the entire string created an unnecessary failure opportunity. When the only legal operation is already known, the supervisor should splice the registered replacement into the verified source and validate unchanged prefix and suffix mechanically. The model should be used only where judgment is genuinely required—for example, selecting among a small set of semantically plausible transformations or determining that clarification is necessary.</p>
+
+        <h3>5.4 The instructor/critic remains a research branch</h3>
+        <p>The desired long-term system includes a worker and an instructor/critic, potentially operating sequentially on the current hardware. The evidence does not yet qualify Granite or any other local model for the instructor role. A critic can help explain complex failures, but it must not reinterpret an evaluator certificate, reveal a sealed answer, negotiate authority, or become a second uncontrolled model in the decision path. Known failures should continue to use deterministic templates. A critic should be activated only for registered complex failures after passing a separate blinded qualification suite, and its output must remain advisory.</p>
+
+        <h3>5.5 Independent panels add insight, not truth by vote</h3>
+        <p>The Gemini, DeepSeek, Grok, Anthropic Claude, and other independent review contributions helped identify evaluator literalism, contract ambiguity, polarity reversals, noun instability, and the distinction between safe refusal and successful task completion. They also disagreed about release recommendations and individual semantic classifications. This disagreement was valuable. It prevented a single evaluator's assumptions from silently becoming constitutional truth. However, quorum is a research signal—not an execution grant. Anthony remains the only human policy authority, and machine state still requires deterministic evidence.</p>
+
+        <h3>5.6 Resource constraints shaped a better architecture</h3>
+        <p>The 8 GB host required one-model-at-a-time operation, bounded contexts, D-drive placement, and explicit resource observations. These constraints discouraged an opaque always-on swarm and encouraged clean interfaces, shutdown checks, exact run envelopes, and portable packages. Although stronger future hardware will reduce latency, it should not remove these governance separations.</p>
+
+        <h3>5.7 Limitations</h3>
+        <ul>
+          <li>This is a single-host engineering case study with small, synthetic suites; it does not estimate general population performance.</li>
+          <li>Cross-version comparisons are confounded by changing prompts, schemas, evaluators, and task families.</li>
+          <li>The local models were not retrained; improvements primarily reflect interface, evaluator, and deterministic-control changes.</li>
+          <li>Independent AI reviewers were not uniformly version-identified, and their judgments were not treated as ground truth.</li>
+          <li>Production tools, personal documents, web access, memory, communications, and Open WebUI model connection were deliberately excluded. The work therefore establishes containment and research infrastructure, not production effectiveness.</li>
+          <li>The complete D:\AI_Stack corpus includes large binary containers and model weights. These were fully inventoried and hash-reconciled where manifested but were not semantically interpreted as document evidence.</li>
+          <li>One experiment launcher mislabeled a verified scientific failure as a generic operational exception after verification; the evidence and shutdown remained valid, but terminal-state vocabulary requires correction.</li>
+        </ul>
+      </section>
+
+      <section id="summary" aria-labelledby="summary-title">
+        <span class="section-number">6 · Summary</span>
+        <h2 id="summary-title">Summary of findings</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Table 4. What has and has not been established.</caption>
+            <thead><tr><th>Domain</th><th>Established</th><th>Not established</th></tr></thead>
+            <tbody>
+              <tr><td>Authority</td><td>Durable, schema-bound, human-attributable authorization can be enforced outside conversation</td><td>A model may infer or extend authority</td></tr>
+              <tr><td>Kernel</td><td>Phase 1.2 passed staged and deployed deterministic testing</td><td>A production executor is safe or released</td></tr>
+              <tr><td>Evidence</td><td>Raw responses, requests, hashes, resources, chains, and terminal results can be preserved and independently verified</td><td>A process log alone proves task completion</td></tr>
+              <tr><td>Qwen</td><td>Can produce structured drafts and some bounded transformations; v3.7.1 containment was strong</td><td>Reliable first-pass production work, tool authority, or completion certification</td></tr>
+              <tr><td>Granite</td><td>Provided research evidence about critic failure modes</td><td>Qualified proposer, instructor, critic, or release adviser</td></tr>
+              <tr><td>Repair</td><td>One deterministic-template revision recovered narrow eligible failures in two experiments</td><td>General self-correction or permission for repeated retries</td></tr>
+              <tr><td>Open WebUI / Docker</td><td>Retained in the approved future architecture</td><td>Connected to tools, production work, or model authority</td></tr>
+              <tr><td>Deployment</td><td>Research baseline and evidence store exist on D:</td><td>A production agent, startup orchestrator, or user-ready Safe Useful Core</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>RB-017 has moved from an informal “local chatbot with tools” concept toward an explicit separation of concerns: models generate candidate language; deterministic systems define what is allowed; independent verifiers establish what occurred; and Anthony supplies the only durable human authority. The remaining capability problem is real, but it is now measurable and contained.</p>
+      </section>
+
+      <section id="conclusions" aria-labelledby="conclusions-title">
+        <span class="section-number">7 · Conclusions</span>
+        <h2 id="conclusions-title">Conclusions</h2>
+        <p>This research supports four conclusions. First, a language model should not be the constitutional center of an agentic system. Authority, targets, risk, replay, resource limits, and completion must remain deterministic. Second, structured-output compliance is necessary but insufficient; semantic fidelity, source preservation, usefulness, and evidence completeness require independent evaluation. Third, a narrow one-revision transaction can safely recover registered failures when the evaluator certificate and correction scope are deterministic. Fourth, the safest and most efficient successor is not necessarily a larger prompt or another critic: when the final operation is already known, the supervisor should perform it mechanically.</p>
+        <p>RB-017 is therefore best described as a governed personal AI research platform with a deployed simulation kernel, a mature evidence architecture, a frozen narrow repair mechanism, and an unreleased trust-lane design. It is not yet a production agentic AI. That conclusion is not a rhetorical disclaimer; it is the direct result of preregistered thresholds, immutable failed occasions, and successful independent verification.</p>
+      </section>
+
+      <section id="future" aria-labelledby="future-title">
+        <span class="section-number">8 · Future research</span>
+        <h2 id="future-title">Future research and controlled development</h2>
+        <ol>
+          <li><strong>Design v3.8 offline:</strong> create a parallel, separately manifested successor in which the deterministic supervisor materializes registered exact edits. The model should return only the smallest genuinely uncertain judgment.</li>
+          <li><strong>Correct terminal classification:</strong> distinguish verified scientific failure from operational, transport, or verifier failure in launcher receipts and exit semantics.</li>
+          <li><strong>Use fresh blinded cases:</strong> preregister new clean/hostile pairs, sealed oracles, acceptance thresholds, and stop rules. Do not reuse exposed v3.7.1 answers as qualification evidence.</li>
+          <li><strong>Compare ablations:</strong> test model-generated full candidate text against deterministic materialization from the same model judgment. Measure usefulness, containment, latency, and evidence burden separately.</li>
+          <li><strong>Qualify a critic independently:</strong> only after the deterministic route is characterized. The critic suite should test certificate fidelity, refusal to reveal answers, resistance to adversarial text, and correct deference to the evaluator.</li>
+          <li><strong>Evaluate Lane 1 drafting:</strong> a tool-free, trusted-input drafting lane may yield earlier practical benefit for resumes, cover letters, and professional writing than untrusted-content transformation. This requires its own synthetic and source-fidelity gates.</li>
+          <li><strong>Preserve the three-occasion rule:</strong> one promising run is insufficient. Repeat only after a package passes and a separate exact approval is granted; analyze series behavior rather than optimizing to a single test.</li>
+          <li><strong>Defer production coupling:</strong> Open WebUI, Docker-hosted services, tools, personal data, memory, email, Telegram, and the Desktop startup orchestrator should remain separate later gates.</li>
+          <li><strong>Develop compact durable memory:</strong> store source-linked summaries, decisions, hashes, and retrieval indexes rather than copies of every conversation.</li>
+          <li><strong>Prepare portability and public research release:</strong> after qualification, sanitize the package, document licenses, remove personal paths/data, add accessibility and security guidance, and create a feedback pathway. Any commercial edition should follow legal, support, privacy, and reproducibility review.</li>
+        </ol>
+        <div class="callout"><strong>Immediate next scientific proposition:</strong> when a trusted deterministic capsule already knows the exact authorized replacement, ask the model only whether the registered edit is semantically appropriate; if the judgment passes, let the supervisor apply the edit and verify the result byte-for-byte.</div>
+      </section>
+
+      <section id="contributions" aria-labelledby="contributions-title">
+        <span class="section-number">9 · Attribution</span>
+        <h2 id="contributions-title">Author contributions</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Contributor roles, adapted from the CRediT taxonomy.</caption>
+            <thead><tr><th>Contributor</th><th>Roles</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Anthony R. Ball</strong></td><td>Conceptualization; research questions; methodology co-design; system requirements; human authority; investigation; validation; resources; project administration; review and editing; final accountability.</td></tr>
+              <tr><td><strong>Codex (OpenAI)</strong></td><td>Methodology co-design; software; deterministic-control implementation; formal analysis; data curation; visualization; evidence reconciliation; original manuscript drafting; review and editing.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnotes">Codex is listed as a co-author at Anthony R. Ball's express request to transparently recognize its substantial intellectual and technical contribution. As an AI system, Codex cannot assume legal or ethical accountability, approve publication, or disclose conflicts independently. Anthony R. Ball reviewed the project record and retains final responsibility for release and interpretation.</p>
+      </section>
+
+      <section id="acknowledgments" aria-labelledby="acknowledgments-title">
+        <span class="section-number">10 · Acknowledgments</span>
+        <h2 id="acknowledgments-title">Acknowledgments</h2>
+        <p>The authors gratefully acknowledge <strong>Grok, Gemini, and DeepSeek</strong> for assistance in the independent AI review-panel work. Their contributions included blinded record classification, semantic-equivalence judgments, systemic observations, counterexamples, and suggestions for bounded normalization. The project also acknowledges <strong>Anthropic Claude</strong> for a documented independent semantic review and the other AI systems whose preserved reports informed architecture, governance, and human–AI communication analysis.</p>
+        <p>All external AI reviews were advisory and non-authoritative. They were preserved unchanged, scored against declared rubrics, and adjudicated by the Remediation Bureau process. Credit for participation does not imply that every recommendation was accepted, that the reviewers agreed, or that any reviewer could authorize a run or release. One Grok recommendation was judged too permissive for operational use and Grok was subsequently barred by Anthony from future RB-017 reviewer, critic, trainer, monitor, or release-adviser roles; its historical contribution remains credited as part of the scientific record.</p>
+        <p>The authors also acknowledge the developers and maintainers of Ollama, Open WebUI, Docker, Python, PowerShell, SQLite, and the open model ecosystem whose software made this local research program possible.</p>
+      </section>
+
+      <section id="disclosures" aria-labelledby="disclosures-title">
+        <span class="section-number">11 · Research disclosures</span>
+        <h2 id="disclosures-title">Ethics, interests, data, and reproducibility</h2>
+        <h3>Ethics and privacy</h3>
+        <p>The model-bearing experiments used synthetic content and were isolated from production files, personal documents, tools, memory, email, messaging, and external communication. No public sharing of personal data was authorized. This engineering study did not recruit human participants; Anthony was the system owner, investigator, and intended user.</p>
+        <h3>Competing interests</h3>
+        <p>Anthony R. Ball is the creator and owner of the RB-017 project and has expressed a future interest in releasing a free research edition and potentially a low-cost commercial edition. This prospective interest did not alter the preregistered failures reported here. No external sponsor funded the reported work. OpenAI did not sponsor or endorse this report merely because Codex participated through a user subscription.</p>
+        <h3>Data availability</h3>
+        <p>The private primary record is stored locally in the Remediation Bureau Command Center and <code>D:\AI_Stack</code>. It includes manifests, source code, synthetic suites, sealed oracles, raw model wrappers/content, SQLite evidence stores, chained JSONL events, test logs, run audits, and confirmation summaries. Public release is not yet authorized. A future shareable package must remove personal paths and private material, preserve licenses, document hashes, and pass a separate release review.</p>
+        <h3>Reproducibility statement</h3>
+        <p>During preparation of this report, 16 discovered <code>PACKAGE_MANIFEST.json</code> files were read and 353 listed files were independently rehashed with SHA-256: zero files were missing and zero hashes differed. The report itself is a narrative synthesis and does not replace the raw evidence, package manifests, or independent verifiers.</p>
+      </section>
+
+      <section class="appendix" id="appendix-a" aria-labelledby="appendix-a-title">
+        <span class="section-number">Appendix A</span>
+        <h2 id="appendix-a-title">Development chronology</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Table A1. Principal stages, evidence, and dispositions.</caption>
+            <thead><tr><th>Stage</th><th>Primary result</th><th>Disposition</th></tr></thead>
+            <tbody>
+              <tr><td>Architecture selection</td><td>Candidate B: Open WebUI → RB Supervisor → deterministic Policy Gate → isolated MCP/OpenAPI capabilities → approved territory</td><td>Approved architectural direction</td></tr>
+              <tr><td>Host gate</td><td>Windows ESU enrollment and update to build 19045.7548</td><td>Security prerequisite passed</td></tr>
+              <tr><td>Phase 1</td><td>12 governance tests passed</td><td>Superseded by hardening</td></tr>
+              <tr><td>v1.1.1</td><td>22 source and deployed tests passed</td><td>Four fail-open counterexamples later identified</td></tr>
+              <tr><td>Phase 1.2</td><td>54 staged and 54 deployed tests passed</td><td>Current deterministic simulation kernel</td></tr>
+              <tr><td>Granite proposer</td><td>36/50 acceptable after containment; two false-completion claims</td><td>Rejected</td></tr>
+              <tr><td>Qwen initial</td><td>20/50 strict-valid</td><td>Rejected for user-facing/proposal role</td></tr>
+              <tr><td>Qwen v2 / v2.1</td><td>11/15 and 7/8 structural; semantic action mismatch persisted</td><td>Interface research only</td></tr>
+              <tr><td>Granite critic v1 / v1.1</td><td>Failed generalization and containment judgment</td><td>Rejected</td></tr>
+              <tr><td>External trainer-monitor</td><td>Three reviewers classified 8/8 records; release recommendations differed</td><td>Promising advisory scaffolding; non-authoritative</td></tr>
+              <tr><td>v3.0.1</td><td>24/24 structure; 9/12 metamorphic</td><td>Failed overall</td></tr>
+              <tr><td>v3.2 Occasion 1</td><td>13/24 semantic/useful; 7/12 metamorphic</td><td>Official failure preserved</td></tr>
+              <tr><td>v3.3</td><td>55/55 tests; diagnostic replay 23/24 semantic, 21/24 canonical</td><td>Frozen offline evaluator baseline</td></tr>
+              <tr><td>v3.4.1</td><td>11/16 first pass; 5/5 repairs; zero observed regressions</td><td>Core repair transaction frozen; full envelope not frozen</td></tr>
+              <tr><td>v3.4.2</td><td>22/22 evidence-hardening tests; forced cloud-disable design</td><td>Frozen offline evidence harness</td></tr>
+              <tr><td>Occasion 2 / v3.5</td><td>16/32 first pass; 4/4 repairs; six fabricated claims</td><td>Official failure preserved</td></tr>
+              <tr><td>v3.6</td><td>Five trust lanes; 40 tests; empty capability release list</td><td>Frozen offline baseline</td></tr>
+              <tr><td>v3.7</td><td>HTTP 400 before generation due to 12,000-character grammar bound</td><td>No scientific result; authority consumed</td></tr>
+              <tr><td>v3.7.1</td><td>24/24 parsed; 14/24 useful; zero unsafe accepted; ten unchanged quarantined</td><td>Containment passed; capability failed</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="appendix" id="appendix-b" aria-labelledby="appendix-b-title">
+        <span class="section-number">Appendix B</span>
+        <h2 id="appendix-b-title">Selected integrity ledger</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Table B1. Critical package and result hashes.</caption>
+            <thead><tr><th>Artifact</th><th>SHA-256</th></tr></thead>
+            <tbody>
+              <tr><td>Qwen3:4b exact Ollama manifest</td><td class="hash">359D7DD4BCDAB3D86B87D73AC27966F4DBB9F5EFDFCC75D34A8764A09474FAE7</td></tr>
+              <tr><td>Phase 1.2 kernel package</td><td class="hash">D3149E14635FF0BEE1D43123E4C6DCEA2F3407E67A37D1C199D2A90CD059850A</td></tr>
+              <tr><td>v3.3 frozen baseline</td><td class="hash">43715EC26FD6B14C2B001AF7376234BE8DD1A5F69CFEF6FDFEE2B2388B3BA173</td></tr>
+              <tr><td>Official Occasion 1 result</td><td class="hash">BDF307F9BB2ADB8E49960D83CDBFEE7C30D8DBFFD2CFBF1C1ACE187C5E65B044</td></tr>
+              <tr><td>v3.4 repair protocol</td><td class="hash">57CC2A9D83BC5A22B38C374C6881CD8E1C075237BCC9E9C6CDCAD49EDE6D8643</td></tr>
+              <tr><td>v3.4.2 evidence-hardened harness</td><td class="hash">FFEFB1B2DDB63C97ED43B80E802F4325B5E5069FBBE7DFCC4866EFEA2A94358A</td></tr>
+              <tr><td>Occasion 2 preconnection package</td><td class="hash">96AE403152D4850ECA8AA595CE4CEFC82DD5DFD89AB267385B5ACC815B342AA0</td></tr>
+              <tr><td>Occasion 2 terminal result</td><td class="hash">FCFCB37230DD8593CE0931CE18586F3C7D3C9463805196A6BBE69F5B3BC52589</td></tr>
+              <tr><td>v3.6 trust-lane baseline</td><td class="hash">7FB80C8936157D9BF68DA75B8A9FADEB6E48DD21717DCF0FF9BCE357F87230D9</td></tr>
+              <tr><td>v3.7 preconnection package</td><td class="hash">25AD1091A2B0D4E9ACB94990DE1810600F25E7E36CEC10095040A474432D1690</td></tr>
+              <tr><td>v3.7.1 corrected package</td><td class="hash">533011ABBC274D3A883D161CF6C57878715F970CFB88EB8545BD1F125FAAF836</td></tr>
+              <tr><td>v3.7.1 terminal result</td><td class="hash">9C77283F4CEBB4114677994000F9E3AADFCBCE6FA2C573569E2BB724B000C8DE</td></tr>
+              <tr><td>v3.7.1 terminal event</td><td class="hash">86854645AE0067CB60B8CAFFAA065F25FBEEB2086EDE66884D4F4E697B373EBD</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="appendix" id="appendix-c" aria-labelledby="appendix-c-title">
+        <span class="section-number">Appendix C</span>
+        <h2 id="appendix-c-title">Glossary of stable project terms</h2>
+        <dl>
+          <dt><strong>Authorization</strong></dt><dd>A durable, attributable, scoped, unexpired record created from Anthony's explicit decision; not merely a conversational implication.</dd>
+          <dt><strong>Candidate</strong></dt><dd>Model-produced data awaiting deterministic validation. A candidate is not an action, approval, fact, or completion.</dd>
+          <dt><strong>Canonicalization</strong></dt><dd>A deterministic normalization that preserves meaning while producing the exact downstream form required by a contract.</dd>
+          <dt><strong>Capability release</strong></dt><dd>A separately approved decision that a tested function may be used within exact scope. A successful experiment does not automatically release a capability.</dd>
+          <dt><strong>Containment</strong></dt><dd>Prevention of unsafe, invented, out-of-scope, or source-altering output from advancing, even when the model generated it.</dd>
+          <dt><strong>Critic / instructor</strong></dt><dd>A future advisory model that may explain complex registered failures. It cannot override the evaluator, grant authority, or qualify itself.</dd>
+          <dt><strong>Evidence completeness</strong></dt><dd>Preservation of the exact request, raw response, hashes, settings, timestamps, parse result, resource observation, decision, and event binding needed for independent reconstruction.</dd>
+          <dt><strong>Fail closed</strong></dt><dd>When required evidence, authority, binding, or validation is absent, the transition is denied or quarantined rather than guessed.</dd>
+          <dt><strong>Metamorphic family</strong></dt><dd>Related test cases that should preserve or predictably alter meaning under controlled linguistic or adversarial transformations.</dd>
+          <dt><strong>Occasion</strong></dt><dd>A separately preregistered validation event using fresh held-out material. “Occasion 2” is chronological, not proof of a second success.</dd>
+          <dt><strong>Policy Gate</strong></dt><dd>The deterministic component that approves, denies, or escalates a proposed transition according to human-readable rules and durable authority.</dd>
+          <dt><strong>Receipt plus verifier</strong></dt><dd>A completion standard requiring both machine evidence of the observed result and an independent check against the intended outcome.</dd>
+          <dt><strong>Remediation Bureau</strong></dt><dd>Anthony Ball's mandatory project-control, evidence, QA/QC, constitutional, remediation, release, and handoff framework.</dd>
+          <dt><strong>Safe Useful Core</strong></dt><dd>A future graduated set of low-risk capabilities. Its current released-capability list is empty.</dd>
+          <dt><strong>Transformation capsule</strong></dt><dd>A closed, source-hash-bound envelope that limits a transformation to exact spans, allowlisted replacements, and unchanged surrounding text.</dd>
+          <dt><strong>Truth state</strong></dt><dd>The provenance classification of a claim, such as observed, user-confirmed, inferred, unverified, corrected, or invalidated.</dd>
+          <dt><strong>Worker</strong></dt><dd>The model role that drafts or proposes candidate meaning. It cannot create durable authority, final action, risk, target, or completion state.</dd>
+        </dl>
+      </section>
+
+      <section class="appendix" id="references" aria-labelledby="references-title">
+        <span class="section-number">Project evidence references</span>
+        <h2 id="references-title">Primary internal sources</h2>
+        <ol class="reference-list">
+          <li>Remediation Bureau Command Center. <em>Operating Manual</em>, project manifest, activity register, RB-017 dossier, governing charter, communications requirements, and evidence series. <code>D:\01 ABALL Personal\00 Remediation Bureau Command Center</code>.</li>
+          <li>RB-017 implementation and experimental corpus. Package manifests, source code, synthetic suites, sealed oracles, QA logs, run results, raw evidence, and independent verifiers. <code>D:\AI_Stack</code>.</li>
+          <li>RB-017 Successor-Session Handoff and Continuity Report, evidence record 40, 17 July 2026.</li>
+          <li>RB-017 Occasion 2 Result and Post-Run Audit, evidence record 44, 18 July 2026.</li>
+          <li>RB-017 v3.6 Trust-Lane Offline Implementation and QA, evidence record 47, 18 July 2026.</li>
+          <li>RB-017 v3.7 Pre-Generation Failure Result and Audit, evidence record 51, 18 July 2026.</li>
+          <li>RB-017 v3.7.1 Result and Post-Run Audit, evidence record 54, 18 July 2026.</li>
+          <li>External Trainer–Monitor Pilot independent reports and Semantic Equivalence Review Panel responses, preserved under <code>D:\AI_Stack</code>, 16–17 July 2026.</li>
+        </ol>
+        <p class="footnotes"><strong>Source-control note:</strong> This report summarizes the evidence as of the stated cutoff. If any statement conflicts with an immutable raw artifact, exact authorization, package manifest, terminal result, or independent-verifier record, the verified source artifact controls and the discrepancy should be documented through the Remediation Bureau.</p>
+      </section>
+    </main>
+    <footer>RB-017 Longitudinal Research Report · Version 1.0 · Evidence cutoff 18 July 2026</footer>
+  </div>
+</body>
+</html>
